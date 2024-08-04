@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+// import { Inter } from "next/font/google"
 import "./globals.css"
 import { useEffect } from "react"
 import { BoundStoreProvider } from "@/store/StoreProvider"
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-noto_sans" })
+// const inter = Inter({ subsets: ["latin"], variable: "--font-noto_sans" })
 
 export const metadata: Metadata = {
   title: "I’am skobarian",
@@ -18,7 +18,7 @@ interface RootLayoutProps {
 const RootLayout = async ({ children }: RootLayoutProps) => {
   return (
     <html>
-      <body className={inter.className}>
+      <body>
         <BoundStoreProvider>{children}</BoundStoreProvider>
       </body>
     </html>
