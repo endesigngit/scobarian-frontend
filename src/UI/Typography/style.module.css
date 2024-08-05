@@ -1,0 +1,19 @@
+.variant_h1 {
+  font-family: var(--font-lack);
+  font-size: 14px;
+  line-height: 16.1px;
+  letter-spacing: 0.02em;
+}
+
+.variant_subtitle {
+  font-family: var(--font-steppe);
+}
+
+.variant_text {
+  font-family: var(--font-steppe);
+  font-size: 14px;
+  line-height: 18.2px;
+}
+
+.variant_subtext {
+}

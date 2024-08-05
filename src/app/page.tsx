@@ -1,10 +1,11 @@
 "use client"
 
 import { useBoundStore } from "@/store/StoreProvider"
-import styles from "./page.module.css"
 import Link from "next/link"
+import { Typography } from "@/UI/Typography/Typography"
+import styles from "./page.module.css"
 
-const Home = () => {
+export default function Home() {
   const { bears, fishes, addFish, addBear, eatFish } = useBoundStore((state) => ({
     bears: state.bears,
     fishes: state.fishes,
@@ -24,9 +25,11 @@ const Home = () => {
         <br />
         <button onClick={addFish}>add fish</button>
       </div>
-      <Link href="/test">Go to test page</Link>
+      <Link href="/test">
+        <Typography tag="span" variant="text">
+          Go to test page
+        </Typography>
+      </Link>
     </main>
   )
 }
-
-export default Home
