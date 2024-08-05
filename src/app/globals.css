@@ -1,8 +1,5 @@
-@import url("fonts.css");
-
 :root {
-  --font-lack: 'Lack';
-  --font-steppe: 'Steppe';
+
 }
 
 * {
@@ -18,7 +15,7 @@ body {
 body,
 input,
 button {
-  font-family: var(--font-lack);
+  font-family: var(--font-lasc);
   /* color: var(--text-clr); */
 }
 

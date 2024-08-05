@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 // import { Inter } from "next/font/google"
+import { lack, steppe } from "./fonts"
 import "./globals.css"
 import { useEffect } from "react"
 import { BoundStoreProvider } from "@/store/StoreProvider"
@@ -18,7 +19,7 @@ interface RootLayoutProps {
 const RootLayout = async ({ children }: RootLayoutProps) => {
   return (
     <html>
-      <body>
+      <body className={`${lack.variable} ${steppe.variable}`}>
         <BoundStoreProvider>{children}</BoundStoreProvider>
       </body>
     </html>
