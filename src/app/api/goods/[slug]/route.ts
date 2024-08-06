@@ -1,6 +1,6 @@
 import { endpoints } from "@/utils/api/endpoints"
 import { transformCatalogGoods } from "@/utils/api/transformCatalogGoods"
-import { NextRequest, NextResponse } from "next/server"
+import { NextRequest } from "next/server"
 import qs from "qs"
 
 export async function GET(request: NextRequest, { params }: { params: { slug: string } }) {
@@ -29,5 +29,5 @@ export async function GET(request: NextRequest, { params }: { params: { slug: st
 
   const transformedData = transformCatalogGoods(data)
 
-  return NextResponse.json({ data: transformedData })
+  return Response.json({ data: transformedData })
 }
