@@ -7,7 +7,6 @@ import { useEffect } from "react"
 
 export default function Test() {
   const { bears, fishes } = useBoundStore((state) => ({ bears: state.bears, fishes: state.fishes }))
-
   return (
     <main>
       <div>

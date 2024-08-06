@@ -1,9 +1,10 @@
 "use client"
 
-import { useBoundStore } from "@/store/StoreProvider"
 import Link from "next/link"
+import { useBoundStore } from "@/store/StoreProvider"
 import { Typography } from "@/UI/Typography/Typography"
 import styles from "./page.module.css"
+import { useEffect } from "react"
 
 export default function Home() {
   const { bears, fishes, addFish, addBear, eatFish } = useBoundStore((state) => ({
