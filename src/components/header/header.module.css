@@ -8,7 +8,7 @@
   background-color: #ffffff;
   height: max-content;
 }
-.main_grid {
+.main_grid_container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }

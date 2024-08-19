@@ -3,7 +3,8 @@ import { lack, steppe } from "./fonts"
 import "./globals.css"
 import { useEffect } from "react"
 import { BoundStoreProvider } from "@/store/StoreProvider"
-import Header from "@/components/header/header"
+import Header from "@/components/Header/Header"
+import Footer from "@/components/Footer/Footer"
 
 export const metadata: Metadata = {
   title: "I’am skobarian",
@@ -19,8 +20,9 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
     <html>
       <body className={`${lack.variable} ${steppe.variable}`}>
         <BoundStoreProvider>
-          <Header></Header>
+          <Header />
           {children}
+          <Footer />
         </BoundStoreProvider>
       </body>
     </html>

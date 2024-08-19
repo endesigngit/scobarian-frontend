@@ -14,7 +14,7 @@
 }
 
 body {
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 
 body,
@@ -64,4 +64,5 @@ button {
 }
 main {
   margin-top: var(--main-header-height);
+  min-height: calc(100vh - var(--main-header-height) - 256px);
 }

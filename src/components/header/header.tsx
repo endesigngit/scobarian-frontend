@@ -1,12 +1,12 @@
 "use client"
 import Link from "next/link"
-import styles from "./header.module.css"
+import styles from "./Header.module.css"
 import { clsx } from "clsx"
 
 export default function Header() {
   return (
     <header className={styles.header}>
-      <nav className={clsx(styles.header__nav, styles.main_grid)}>
+      <nav className={clsx(styles.header__nav, styles.main_grid_container)}>
         <div className={styles.left_side}>
           <ul className={styles.main_menu}>
             <li className={styles.main_menu__item}>
