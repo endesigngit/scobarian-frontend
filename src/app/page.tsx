@@ -1,36 +1,40 @@
 "use client"
-
-import Link from "next/link"
-import { useBoundStore } from "@/store/StoreProvider"
-import { Typography } from "@/UI/Typography/Typography"
 import styles from "./page.module.css"
-import { useEffect } from "react"
+import Link from "next/link"
+import { clsx } from "clsx"
+import { Typography } from "@/UI/Typography/Typography"
 
 export default function Home() {
-  const { bears, fishes, addFish, addBear, eatFish } = useBoundStore((state) => ({
-    bears: state.bears,
-    fishes: state.fishes,
-    addFish: state.addFish,
-    addBear: state.addBear,
-    eatFish: state.eatFish
-  }))
-
   return (
     <main>
-      <div>
-        <h3>Bears: {bears}</h3>
-        <h3>Fishes: {fishes}</h3>
-        <button onClick={eatFish}>eat fish</button>
-        <br />
-        <button onClick={addBear}>add bear</button>
-        <br />
-        <button onClick={addFish}>add fish</button>
+      <div className={styles.image_block}>
+        <Link className={styles.image_block__title} href={"/"}>
+          перейти к покупкам
+        </Link>
       </div>
-      <Link href="/test">
-        <Typography tag="span" variant="text">
-          Go to test page
+      <div className={clsx(styles.image_block, styles.image_block__sb)}>
+        <Link className={styles.image_block__title} href={"/"}>
+          мужчины
+        </Link>
+        <Link className={styles.image_block__title} href={"/"}>
+          женщины
+        </Link>
+      </div>
+      <div className={styles.image_block}>
+        <Typography className={styles.image_block__title} tag={"p"} variant={"text"}>
+          Живу
         </Typography>
-      </Link>
+        <Typography className={styles.image_block__title} tag={"p"} variant={"text"}>
+          куя
+        </Typography>
+      </div>
+      <div className={styles.image_block}></div>
+      <div className={styles.image_block}></div>
+      <div className={styles.image_block}>
+        <Link className={styles.image_block__title} href={"/"}>
+          Пошив мерча для бизнеса
+        </Link>
+      </div>
     </main>
   )
 }

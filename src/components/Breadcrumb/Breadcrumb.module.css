@@ -6,6 +6,7 @@
 
   /* background: inherit; */
   mix-blend-mode: difference;
+  z-index: 2;
 }
 .main_grid_container {
   display: grid;
@@ -21,7 +22,7 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
 }
 .left_side .breadcrumb_col:nth-child(1) {
   min-width: 223px;
