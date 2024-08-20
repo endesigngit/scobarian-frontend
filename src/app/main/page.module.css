@@ -1,0 +1,8 @@
+.image_block {
+  width: 100%;
+  min-height: 877px;
+  background-image: url("../../assets/images/main-bg-1.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
