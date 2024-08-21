@@ -1,7 +1,7 @@
 :root {
   --main-font-color: #000000;
-  --secondary-font-color: #AAAAAA;
-  --secondary-menu-font-color: #7A7A7A;
+  --secondary-font-color: #7A7A7A;
+  --secondary-menu-font-color: #B4B4B4;
   --button-font-color: #1BCA4C;
   --container-padding-x: 40px;
   --main-header-height: 70px;
@@ -65,8 +65,7 @@ button {
   font-size: 1rem;
 }
 main {
-  /* padding-top: var(--main-header-height); */
-  min-height: calc(100vh - var(--main-header-height) - 256px); 
-  min-height: 100vh; 
-  /* background-image: url("../assets/images/main-bg-2.webp"); */
+  min-height: calc(100vh - 256px); 
+  /* min-height: 100vh;  */
+
 }

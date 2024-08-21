@@ -57,7 +57,7 @@ export default function Footer() {
             </ul>
           </div>
           <div className={styles.footer_col}>
-            <Link href="#" className={styles.main_footer__link}>
+            <Link href="/to-buyers" className={styles.main_footer__link}>
               Покупателям
             </Link>
             <ul className={styles.footer_list}>

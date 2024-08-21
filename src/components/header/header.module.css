@@ -39,7 +39,7 @@
   line-height: 14.4px;
 }
 .secondary_menu .main_menu__item {
-  color: var(--secondary-menu-font-color);
+  color: var(--secondary-font-color);
 }
 .left_side .main_menu__item:nth-child(1) {
   min-width: 223px;

@@ -66,7 +66,7 @@ export default function Header() {
               </Link>
             </li>
             <li className={styles.main_menu__item}>
-              <Link href="#" className={styles.main_menu__link}>
+              <Link href="/to-buyers" className={styles.main_menu__link}>
                 Покупателям
               </Link>
             </li>
@@ -123,7 +123,7 @@ export default function Header() {
               </Link>
             </li>
             <li className={styles.mobile_menu__item}>
-              <Link href="#" className={styles.mobile_menu__link}>
+              <Link href="/to-buyers" className={styles.mobile_menu__link}>
                 Покупателям
               </Link>
             </li>
