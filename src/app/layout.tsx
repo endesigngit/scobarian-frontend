@@ -3,8 +3,8 @@ import { lack, steppe } from "./fonts"
 import "./globals.css"
 import { useEffect } from "react"
 import { BoundStoreProvider } from "@/store/StoreProvider"
-import Header from "@/components/Header/Header"
 import Footer from "@/components/Footer/Footer"
+import Header from "@/components/Header/Header"
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
 
 export const metadata: Metadata = {
