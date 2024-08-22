@@ -1,0 +1,109 @@
+.page_main {
+  /* padding-left: var(--container-padding-x);
+  padding-right: var(--container-padding-x); */
+}
+
+.main_grid_container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* padding-left: var(--container-padding-x); */
+
+}
+
+.left_side,
+.right_side {
+  display: flex;
+  min-width: 50%;
+  column-gap: 40px;
+}
+.left_side__stickyBG {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  background-image: url("../../assets/images/tailoring-img.webp");
+  background-position: center;
+  background-size: cover;
+}
+.right_side {
+  padding: 125px var(--container-padding-x) 120px;
+  flex-direction: column;
+}
+.grid_col {
+  flex-grow: 1;
+}
+.left_side .grid_col:nth-child(1) {
+  min-width: 223px;
+  width: 223px;
+  max-width: 223px;
+}
+.left_side .grid_col:nth-child(2) {
+  width: 397px;
+}
+.right_side .grid_col:nth-child(1) {
+  width: 310px;
+  max-width: 310px;
+}
+.right_side .grid_col:nth-child(2),
+.right_side .grid_col:nth-child(3) {
+  width: 135px;
+}
+
+.page_title {
+  color: #000000;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.8px;
+  text-transform: uppercase;
+}
+.page_paragraph {
+  margin-top: 30px;
+  color: var(--secondary-font-color);
+}
+.page_paragraph span {
+  color: #000000;
+}
+.page_list {
+  margin-top: 28px;
+  padding-left: 30px;
+}
+.page_list_item {
+  list-style-type: initial;
+  font-family: var(--font-steppe);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18.2px;
+}
+
+.form_wrap {
+  margin-top: 160px;
+  max-width: 440px;
+}
+.form_wrap .page_paragraph {
+  margin-top: 5px;
+  max-width: 310px;
+}
+.feedback_form__wrap {
+  margin-top: 50px;
+}
+.feedback_form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 29px;
+}
+
+.feedback_form textarea,
+.feedback_form input,
+.feedback_form label {
+  width: 100%;
+}
+.feedback_form textarea,
+.feedback_form input {
+  font-family: var(--font-lack);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.4px;
+  border-bottom: 1px solid #E4E4E4;
+}
+.feedback_form textarea {
+  resize: none;
+}

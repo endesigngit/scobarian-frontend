@@ -1,0 +1,147 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: var(--main-header-height);
+  mix-blend-mode: difference;
+  z-index: 3;
+}
+.header:hover {
+  background-color: #ffffff;
+  height: max-content;
+  mix-blend-mode: normal;
+}
+.main_grid_container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.left_side,
+.right_side {
+  min-width: 50%;
+}
+.right_side {
+  padding-left: 40px;
+}
+.header__nav {
+  width: 100%;
+  padding: 49px var(--container-padding-x) 0 var(--container-padding-x);
+  background-color: transparent;
+}
+.main_menu {
+  width: 100%;
+  display: flex;
+  column-gap: 40px;
+}
+.main_menu__item {
+  flex-grow: 1;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.4px;
+}
+.secondary_menu .main_menu__item {
+  color: var(--secondary-font-color);
+}
+.left_side .main_menu__item:nth-child(1) {
+  min-width: 223px;
+  width: 223px;
+  max-width: 223px;
+}
+
+.left_side .main_menu__item:nth-child(2) {
+  width: 397px;
+}
+.right_side .main_menu__item:nth-child(1) {
+  width: 310px;
+}
+.right_side .main_menu__item:nth-child(2),
+.right_side .main_menu__item:nth-child(3) {
+  width: 135px;
+
+  display: flex;
+  justify-content: space-between; 
+}
+.main_menu__item:nth-child(5) {
+  width: 135px;
+  display: flex;
+  justify-content: space-between; 
+}
+.main_menu__link {
+  /* color: #ffffff; */
+  filter: invert(1) grayscale(1);
+  color: #000000;
+  /* mix-blend-mode: difference; */
+}
+.header:hover .main_menu__link {
+  color: #000000;
+  filter: none;
+  /* mix-blend-mode: normal; */
+}
+.header:hover .secondary_menu {
+  display: flex;
+}
+.secondary_menu {
+  margin-top: 36px;
+  margin-bottom: 93px;
+  column-gap: 40px;
+  display: none;
+}
+.main_submenu {
+  display: flex;
+}
+.main_submenu__item {
+  width: 45%;
+}
+.inner_submenu {
+  margin-top: 14px;
+  color: var(--main-font-color);
+}
+.inner_submenu__item {
+  padding: 3px 3px 3px 0;
+}
+.inner_submenu__item a{
+  display: inline-block;
+  width: 80%;
+}
+
+.mobile_offcanvas {
+  display: none;
+}
+
+.cart {
+  position: relative;
+  isolation: isolate;
+  mix-blend-mode: normal;
+  background-color: transparent;
+  width: 16px;
+  height: auto;
+  aspect-ratio: 1/1;
+  color: #000000;
+}
+.cart svg {
+  /* fill: #ffffff;
+  stroke: #000000; */
+  fill: #000000;
+  stroke: #ffffff;
+}
+.header:hover .cart svg{
+  fill: #ffffff;
+  stroke: #000000;
+}
+.header:hover .cart:hover svg {
+  fill: #000000;
+}
+.cart_count {
+  position: absolute;
+  top: 36%;
+  left: 35%;
+
+  color: #ffffff;
+  font-family: var(--font-steppe);
+  font-size: 7px;
+  font-weight: 400;
+  line-height: 8.4px;
+  text-align: center;
+}
+.cart__empty .cart_count {
+  display: none;
+}
