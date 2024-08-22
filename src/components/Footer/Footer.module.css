@@ -41,7 +41,9 @@
 .right_side .footer_col:nth-child(3) {
   width: 135px;
 }
-
+.footer_logo {
+  text-transform: uppercase;
+}
 .main_footer__link {
   color: #000000;
 }

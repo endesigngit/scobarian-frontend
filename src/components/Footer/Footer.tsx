@@ -45,7 +45,7 @@ export default function Footer() {
         </div>
         <div className={styles.right_side}>
           <div className={styles.footer_col}>
-            <Link href="#" className={styles.main_footer__link}>
+            <Link href="/tailoring" className={styles.main_footer__link}>
               Пошив
             </Link>
             <ul className={styles.footer_list}>
@@ -95,7 +95,7 @@ export default function Footer() {
       <div className={clsx(styles.main_grid_container, styles.main_grid_container__secondary)}>
         <div className={styles.left_side}>
           <div className={styles.footer_col}>
-            <Link href="#" className={styles.main_footer__link}>
+            <Link href="/" className={clsx(styles.main_footer__link, styles.footer_logo)}>
               I’am skobarian ©
             </Link>
           </div>

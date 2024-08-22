@@ -3,6 +3,7 @@ import styles from "./page.module.css"
 import Link from "next/link"
 import { clsx } from "clsx"
 import { Typography } from "@/UI/Typography/Typography"
+import FeedbackForm from "@/components/FeedbackForm/FeedbackForm"
 
 export default function Tailoring() {
   return (
@@ -16,8 +17,8 @@ export default function Tailoring() {
             </Typography>
             <Typography className={styles.page_paragraph} tag={"p"} variant={"text"}>
               Шьём мерч с символикой бизнеса по нашим лекалам с любыми нанесениями большим тиражом. Отбираем лучших
-              поставщиков и работаем только с теми, кто гарантирует высокое качество.Ткани и фурнитуру проверяем на
-              брак.
+              поставщиков и работаем только с теми, кто гарантирует высокое качество.
+              <br /> Ткани и фурнитуру проверяем на брак.
             </Typography>
             <Typography className={styles.page_paragraph} tag={"p"} variant={"text"}>
               Заказывая пошив корпоративной одежды у нас, вы получите:
@@ -44,40 +45,7 @@ export default function Tailoring() {
             <Typography className={styles.page_paragraph} tag={"p"} variant={"text"}>
               Оставьте обращение в форме ниже, и мы обязательно ответим вам
             </Typography>
-            <div className={styles.feedback_form__wrap}>
-              <form action="/" method="post" className={styles.feedback_form}>
-                <p>
-                  <label htmlFor="user-name">Имя</label>
-                  <input type="text" name="user-name" id="user-name" required />
-                </p>
-                <p>
-                  <label htmlFor="user-phone">Телефон</label>
-                  <input
-                    type="tel"
-                    id="user-phone"
-                    name="user-phone"
-                    pattern="+7-[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
-                    required
-                  />
-                </p>
-                <p>
-                  <label htmlFor="user-email">E-mail</label>
-                  <input type="user-email" id="user-email" pattern=".+@example\.com" size={30} required />
-                </p>
-                <p>
-                  <label htmlFor="user-text">Сообщение</label>
-                  <textarea name="user-text" id="user-text" cols={30} rows={5}></textarea>
-                </p>
-                <div className={styles.submit_wrap}>
-                  <button type="submit" className={styles.submit_btn}>
-                    Отправить
-                  </button>
-                  <p className={styles.policy_text}>
-                    Нажимая на кнопку «Отправить» вы даете согласие на обработку <span>персональных данных</span>
-                  </p>
-                </div>
-              </form>
-            </div>
+            <FeedbackForm />
           </div>
         </div>
       </div>

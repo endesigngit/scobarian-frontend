@@ -55,15 +55,18 @@
   line-height: 16.8px;
   text-transform: uppercase;
 }
-.page_paragraph {
+.page_paragraph:first-of-type {
   margin-top: 30px;
+}
+.page_paragraph {
+  margin-top: 23px;
   color: var(--secondary-font-color);
 }
 .page_paragraph span {
   color: #000000;
 }
 .page_list {
-  margin-top: 28px;
+  margin-top: 20px;
   padding-left: 30px;
 }
 .page_list_item {
@@ -73,7 +76,6 @@
   font-weight: 400;
   line-height: 18.2px;
 }
-
 .form_wrap {
   margin-top: 160px;
   max-width: 440px;
@@ -82,28 +84,10 @@
   margin-top: 5px;
   max-width: 310px;
 }
-.feedback_form__wrap {
-  margin-top: 50px;
-}
-.feedback_form {
-  display: flex;
-  flex-direction: column;
-  row-gap: 29px;
-}
 
-.feedback_form textarea,
-.feedback_form input,
-.feedback_form label {
-  width: 100%;
-}
-.feedback_form textarea,
-.feedback_form input {
-  font-family: var(--font-lack);
-  font-size: 12px;
+.form_title {
+  font-size: 14px;
   font-weight: 400;
-  line-height: 14.4px;
-  border-bottom: 1px solid #E4E4E4;
-}
-.feedback_form textarea {
-  resize: none;
+  line-height: 16.8px;
+  text-transform: uppercase;
 }

@@ -61,7 +61,7 @@ export default function Header() {
         <div className={styles.right_side}>
           <ul className={styles.main_menu}>
             <li className={styles.main_menu__item}>
-              <Link href="#" className={styles.main_menu__link}>
+              <Link href="/tailoring" className={styles.main_menu__link}>
                 Пошив
               </Link>
             </li>
@@ -118,7 +118,7 @@ export default function Header() {
               </ul>
             </li>
             <li className={styles.mobile_menu__item}>
-              <Link href="#" className={styles.mobile_menu__link}>
+              <Link href="/tailoring" className={styles.mobile_menu__link}>
                 Пошив
               </Link>
             </li>
