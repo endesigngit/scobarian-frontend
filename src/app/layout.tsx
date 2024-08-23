@@ -4,8 +4,8 @@ import "./globals.css"
 import { useEffect } from "react"
 import { BoundStoreProvider } from "@/store/StoreProvider"
 import Footer from "@/components/Footer/Footer"
-import Header from "@/components/Header/Header"
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
+import MainHeader from "@/components/MainHeader/MainHeader"
 
 export const metadata: Metadata = {
   title: "I’am skobarian",
@@ -21,7 +21,7 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
     <html>
       <body className={`${lack.variable} ${steppe.variable}`}>
         <BoundStoreProvider>
-          <Header />
+          <MainHeader />
           <Breadcrumb />
           {children}
           <Footer />
