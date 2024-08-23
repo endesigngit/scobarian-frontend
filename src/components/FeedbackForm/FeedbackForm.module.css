@@ -55,13 +55,14 @@
   color: var(--button-font-color);
   text-transform: uppercase;
 }
-.policy_text span {
-  color: #000000;
-}
-.policy_text {
+.feedback_form .policy_text {
+  display: inline-block;
   color: var(--secondary-font-color);
   font-family: var(--font-steppe);
   font-size: 10px;
   font-weight: 400;
   line-height: 13px;
+}
+.policy_text span {
+  color: #000000;
 }

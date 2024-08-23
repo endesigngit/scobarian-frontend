@@ -19,7 +19,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#" className={styles.secondary_footer__link}>
+                <Link href="/contacts" className={styles.secondary_footer__link}>
                   Контакты
                 </Link>
               </li>
@@ -74,7 +74,7 @@ export default function Footer() {
             </ul>
           </div>
           <div className={styles.footer_col}>
-            <Link href="#" className={styles.main_footer__link}>
+            <Link href="/contacts" className={styles.main_footer__link}>
               Контакты
             </Link>
             <ul className={styles.footer_list}>

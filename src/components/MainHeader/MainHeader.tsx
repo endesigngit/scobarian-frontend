@@ -70,7 +70,7 @@ export default function MainHeader() {
               </Link>
             </li>
             <li className={styles.main_menu__item}>
-              <Link href="#" className={styles.main_menu__link}>
+              <Link href="/contacts" className={styles.main_menu__link}>
                 Контакты
               </Link>
               <button type="button" className={clsx(styles.cart, styles.cart__empty)}>
@@ -127,7 +127,7 @@ export default function MainHeader() {
               </Link>
             </li>
             <li className={styles.mobile_menu__item}>
-              <Link href="#" className={styles.mobile_menu__link}>
+              <Link href="/contacts" className={styles.mobile_menu__link}>
                 Контакты
               </Link>
             </li>
