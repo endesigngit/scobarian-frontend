@@ -5,17 +5,22 @@ import { clsx } from "clsx"
 import Logo from "../Logo/Logo"
 import { useState } from "react"
 
-export default function Breadcrumb() {
-  const [innerTitle, setInnerTitle] = useState<string | null>("худи")
+type BreadcrumbProps = {
+  pageTitle?: string
+  padding?: boolean
+}
+
+export default function Breadcrumb({ pageTitle, padding }: BreadcrumbProps) {
+  // const [innerTitle, setInnerTitle] = useState<string | null>("худи")
   return (
-    <div className={styles.breadcrumb}>
+    <div className={clsx(styles.breadcrumb, padding && styles.breadcrumb_full)}>
       <div className={styles.main_grid_container}>
         <div className={styles.left_side}>
           <div className={styles.breadcrumb_col}>
             <Logo />
           </div>
           <div className={styles.breadcrumb_col}>
-            <h3 className={styles.breadcrumb_title}>{innerTitle}</h3>
+            <h3 className={styles.breadcrumb_title}>{pageTitle}</h3>
           </div>
         </div>
       </div>

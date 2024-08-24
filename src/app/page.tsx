@@ -3,10 +3,12 @@ import styles from "./page.module.css"
 import Link from "next/link"
 import { clsx } from "clsx"
 import { Typography } from "@/UI/Typography/Typography"
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
 
 export default function Home() {
   return (
     <main>
+      <Breadcrumb pageTitle={"худи"} padding />
       <div className={styles.image_block}>
         <Link className={styles.image_block__title} href={"/"}>
           перейти к покупкам

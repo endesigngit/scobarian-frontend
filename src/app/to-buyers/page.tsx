@@ -2,10 +2,12 @@
 import styles from "./page.module.css"
 import Link from "next/link"
 import { clsx } from "clsx"
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
 
 export default function ToBuyers() {
   return (
     <main className={styles.page_main}>
+      <Breadcrumb pageTitle={"Покупателям"} />
       <div className={styles.main_grid_container}>
         <div className={styles.left_side}>
           <div className={clsx(styles.grid_col, styles.page_nav)}>

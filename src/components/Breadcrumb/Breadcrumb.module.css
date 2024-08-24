@@ -2,11 +2,15 @@
   position: fixed;
   top: 120px;
   width: 100%;
-  padding: 0 var(--container-padding-x);
+  padding: 0;
 
   /* background: inherit; */
   mix-blend-mode: difference;
   z-index: 2;
+}
+.breadcrumb_full {
+  padding: 0 var(--container-padding-x);
+
 }
 .main_grid_container {
   display: grid;

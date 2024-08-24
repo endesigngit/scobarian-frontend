@@ -2,10 +2,12 @@ import clsx from "clsx"
 import styles from "./page.module.css"
 import Link from "next/link"
 import FeedbackForm from "@/components/FeedbackForm/FeedbackForm"
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
 
 export default function Contacts() {
   return (
     <main className={styles.page_main}>
+      <Breadcrumb pageTitle={"Контакты"} padding />
       <div className={styles.main_grid_container}>
         <div className={styles.left_side}>
           <div className={styles.grid_col}></div>

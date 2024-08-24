@@ -4,10 +4,12 @@ import Link from "next/link"
 import { clsx } from "clsx"
 import { Typography } from "@/UI/Typography/Typography"
 import FeedbackForm from "@/components/FeedbackForm/FeedbackForm"
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
 
 export default function Tailoring() {
   return (
     <main className={styles.page_main}>
+      <Breadcrumb pageTitle={"Пошив"} padding />
       <div className={styles.main_grid_container}>
         <div className={clsx(styles.left_side, styles.left_side__stickyBG)}></div>
         <div className={styles.right_side}>
