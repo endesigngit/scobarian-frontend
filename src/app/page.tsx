@@ -33,7 +33,7 @@ export default function Home() {
       <div className={styles.image_block}></div>
       <div className={styles.image_block}></div>
       <div className={styles.image_block}>
-        <Link className={styles.image_block__title} href={"/"}>
+        <Link className={styles.image_block__title} href={"/tailoring"}>
           Пошив мерча для бизнеса
         </Link>
       </div>

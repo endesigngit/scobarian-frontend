@@ -9,7 +9,7 @@ export default function MainHeader() {
         <div className={styles.left_side}>
           <ul className={styles.main_menu}>
             <li className={styles.main_menu__item}>
-              <Link href="#" className={styles.main_menu__link}>
+              <Link href="/about" className={styles.main_menu__link}>
                 О нас
               </Link>
             </li>
@@ -94,7 +94,7 @@ export default function MainHeader() {
         <nav className={styles.mobile__nav}>
           <ul className={styles.mobile_menu}>
             <li className={styles.mobile_menu__item}>
-              <Link href="#" className={styles.mobile_menu__link}>
+              <Link href="/about" className={styles.mobile_menu__link}>
                 О нас
               </Link>
               <ul className={styles.mobile_submenu}>

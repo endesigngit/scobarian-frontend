@@ -9,7 +9,7 @@ export default function Footer() {
       <div className={styles.main_grid_container}>
         <div className={styles.left_side}>
           <div className={styles.footer_col}>
-            <Link href="#" className={styles.main_footer__link}>
+            <Link href="/about" className={styles.main_footer__link}>
               О нас
             </Link>
             <ul className={styles.footer_list}>
