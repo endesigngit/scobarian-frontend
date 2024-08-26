@@ -1,13 +1,14 @@
 .main_grid_container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  padding:0 var(--container-padding-x);
+  /* padding:0 var(--container-padding-x); */
 }
 .left_side,
 .right_side {
   /* padding: 125px var(--container-padding-x) 120px; */
   margin-top: 185px;
   margin-bottom: 30px;
+  padding-left: 40px;
   display: flex;
   min-width: 50%;
   column-gap: 40px;
@@ -19,93 +20,139 @@
   overflow: hidden;
 }
 .right_side {
-  padding-left: 40px;
-}
-
-.product_list {
+  margin-top: 170px;
   width: 100%;
-  min-height: 580px;
-  padding-bottom: 78px;
-  display: flex;
+  /* padding-left: 40px; */
   flex-direction: column;
-  row-gap: 40px;
-  overflow: scroll;
-  scrollbar-width: none;
-}
-.product_item {
-  display: flex;
-  column-gap: 88px;
 }
 
-.product_img__wrap {
-  position: relative;
+.cart_tab {
+  width: 100%;
+}
+.cart_tab_nav {
+  /* padding-bottom: ; */
+  width: 100%;
+  display: flex;
+  column-gap: 40px;
+  border-bottom: 1px solid #E4E4E4;
+}
+
+.cart_tab_step {
+  width: calc(50% - 40px);
+  padding-bottom: 16px;
+  color: #E4E4E4;
+  cursor: pointer;
+}
+.cart_tab_step__active {
+  color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.cart_tab_step span {
   display: block;
-  max-width: 174px;
-  max-height: 231px;
-  background-color: #f2f2f2;
-  overflow: hidden;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  text-transform: uppercase;
 }
-.product_img {
-  object-fit: contain;
+.cart_tab_content {
+  padding-right: var(--container-padding-x);
 }
-.product_content {
-  flex-grow: 1;
-  padding: 9px 47px 9px 0; 
+.cart_details {
+  margin-top: 80px;
+  width: 100%; 
+  /* display: none; */
 }
-.parameters_item,
-.product_buttons,
-.product_header {
+.cart_info {
+  margin-top: 15px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.product_title {
-  color: #000000;
-  font-size: 12px;
+.cart_info span {
+  color: var(--secondary-font-color);
+  font-family: var(--font-steppe);
+  font-size: 14px;
   font-weight: 400;
-  line-height: 14.4px;
+  line-height: 18.2px;
+}
+.cart_total {
+  margin-top: 48px;
+  display: flex;
+  justify-content: space-between;
+}
+.cart_total p {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
   text-transform: uppercase;
 }
-.product_price {
-  color: #AAAAAA;
-  font-size: 12px;
+.cart_total p span{
+  margin-left: 16px;
+  color:#AAAAAA;
+  font-family: var(--font-steppe);
+  font-size: 10px;
   font-weight: 400;
-  line-height: 14.4px;
+  line-height: 13px;
+  text-transform: initial;
 }
-
-.product_parameters {
+.cart_next_btn {
   margin-top: 86px;
-  width: 100px;
-}
-.parameters_item {
   width: 100%;
-  margin-top: 16px;
-}
-.parameters_value,
-.parameters_title {
+  padding: 18px;
+  background-color: #000000;
+  color: #ffffff;
   font-size: 12px;
   font-weight: 400;
   line-height: 14.4px;
+  text-align: center;
   text-transform: uppercase;
+  transition: background-color 0.3s;
 }
-.parameters_value {
-  text-decoration: underline;
-}
-.product_color {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background-color: #000000;
-}
-.product_color_violet {
-  background-color: #3A3297;
+.cart_next_btn:hover {
+  background-color: #000000ab;
+  transition: background-color 0.3s;
 }
 
-.product_buttons {
-  margin-top: 50px;
+.cart_form {
+  margin-top: 60px;
 }
-.product_btn {
-  padding: 6px;
-  color: #AAAAAA;
+
+.cart_desc {
+  margin-top: 20px;
+  width: 100%;
+  padding-right: var(--container-padding-x);
+}
+.policy_text {
+  color:#AAAAAA;
+  font-family: var(--font-steppe);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 13px;
+}
+.policy_text span {
+  color: #000000;
+}
+.cart_contacts {
+  margin-top: 43px;
+}
+.contacts_title {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.4px;
+}
+.contacts_text {
+  margin-top: 16px;
+  color:#AAAAAA;
+  font-family: var(--font-steppe);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 15.6px;
+}
+.cart_desc_link {
+  display: block;
+  margin-top: 30px;
+  padding: 8px 8px 8px 0;
+  color:#AAAAAA;
   font-size: 12px;
   font-weight: 400;
   line-height: 14.4px;

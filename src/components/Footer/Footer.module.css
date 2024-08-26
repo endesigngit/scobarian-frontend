@@ -2,6 +2,7 @@
   padding: 30px var(--container-padding-x) 30px var(--container-padding-x);
   background-color: #ffffff;
   min-height: 256px;
+  border-top: 1px solid #E4E4E4;
 }
 
 .main_grid_container {
