@@ -12,18 +12,6 @@ export default function Footer() {
             <Link href="/about" className={styles.main_footer__link}>
               О нас
             </Link>
-            <ul className={styles.footer_list}>
-              <li>
-                <Link href="#" className={styles.secondary_footer__link}>
-                  О бренде
-                </Link>
-              </li>
-              <li>
-                <Link href="/contacts" className={styles.secondary_footer__link}>
-                  Контакты
-                </Link>
-              </li>
-            </ul>
           </div>
           <div className={styles.footer_col}>
             <Link href="#" className={styles.main_footer__link}>
@@ -48,13 +36,6 @@ export default function Footer() {
             <Link href="/tailoring" className={styles.main_footer__link}>
               Пошив
             </Link>
-            <ul className={styles.footer_list}>
-              <li>
-                <Link href="#" className={styles.secondary_footer__link}>
-                  Для бизнеса
-                </Link>
-              </li>
-            </ul>
           </div>
           <div className={styles.footer_col}>
             <Link href="/to-buyers" className={styles.main_footer__link}>
@@ -79,12 +60,12 @@ export default function Footer() {
             </Link>
             <ul className={styles.footer_list}>
               <li>
-                <Link href="#" className={styles.secondary_footer__link}>
+                <Link href="tel:+79808005491" className={styles.secondary_footer__link}>
                   {`+7 (980) 800-54-91`}
                 </Link>
               </li>
               <li>
-                <Link href="#" className={styles.secondary_footer__link}>
+                <Link href="mailto:info@iamskobarian.ru" className={styles.secondary_footer__link}>
                   info@iamskobarian.ru
                 </Link>
               </li>
@@ -101,16 +82,12 @@ export default function Footer() {
           </div>
           <div className={styles.footer_col}>
             <Link href="#" className={styles.main_footer__link}>
-              Условия и положения
+              Политика конфиденциальности
             </Link>
           </div>
         </div>
         <div className={styles.right_side}>
-          <div className={styles.footer_col}>
-            <Link href="#" className={styles.main_footer__link}>
-              Политика конфиденциальности
-            </Link>
-          </div>
+          <div className={styles.footer_col}></div>
           <div className={styles.footer_col}>
             <Link href="#" className={styles.main_footer__link}>
               WhatsApp

@@ -6,7 +6,7 @@
   mix-blend-mode: difference;
   z-index: 3;
 }
-.header:hover {
+.header__active{
   background-color: #ffffff;
   height: max-content;
   mix-blend-mode: normal;
@@ -53,30 +53,24 @@
 .right_side .main_menu__item:nth-child(1) {
   width: 310px;
 }
-.right_side .main_menu__item:nth-child(2),
-.right_side .main_menu__item:nth-child(3) {
+.right_side .main_menu__item:nth-child(2) {
   width: 135px;
-
-  display: flex;
-  justify-content: space-between; 
 }
-.main_menu__item:nth-child(5) {
+.right_side .main_menu__item:nth-child(3) {
   width: 135px;
   display: flex;
   justify-content: space-between; 
 }
 .main_menu__link {
-  /* color: #ffffff; */
   filter: invert(1) grayscale(1);
   color: #000000;
-  /* mix-blend-mode: difference; */
+  height: max-content;
 }
-.header:hover .main_menu__link {
+.header__active .main_menu__link{
   color: #000000;
   filter: none;
-  /* mix-blend-mode: normal; */
 }
-.header:hover .secondary_menu {
+.header__active .secondary_menu{
   display: flex;
 }
 .secondary_menu {
@@ -103,45 +97,48 @@
   width: 80%;
 }
 
-.mobile_offcanvas {
-  display: none;
+
+@media ( min-width:1025px){
+  .header:hover {
+    background-color: #ffffff;
+    height: max-content;
+    mix-blend-mode: normal;
+  }
+  .header:hover .main_menu__link {
+    color: #000000;
+    filter: none;
+  }
+  .header__active .secondary_menu,
+  .header:hover .secondary_menu {
+    display: flex;
+  }
+
+}
+@media (max-width:1200px){
+  .left_side .main_menu__item:nth-child(1) {
+    min-width: 160px;
+    width: 160px;
+    max-width: 160px;
+  }
+  .right_side .main_menu__item:nth-child(1) {
+    width: 170px;
+  }
+
 }
 
-.cart {
-  position: relative;
-  isolation: isolate;
-  mix-blend-mode: normal;
-  background-color: transparent;
-  width: 16px;
-  height: auto;
-  aspect-ratio: 1/1;
-  color: #000000;
+@media (max-width:900px){
+  .header {
+    height: auto;
+  }
+  .header__nav {
+    display: none;
+  }
 }
-.cart svg {
-  /* fill: #ffffff;
-  stroke: #000000; */
-  fill: #000000;
-  stroke: #ffffff;
-}
-.header:hover .cart svg{
-  fill: #ffffff;
-  stroke: #000000;
-}
-.header:hover .cart:hover svg {
-  fill: #000000;
-}
-.cart_count {
-  position: absolute;
-  top: 36%;
-  left: 35%;
-
-  color: #ffffff;
-  font-family: var(--font-steppe);
-  font-size: 7px;
-  font-weight: 400;
-  line-height: 8.4px;
-  text-align: center;
-}
-.cart__empty .cart_count {
-  display: none;
+@media (max-width:760px){
+  .header {
+    height: 100vh;
+  }
+  .header__active{
+    background-color: #4646463d;
+  }
 }

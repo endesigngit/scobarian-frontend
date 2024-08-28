@@ -1,0 +1,127 @@
+.main_grid_container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.left_side,
+.right_side {
+  min-width: 50%;
+}
+.right_side {
+  padding-left: 40px;
+}
+.offcanvas {
+  position: relative;
+  display: none;
+  padding: 47px var(--container-padding-x) 100px var(--container-padding-x);
+  /* background-color: #000000; */
+  min-height: 80px;
+  z-index: 3;
+}
+
+.tablet_logo {
+  font-size: 13.4px;
+  font-weight: 400;
+  line-height: 16.08px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  filter: invert(1) grayscale(1);
+  color: #000000;
+}
+.tablet_toggle {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  text-transform: uppercase;
+  filter: invert(1) grayscale(1);
+  color: #000000;
+}
+.offcanvas__active .tablet_menu__link,
+.offcanvas__active .tablet_logo,
+.offcanvas__active .tablet_toggle {
+  color: #000000;
+  filter: none;
+}
+
+.tablet_toggles {
+  display: flex;
+  justify-content: space-between;
+}
+
+.offcanvas_tab_body {
+  display: none;
+  padding-top: 57px;
+}
+.offcanvas__active .offcanvas_tab_body {
+  display: block;
+}
+
+.tablet_menu {
+  display: flex;
+}
+.tablet_menu_item {
+  min-width: 70px;
+}
+.left_side .tablet_menu_item:nth-child(1) {
+  min-width: 128px;
+  width: 128px;
+}
+.left_side .tablet_menu_item:nth-child(2) {
+  flex-grow: 1;
+}
+.tablet_menu.right_side {
+  justify-content: space-between;
+}
+.right_side .tablet_menu_item:nth-child(1),
+.right_side .tablet_menu_item:nth-child(3) {
+  min-width: 85px;
+  width: 85px;
+}
+.right_side .tablet_menu_item:nth-child(2) {
+  min-width: 128px;
+}
+.tablet_menu__link {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.4px;
+}
+
+.tablet_submenu {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+.tablet_submenu_title {
+  color: var(--secondary-font-color);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.4px;
+}
+.inner_submenu__item {
+  padding: 4px 4px 4px 0;
+  font-family: var(--font-steppe);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12.04px;
+}
+.inner_submenu {
+  margin-top: 14px;
+  color: var(--main-font-color);
+}
+.inner_submenu__item a{
+  display: inline-block;
+  width: 80%;
+}
+
+
+
+@media (max-width:900px){
+  .offcanvas {
+    display: block;
+  }
+}
+@media (max-width:760px){
+  .offcanvas {
+    display: none;
+  }
+}

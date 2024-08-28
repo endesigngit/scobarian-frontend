@@ -46,3 +46,9 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
+
+@media (max-width:900px){
+  .breadcrumb {
+    display: none;
+  }
+}
