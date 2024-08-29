@@ -135,10 +135,8 @@
   }
 }
 @media (max-width:760px){
-  .header {
-    height: 100vh;
-  }
   .header__active{
     background-color: #4646463d;
+    height: 100vh;
   }
 }

@@ -6,7 +6,7 @@ import { clsx } from "clsx"
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className={styles.main_grid_container}>
+      <div className={styles.footer_container}>
         <div className={styles.left_side}>
           <div className={styles.footer_col}>
             <Link href="/about" className={styles.main_footer__link}>
@@ -73,31 +73,24 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className={clsx(styles.main_grid_container, styles.main_grid_container__secondary)}>
-        <div className={styles.left_side}>
-          <div className={styles.footer_col}>
-            <Link href="/" className={clsx(styles.main_footer__link, styles.footer_logo)}>
-              I’am skobarian ©
-            </Link>
-          </div>
-          <div className={styles.footer_col}>
-            <Link href="#" className={styles.main_footer__link}>
-              Политика конфиденциальности
-            </Link>
-          </div>
+      <div className={styles.footer_bottom}>
+        <div className={styles.footer_col}>
+          <Link href="/" className={clsx(styles.main_footer__link, styles.footer_logo)}>
+            I’am skobarian ©
+          </Link>
         </div>
-        <div className={styles.right_side}>
-          <div className={styles.footer_col}></div>
-          <div className={styles.footer_col}>
-            <Link href="#" className={styles.main_footer__link}>
-              WhatsApp
-            </Link>
-          </div>
-          <div className={styles.footer_col}>
-            <Link href="#" className={styles.main_footer__link}>
-              Telegram
-            </Link>
-          </div>
+        <div className={styles.footer_col}>
+          <Link href="#" className={styles.main_footer__link}>
+            Политика конфиденциальности
+          </Link>
+        </div>
+        <div className={clsx(styles.footer_col, styles.footer_social)}>
+          <Link href="#" className={styles.main_footer__link}>
+            WhatsApp
+          </Link>
+          <Link href="#" className={styles.main_footer__link}>
+            Telegram
+          </Link>
         </div>
       </div>
     </footer>
