@@ -1,7 +1,15 @@
+/* .image_blocks {
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y proximity;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+} */
+
 .image_block {
-  position: relative;
+  /* position: relative; */
   width: 100%;
-  min-height: 877px;
+  height: 877px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,28 +17,32 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  scroll-snap-align: start;
 }
-.image_block__sb {
+.image_block__links {
+  display: flex;
+  width: 100%;
+  position: sticky;
+  top: 40%;
   justify-content: space-between;
 }
-.image_block:nth-child(3) {
+.image_block__hoodie {
   background-image: url("../assets/images/main-bg-2.webp");
 }
-.image_block:nth-child(4) {
+.image_block__philosophy {
   background-image: url("../assets/images/main-bg-3.webp");
 }
-.image_block:nth-child(5) {
+.image_block__bomber {
   background-image: url("../assets/images/main-bg-4.webp");
 }
-.image_block:nth-child(6) {
+.image_block__tshirt {
   background-image: url("../assets/images/main-bg-5.webp");
 }
-.image_block:nth-child(7) {
+.image_block__tailoring {
   background-image: url("../assets/images/main-bg-6.webp");
 }
 .image_block__title {
-  position: sticky;
-  top: 40%;
+
   bottom: 30px;
   padding: 50px 40px;
   color: #ffffff;

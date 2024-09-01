@@ -23,7 +23,7 @@ export default function Cart() {
   return (
     <main>
       <Breadcrumb pageTitle={"Корзина"} padding />
-      <div className={styles.main_grid_container}>
+      <div className="main_grid">
         <div className={styles.left_side}>
           <CartProducts />
         </div>

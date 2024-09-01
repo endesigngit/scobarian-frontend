@@ -10,7 +10,7 @@ export default function Tailoring() {
   return (
     <main className={styles.page_main}>
       <Breadcrumb pageTitle={"Пошив"} padding />
-      <div className={styles.main_grid_container}>
+      <div className={clsx("main_grid", styles.main_container)}>
         <div className={clsx(styles.left_side, styles.left_side__stickyBG)}></div>
         <div className={styles.right_side}>
           <div className={styles.grid_col}>

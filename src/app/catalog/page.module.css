@@ -1,0 +1,15 @@
+.catalog_top {
+  position: relative;
+  margin-top: 140px;
+  padding: 0 var(--container-padding-x);
+  z-index: 1;
+}
+.grid_toggles {
+  grid-column: -5/-3;
+  /* width: 83px; */
+}
+.filters_toggle  {
+  grid-column: -3/-1;
+  width: 100%;
+  text-align: end;
+}

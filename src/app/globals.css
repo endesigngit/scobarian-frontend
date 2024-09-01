@@ -67,5 +67,27 @@ button {
 main {
   min-height: calc(100vh - 256px); 
   /* min-height: 100vh;  */
-
+}
+.main_grid {
+  display: grid;
+  grid-template-columns: repeat(16,1fr);
+  gap: 40px;
+}
+.col_span_3 {/*Первая кол*/
+  grid-column: span 3;
+}
+.col_span_5 {/*Вторая кол*/
+  grid-column: span 5;
+}
+.col_span_4 {/*третья кол*/
+  grid-column: span 4;
+}
+.col_span_2 {/*четвертая/пятая кол*/
+  grid-column: span 2;
+}
+.col_span_1 {/*Первая кол*/
+  grid-column: span 1;
+}
+.col_span_9 {
+  grid-column: span 9;
 }

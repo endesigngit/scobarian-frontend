@@ -14,14 +14,12 @@ export default function Breadcrumb({ pageTitle, padding }: BreadcrumbProps) {
   // const [innerTitle, setInnerTitle] = useState<string | null>("худи")
   return (
     <div className={clsx(styles.breadcrumb, padding && styles.breadcrumb_full)}>
-      <div className={styles.main_grid_container}>
-        <div className={styles.left_side}>
-          <div className={styles.breadcrumb_col}>
-            <Logo />
-          </div>
-          <div className={styles.breadcrumb_col}>
-            <h3 className={styles.breadcrumb_title}>{pageTitle}</h3>
-          </div>
+      <div className="main_grid">
+        <div className={clsx(styles.breadcrumb_col, "col_span_3")}>
+          <Logo />
+        </div>
+        <div className={clsx(styles.breadcrumb_col, "col_span_5")}>
+          <h3 className={styles.breadcrumb_title}>{pageTitle}</h3>
         </div>
       </div>
     </div>

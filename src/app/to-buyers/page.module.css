@@ -1,34 +1,11 @@
 .page_main {
   padding-top: 200px;
-  padding-left: var(--container-padding-x);
-  padding-right: var(--container-padding-x);
+}
+.main_container {
+  padding: 0 var(--container-padding-x);
 }
 
-.main_grid_container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
 
-.left_side,
-.right_side {
-  display: flex;
-  min-width: 50%;
-  column-gap: 40px;
-}
-.right_side {
-  padding-left: 40px;
-}
-.grid_col {
-  flex-grow: 1;
-}
-.left_side .grid_col:nth-child(1) {
-  min-width: 223px;
-  width: 223px;
-  max-width: 223px;
-}
-.left_side .grid_col:nth-child(2) {
-  width: 397px;
-}
 .page_nav {
   position: relative;
 }
