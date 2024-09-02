@@ -26,19 +26,32 @@ export async function GET(request: NextRequest) {
     }
   })
 
-  console.log("data, res")
-  
-  const res = await fetch(`${endpoints.goods}?${query}`, {
-    headers: {
-      Authorization: `bearer ${process.env.STRAPI_API_KEY}`,
-      "Content-Type": "application/json"
-    },
-    credentials: "include"
-  })
-  const data = await res.json()
-  
+  try {
+    const res = await fetch(`${endpoints.goods}?${query}`, {
+      headers: {
+        Authorization: `bearer ${process.env.STRAPI_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      credentials: "include"
+    })
+    const data = await res.json()
 
-  const transformedData = transformCatalogGoods(data)
+    const transformedData = transformCatalogGoods(data)
 
-  return Response.json({ data: transformedData })
+    return Response.json({ data: transformedData })
+  } catch (err) {
+    console.log("err", err)
+    const res = await fetch(`${endpoints.goods}?${query}`, {
+      headers: {
+        Authorization: `bearer ${process.env.STRAPI_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      credentials: "include"
+    })
+    const data = await res.json()
+
+    const transformedData = transformCatalogGoods(data)
+
+    return Response.json({ data: "error" })
+  }
 }
