@@ -26,6 +26,8 @@ export async function GET(request: NextRequest) {
     }
   })
 
+  console.log("data, res")
+  
   const res = await fetch(`${endpoints.goods}?${query}`, {
     headers: {
       Authorization: `bearer ${process.env.STRAPI_API_KEY}`,
@@ -34,6 +36,7 @@ export async function GET(request: NextRequest) {
     credentials: "include"
   })
   const data = await res.json()
+  
 
   const transformedData = transformCatalogGoods(data)
 
