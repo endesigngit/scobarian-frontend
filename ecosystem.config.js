@@ -3,8 +3,8 @@ module.exports = {
     {
       name: "scobarian-front",
       script: "npm",
-      args: "start",
-    },
+      args: "start"
+    }
   ],
-  exec_mode: "fork",
-};
+  exec_mode: "fork"
+}

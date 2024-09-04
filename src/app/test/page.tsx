@@ -6,6 +6,12 @@ import Link from "next/link"
 import { useEffect } from "react"
 
 export default function Test() {
+  useEffect(() => {
+    fetch("/api/goods")
+      .then((res) => res.json())
+      .then(console.log)
+  }, [])
+
   const { bears, fishes } = useBoundStore((state) => ({ bears: state.bears, fishes: state.fishes }))
   return (
     <main>

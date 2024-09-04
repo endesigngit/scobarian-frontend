@@ -17,7 +17,8 @@ export async function GET(request: NextRequest, { params }: { params: { slug: st
       }
     }
   })
-
+  console.log('asdasda');
+  
   const res = await fetch(`${endpoints.goods}?${query}`, {
     headers: {
       Authorization: `bearer ${process.env.STRAPI_API_KEY}`,
