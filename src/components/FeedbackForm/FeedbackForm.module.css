@@ -1,6 +1,11 @@
 .feedback_form__wrap {
   margin-top: 50px;
+  width: 80%;
 }
+.feedback_form__wrap_full {
+  width: 100%;
+}
+
 .feedback_form {
   display: flex;
   flex-direction: column;
@@ -46,7 +51,7 @@
 
 .feedback_form textarea:focus + label,
 .feedback_form input:focus + label {
-  transform: scale(0.9) translate(-25px, -5px) ;
+  transform: scale(0.9) translate(-5%, -5px) ;
   transition: transform 0.3s;
 }
 .submit_btn {
@@ -65,4 +70,9 @@
 }
 .policy_text span {
   color: #000000;
+}
+@media(max-width:950px) {
+  .feedback_form__wrap {
+    width: 100%;
+  }
 }

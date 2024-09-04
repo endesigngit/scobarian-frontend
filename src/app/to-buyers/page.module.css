@@ -76,3 +76,20 @@
   line-height: 18.2px;
 
 }
+@media (max-width:1105px){
+  .nav_list {
+    display: none;
+  }
+  .page_content {
+    grid-column: 1/9;
+  }
+}
+@media (max-width:767px){
+  .page_content {
+    grid-column: 1/-1;
+  }
+  .page_main {
+    padding-top: 170px;
+  }
+}
+

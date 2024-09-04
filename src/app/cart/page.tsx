@@ -56,6 +56,9 @@ export default function Cart() {
                     <span>Доставка</span>
                     <span>Рассчитывается при оформлении заказа</span>
                   </p>
+                  <div className={styles.cart_products_mob}>
+                    <CartProducts />
+                  </div>
                   <div className={styles.cart_total}>
                     <p>
                       Итого <span>С включенным НДС</span>

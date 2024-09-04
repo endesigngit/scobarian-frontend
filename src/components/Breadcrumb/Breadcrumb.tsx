@@ -15,10 +15,10 @@ export default function Breadcrumb({ pageTitle, padding }: BreadcrumbProps) {
   return (
     <div className={clsx(styles.breadcrumb, padding && styles.breadcrumb_full)}>
       <div className="main_grid">
-        <div className={clsx(styles.breadcrumb_col, "col_span_3")}>
+        <div className={clsx(styles.breadcrumb_col, "main_col_1")}>
           <Logo />
         </div>
-        <div className={clsx(styles.breadcrumb_col, "col_span_5")}>
+        <div className={clsx(styles.breadcrumb_col, "main_col_2")}>
           <h3 className={styles.breadcrumb_title}>{pageTitle}</h3>
         </div>
       </div>

@@ -9,17 +9,21 @@ import OffcanvasMenuMob from "../OffcanvasMenuMob/OffcanvasMenuMob"
 
 export default function MainHeader() {
   const [IsActive, setActive] = useState<boolean>(false)
+  const menuClickHandler = (evt: any) => {
+    evt.preventDefault()
+    setActive(!IsActive)
+  }
   return (
     <header className={clsx(styles.header, IsActive && styles.header__active)}>
       <nav className={styles.header__nav}>
         <ul className={clsx("main_grid", styles.main_menu)}>
-          <li className={clsx(styles.main_menu__item, "col_span_3")}>
+          <li className={clsx(styles.main_menu__item, "main_col_1")}>
             <Link href="/about" className={styles.main_menu__link}>
               О нас
             </Link>
           </li>
-          <li className={clsx(styles.main_menu__item, "col_span_5")}>
-            <Link href="#" className={styles.main_menu__link} onClick={() => setActive(!IsActive)}>
+          <li className={clsx(styles.main_menu__item, "main_col_2")}>
+            <Link href="#" className={styles.main_menu__link} onClick={menuClickHandler}>
               Каталог
             </Link>
             <ul className={styles.main_submenu}>
@@ -57,17 +61,17 @@ export default function MainHeader() {
               </li>
             </ul>
           </li>
-          <li className={clsx(styles.main_menu__item, "col_span_4")}>
+          <li className={clsx(styles.main_menu__item, "main_col_3")}>
             <Link href="/tailoring" className={styles.main_menu__link}>
               Пошив
             </Link>
           </li>
-          <li className={clsx(styles.main_menu__item, "col_span_2")}>
+          <li className={clsx(styles.main_menu__item, "main_col_4")}>
             <Link href="/to-buyers" className={styles.main_menu__link}>
               Покупателям
             </Link>
           </li>
-          <li className={clsx(styles.main_menu__item, styles.whith_carts, "col_span_2")}>
+          <li className={clsx(styles.main_menu__item, styles.whith_carts, "main_col_5")}>
             <Link href="/contacts" className={styles.main_menu__link}>
               Контакты
             </Link>

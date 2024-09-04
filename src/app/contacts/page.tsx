@@ -9,7 +9,7 @@ export default function Contacts() {
     <main className={styles.page_main}>
       <Breadcrumb pageTitle={"Контакты"} padding />
       <div className={clsx("main_grid", styles.main_container)}>
-        <div className={clsx("col_span_5", styles.contacts_first_col)}>
+        <div className={clsx("main_col_2", styles.contacts_first_col)}>
           <div className={styles.contacts_wrap}>
             <h3 className={styles.page_title}>Интернет-магазина:</h3>
             <Link className={styles.contacts_link} href={"tel:+78112702080"}>
@@ -30,7 +30,7 @@ export default function Contacts() {
             </span>
           </div>
         </div>
-        <div className={clsx("col_span_4", styles.grid_col_lg)}>
+        <div className={clsx("main_col_3", styles.grid_col_lg)}>
           <h3 className={styles.form_title}>Форма обратной связи</h3>
           <FeedbackForm />
         </div>

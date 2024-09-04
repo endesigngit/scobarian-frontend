@@ -14,9 +14,7 @@
 }
 
 body {
-  /* min-height: 100vh; */
   background-color: #ffffff;
-  /* background-color: transparent; */
 }
 
 body,
@@ -71,18 +69,19 @@ main {
 .main_grid {
   display: grid;
   grid-template-columns: repeat(16,1fr);
-  gap: 40px;
+  grid-gap: 40px;
 }
-.col_span_3 {/*Первая кол*/
+.main_col_1 {/*Первая кол col_span_3*/
   grid-column: span 3;
 }
-.col_span_5 {/*Вторая кол*/
+.main_col_2 {/*Вторая кол main_col_2*/
   grid-column: span 5;
 }
-.col_span_4 {/*третья кол*/
+.main_col_3 {/*третья кол main_col_3*/
   grid-column: span 4;
 }
-.col_span_2 {/*четвертая/пятая кол*/
+.main_col_5,
+.main_col_4 {/*четвертая/пятая кол*/
   grid-column: span 2;
 }
 .col_span_1 {/*Первая кол*/
@@ -90,4 +89,51 @@ main {
 }
 .col_span_9 {
   grid-column: span 9;
+}
+
+@media (max-width:1400px) {
+  .main_grid {
+    grid-template-columns: repeat(22,1fr);
+    grid-gap: 0;
+  }
+  .main_col_1 {/*Первая кол col_span_3*/
+    grid-column: 1/4;
+  }
+  .main_col_2 {/*Вторая кол main_col_2*/
+    grid-column: 5/12;
+  }
+  .main_col_3 {/*третья кол main_col_3*/
+    grid-column: 13/17;
+  }
+  
+  .main_col_4 {/*четвертая/пятая кол*/
+    grid-column: 17/20;
+  }
+  .main_col_5 {
+    grid-column: 20/-1;
+  }
+}
+@media (max-width:950px) {
+  .main_grid {
+    grid-template-columns: repeat(16,1fr);
+  }
+  .main_col_1 {/*Первая кол col_span_3*/
+    grid-column: span 3;
+  }
+  .main_col_2 {/*Вторая кол main_col_2*/
+    grid-column: span 5;
+  }
+  .main_col_3 {/*третья кол main_col_3*/
+    grid-column: span 4;
+  }
+  .main_col_5,
+  .main_col_4 {/*четвертая/пятая кол*/
+    grid-column: span 2;
+  }
+  .col_span_1 {/*Первая кол*/
+    grid-column: span 1;
+  }
+  .col_span_9 {
+    grid-column: span 9;
+  }
 }

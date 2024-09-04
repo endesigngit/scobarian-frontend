@@ -6,13 +6,13 @@ import { clsx } from "clsx"
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className="main_grid">
-        <div className={clsx(styles.footer_col, "col_span_3")}>
+      <div className={clsx(styles.footer_container, "main_grid")}>
+        <div className={clsx(styles.footer_col, "main_col_1")}>
           <Link href="/about" className={styles.main_footer__link}>
             О нас
           </Link>
         </div>
-        <div className={clsx(styles.footer_col, "col_span_5")}>
+        <div className={clsx(styles.footer_col, "main_col_2")}>
           <Link href="#" className={styles.main_footer__link}>
             Каталог
           </Link>
@@ -29,12 +29,12 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <div className={clsx(styles.footer_col, "col_span_4")}>
+        <div className={clsx(styles.footer_col, "main_col_3")}>
           <Link href="/tailoring" className={styles.main_footer__link}>
             Пошив
           </Link>
         </div>
-        <div className={clsx(styles.footer_col, "col_span_2")}>
+        <div className={clsx(styles.footer_col, "main_col_4")}>
           <Link href="/to-buyers" className={styles.main_footer__link}>
             Покупателям
           </Link>
@@ -51,7 +51,7 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <div className={clsx(styles.footer_col, "col_span_2")}>
+        <div className={clsx(styles.footer_col, "main_col_5")}>
           <Link href="/contacts" className={styles.main_footer__link}>
             Контакты
           </Link>
@@ -70,22 +70,22 @@ export default function Footer() {
         </div>
       </div>
       <div className={clsx(styles.footer_bottom, "main_grid")}>
-        <div className={clsx(styles.footer_col, "col_span_3")}>
+        <div className={clsx(styles.footer_col, "main_col_1")}>
           <Link href="/" className={clsx(styles.main_footer__link, styles.footer_logo)}>
             I’am skobarian ©
           </Link>
         </div>
-        <div className={clsx(styles.footer_col, "col_span_9")}>
+        <div className={clsx(styles.footer_col, styles.footer_colspan)}>
           <Link href="#" className={styles.main_footer__link}>
             Политика конфиденциальности
           </Link>
         </div>
-        <div className={clsx(styles.footer_col, styles.footer_social, "col_span_2")}>
+        <div className={clsx(styles.footer_col, styles.footer_social, "main_col_4")}>
           <Link href="#" className={styles.main_footer__link}>
             WhatsApp
           </Link>
         </div>
-        <div className={clsx(styles.footer_col, styles.footer_social, "col_span_2")}>
+        <div className={clsx(styles.footer_col, styles.footer_social, "main_col_5")}>
           <Link href="#" className={styles.main_footer__link}>
             Telegram
           </Link>

@@ -9,7 +9,7 @@ export default function ToBuyers() {
     <main className={styles.page_main}>
       <Breadcrumb pageTitle={"Покупателям"} padding />
       <div className={clsx(styles.main_container, "main_grid")}>
-        <div className={clsx(styles.page_nav, "col_span_3")}>
+        <div className={clsx(styles.page_nav, "main_col_1")}>
           <ul className={styles.nav_list}>
             <li className={clsx(styles.nav_item, styles.nav_item__active)}>
               <a href="#">Оплата</a>
@@ -25,7 +25,7 @@ export default function ToBuyers() {
             </li>
           </ul>
         </div>
-        <div className={clsx(styles.page_content, "col_span_5")}>
+        <div className={clsx(styles.page_content, "main_col_2")}>
           <div className={styles.content_wrap}>
             <div className={styles.title}>Оплата заказа</div>
             <p className={styles.description}>

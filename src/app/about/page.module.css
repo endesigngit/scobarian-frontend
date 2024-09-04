@@ -1,5 +1,6 @@
 .grid_col_img {
   padding-top: 125px;
+  min-height: 820px;
   grid-column: span 8;
   background-image: url("../../assets/images/about-img.webp");
   background-position: center;
@@ -30,4 +31,31 @@
 }
 .page_paragraph span {
   color: #000000;
+}
+
+@media (max-width:1400px) {
+  .grid_col_img {
+    grid-column: span 11;
+  }
+  .grid_col {
+    grid-column: 13/22;
+  }
+}
+@media (max-width:950px) {
+  .grid_col_img {
+    grid-column: 1/9;
+  }
+  .grid_col {
+    grid-column: 10/16;
+  }
+}
+@media (max-width:767px) {
+  .grid_col_img {
+    grid-column: 1/-1;
+    background-image: url("../../assets/images/about-img-mob.webp");
+  }
+  .grid_col {
+    padding: 57px var(--container-padding-x) 0;
+    grid-column: 1/-1;
+  }
 }
