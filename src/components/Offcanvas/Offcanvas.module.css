@@ -21,13 +21,10 @@
   left: auto;
   right: 0;
   padding: 48px var(--container-padding-x);
-  width: 36%;
+  min-width: 36%;
   height: 100%;
   background-color: #ffffff;
 }
-.offcanvas__active .offcanvas_body {
-}
-
 .offcanvas_nav {
   display: flex;
   justify-content: space-between;
@@ -43,108 +40,14 @@
   margin-top: 60px;
 }
 
-.filters {
-  width: 100%;
-  height: 80vh;
-  overflow: scroll;
-  scrollbar-width: none;
-}
-.filters_list {
-  display: flex;
-  flex-direction: column;
-  row-gap: 30px;
-}
-.filter_toggle {
-  position: relative;
-  padding: 8px 8px 8px 0;
-  width: 100%;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 12px;
-  text-transform: uppercase;  
-}
-.filter_toggle::after {
-  content: "+";
-  position: absolute;
-  top: 8px;
-  right: 8px;
-}
-.filter_content {
-  margin-top: 20px;
-  height: 0;
-  overflow: hidden;
-  opacity: 0;
-}
-.filter_content__open {
-  height: max-content;
-  opacity: 1;
-}
-.filter_list {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-.filter_list__size {
-  display: flex;
-  flex-direction: row;
-  gap: 0;
-}
-.filter_list__colors {
-  display: flex;
-  flex-direction: row;
-  gap: 0;
-  justify-content: space-between;
-}
 
-.filter_name {
-  color: #E4E4E4;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 12px;
-  text-transform: uppercase;  
+@media (max-width:950px) {
+  .offcanvas_body {
+    width: 385px;
+  }
 }
-
-.filter_list__size .filter_name {
-  width: 87px;
-  height: 87px;
-  aspect-ratio: 1/1;
-  border: 1px solid #E4E4E4;
-  text-align: center;
+@media (max-width:767px) {
+  .offcanvas_body {
+    width: 100%;
+  }
 }
-.filter_list__colors .filter_name {
-  width: 31px;
-  height: 31px;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  background-color: #000000;
-  border: 1px solid currentColor;
-}
-.filter_list__colors .filter_name[value="white"]{
-  background-color: #ffffff;
-  border-color: #E4E4E4;
-}
-.filter_list__colors .filter_name[value="green"]{
-  background-color: #1BCA4C;
-  border-color: #000000;
-}
-.filter_list__colors .filter_name[value="violet"]{
-  background-color: #3A3297;
-}
-.filter_list__colors .filter_name[value="brown"]{
-  background-color: #6A2C2C;
-  border-color: #000000;
-}
-.filter_list__colors .filter_name[value="grey"]{
-  background-color: #C6D4F5;
-}
-
-.filter_list__colors .filter_name span {
-  display: none;
-}
-
-.filter_item__active .filter_name,
-.filter_item__active .filter_name:hover,
-.filter_name:hover {
-  color: #000000;
-  border-color: #000000;
-} 

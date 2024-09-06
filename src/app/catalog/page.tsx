@@ -8,6 +8,7 @@ import Image from "next/image"
 import imageOne from "../../assets/images/product-img-1.jpg"
 import imagesTo from "../../assets/images/product-img-2.jpg"
 import Offcanvas from "@/components/Offcanvas/Offcanvas"
+import OffcanvasFilters from "@/components/OffcanvasFilters/OffcanvasFilters"
 
 export default function Catalog() {
   const [gridStatus, setGridStatus] = useState<boolean>(true)
@@ -762,7 +763,9 @@ export default function Catalog() {
           </li>
         </ul>
       </div>
-      <Offcanvas isActive={offcanvasIsActive} closeHandler={setOffcanvasIsActive} />
+      <Offcanvas isActive={offcanvasIsActive} closeHandler={setOffcanvasIsActive} >
+        <OffcanvasFilters />
+      </Offcanvas>
     </main>
   )
 }
