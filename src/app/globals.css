@@ -63,6 +63,7 @@ button {
   font-size: 1rem;
 }
 main {
+  position: relative;
   min-height: calc(100vh - 256px); 
   /* min-height: 100vh;  */
 }

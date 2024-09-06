@@ -7,9 +7,11 @@ import { useState } from "react"
 import Image from "next/image"
 import imageOne from "../../assets/images/product-img-1.jpg"
 import imagesTo from "../../assets/images/product-img-2.jpg"
+import Offcanvas from "@/components/Offcanvas/Offcanvas"
 
 export default function Catalog() {
   const [gridStatus, setGridStatus] = useState<boolean>(true)
+  const [offcanvasIsActive, setOffcanvasIsActive] = useState<boolean>(false)
   return (
     <main className={styles.page_main}>
       <Breadcrumb pageTitle={"Каталог"} padding />
@@ -33,7 +35,11 @@ export default function Catalog() {
           </button>
         </div>
         <div className={styles.filter_toggles}>
-          <button type="button" className={styles.filter_toggle}>
+          <button
+            type="button"
+            className={styles.filter_toggle}
+            onClick={() => setOffcanvasIsActive(!offcanvasIsActive)}
+          >
             Фильтры
           </button>
         </div>
@@ -756,6 +762,7 @@ export default function Catalog() {
           </li>
         </ul>
       </div>
+      <Offcanvas isActive={offcanvasIsActive} closeHandler={setOffcanvasIsActive} />
     </main>
   )
 }
