@@ -13,17 +13,17 @@ export default function Footer() {
           </Link>
         </div>
         <div className={clsx(styles.footer_col, "main_col_2")}>
-          <Link href="#" className={styles.main_footer__link}>
+          <Link href="/catalog" className={styles.main_footer__link}>
             Каталог
           </Link>
           <ul className={styles.footer_list}>
             <li>
-              <Link href="#" className={styles.secondary_footer__link}>
+              <Link href="/catalog" className={styles.secondary_footer__link}>
                 Женщинам
               </Link>
             </li>
             <li>
-              <Link href="#" className={styles.secondary_footer__link}>
+              <Link href="/catalog" className={styles.secondary_footer__link}>
                 Мужчинам
               </Link>
             </li>

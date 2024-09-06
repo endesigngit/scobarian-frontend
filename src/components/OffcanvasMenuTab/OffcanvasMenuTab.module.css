@@ -98,6 +98,10 @@
 @media (max-width:950px){
   .offcanvas {
     display: block;
+    padding: 47px var(--container-padding-x) 50px var(--container-padding-x);
+  }
+  .tablet_logo {
+    grid-column: 1/5;
   }
 }
 @media (max-width:760px){

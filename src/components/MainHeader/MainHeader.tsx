@@ -23,39 +23,39 @@ export default function MainHeader() {
             </Link>
           </li>
           <li className={clsx(styles.main_menu__item, "main_col_2")}>
-            <Link href="#" className={styles.main_menu__link} onClick={menuClickHandler}>
+            <Link href="/catalog" className={styles.main_menu__link} onClick={menuClickHandler}>
               Каталог
             </Link>
             <ul className={styles.main_submenu}>
               <li className={styles.main_submenu__item}>
-                <Link href="#" className={styles.main_submenu__title}>
+                <Link href="/catalog" className={styles.main_submenu__title}>
                   Женщинам
                 </Link>
                 <ul className={styles.inner_submenu}>
                   <li className={styles.inner_submenu__item}>
-                    <Link href="#">Худи</Link>
+                    <Link href="/catalog">Худи</Link>
                   </li>
                   <li className={styles.inner_submenu__item}>
-                    <Link href="#">Бомбер</Link>
+                    <Link href="/catalog">Бомбер</Link>
                   </li>
                   <li className={styles.inner_submenu__item}>
-                    <Link href="#">Футболка</Link>
+                    <Link href="/catalog">Футболка</Link>
                   </li>
                 </ul>
               </li>
               <li className={styles.main_submenu__item}>
-                <Link href="#" className={styles.main_submenu__title}>
+                <Link href="/catalog" className={styles.main_submenu__title}>
                   Мужчинам
                 </Link>
                 <ul className={styles.inner_submenu}>
                   <li className={styles.inner_submenu__item}>
-                    <Link href="#">Худи</Link>
+                    <Link href="/catalog">Худи</Link>
                   </li>
                   <li className={styles.inner_submenu__item}>
-                    <Link href="#">Бомбер</Link>
+                    <Link href="/catalog">Бомбер</Link>
                   </li>
                   <li className={styles.inner_submenu__item}>
-                    <Link href="#">Футболка</Link>
+                    <Link href="/catalog">Футболка</Link>
                   </li>
                 </ul>
               </li>
@@ -75,7 +75,7 @@ export default function MainHeader() {
             <Link href="/contacts" className={styles.main_menu__link}>
               Контакты
             </Link>
-            <HeaderCart isActiveNeader={IsActive} />
+            <HeaderCart isActiveHeader={IsActive} />
           </li>
         </ul>
       </nav>

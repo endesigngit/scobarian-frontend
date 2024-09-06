@@ -14,7 +14,7 @@ export default function Breadcrumb({ pageTitle, padding }: BreadcrumbProps) {
   // const [innerTitle, setInnerTitle] = useState<string | null>("худи")
   return (
     <div className={clsx(styles.breadcrumb, padding && styles.breadcrumb_full)}>
-      <div className="main_grid">
+      <div className={styles.main_grid_container}>
         <div className={clsx(styles.breadcrumb_col, "main_col_1")}>
           <Logo />
         </div>
