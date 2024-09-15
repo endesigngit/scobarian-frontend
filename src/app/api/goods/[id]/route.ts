@@ -3,7 +3,7 @@ import { transformCatalogGoods } from "@/utils/api/transformCatalogGoods"
 import { NextRequest } from "next/server"
 import qs from "qs"
 
-export async function GET(request: NextRequest, { params }: { params: { slug: string } }) {
+export async function GET(request: NextRequest, { params: { id } }: { params: { id: number } }) {
   const searchParams = request.nextUrl.searchParams
 
   const query = qs.stringify({
@@ -17,9 +17,8 @@ export async function GET(request: NextRequest, { params }: { params: { slug: st
       }
     }
   })
-  console.log('asdasda');
-  
-  const res = await fetch(`${endpoints.goods}?${query}`, {
+
+  const res = await fetch(`${endpoints.getGood(id)}?${query}`, {
     headers: {
       Authorization: `bearer ${process.env.STRAPI_API_KEY}`,
       "Content-Type": "application/json"
@@ -28,7 +27,5 @@ export async function GET(request: NextRequest, { params }: { params: { slug: st
   })
   const data = await res.json()
 
-  const transformedData = transformCatalogGoods(data)
-
-  return Response.json({ data: transformedData })
+  return Response.json({ data })
 }

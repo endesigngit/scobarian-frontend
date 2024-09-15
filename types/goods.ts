@@ -1,3 +1,4 @@
+//товар из каталога
 export type TcatalogGood = {
   name: string
   price: number

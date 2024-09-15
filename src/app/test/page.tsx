@@ -2,14 +2,19 @@
 
 import { useBoundStore } from "@/store/StoreProvider"
 import { Typography } from "@/UI/Typography/Typography"
+import { getAllGoods } from "@/utils/api/queries/getAllGoods"
+import { getAllItemGoods } from "@/utils/api/queries/getAllItemGoods"
+import { getGood } from "@/utils/api/queries/getGood"
+import { getItemGood } from "@/utils/api/queries/getItemGood"
 import Link from "next/link"
 import { useEffect } from "react"
 
 export default function Test() {
   useEffect(() => {
-    fetch("/api/goods")
-      .then((res) => res.json())
-      .then(console.log)
+    getAllGoods().then((data) => console.log("getAllGoods:", data))
+    getAllItemGoods().then((data) => console.log("getAllItemGoods:", data))
+    getGood(1).then((data) => console.log("getGood:", data))
+    getItemGood(1).then((data) => console.log("getItemGood:", data))
   }, [])
 
   const { bears, fishes } = useBoundStore((state) => ({ bears: state.bears, fishes: state.fishes }))

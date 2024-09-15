@@ -7,39 +7,24 @@ import qs from "qs"
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
-  const gender = searchParams.get("gender") || ""
 
   const query = qs.stringify({
-    fields: ["name", "price", "slug", "type"],
+    fields: ["name", "size", "color", "count", "discount"],
     populate: {
-      item_goods: {
-        fields: ["color", "size"],
-        populate: {
-          images: {
-            fields: ["url"]
-          }
-        }
-      }
-    },
-    filters: {
-      gender: {
-        $contains: gender
+      images: {
+        fields: ["url"]
       }
     }
   })
 
-  const res = await fetch(`${endpoints.goods}?${query}`, {
+  const res = await fetch(`${endpoints.itemGoods}?${query}`, {
     headers: {
       Authorization: `bearer ${process.env.STRAPI_API_KEY}`,
       "Content-Type": "application/json"
     },
     credentials: "include"
   })
-
   const data = await res.json()
 
-  const transformedData = transformCatalogGoods(data)
-  const responseData: TresponseData<TcatalogGood[]> = { data: transformedData }
-
-  return Response.json({ data: responseData })
+  return Response.json({ data })
 }
