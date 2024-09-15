@@ -1,0 +1,124 @@
+.product {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.product_img_wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 86%;
+  background-color: #f2f2f2;
+  overflow: hidden;
+}
+.product_img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+.add_cart_btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+.add_cart_btn:hover{
+  opacity: 1;
+} 
+.add_cart_title {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  text-transform: uppercase;
+}
+.add_cart_icon {
+  display: none;
+  width: 16px;
+  height: 16px;
+}
+.product_parameters {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+}
+
+.proportions {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
+  text-transform: uppercase;
+}
+
+.product_content {
+  height: 14%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+}
+.product_title {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.product_price {
+  display: inline-block;
+  width: 100%;
+  color: var(--secondary-font-color);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  text-align: center;
+}
+
+@media (max-width:1140px) {
+  .add_cart_btn {
+    opacity: 1;
+    width: 20%;
+    height: 20%;
+    right: 0;
+    left: auto;
+    background-color: transparent;
+  }
+  .add_cart_title {
+    display: none;
+  }
+  .add_cart_icon {
+    display: block;
+  }
+  .add_cart_btn__active svg:first-child,
+  .add_cart_btn:hover svg:first-child {
+    display: none;
+  }
+  .add_cart_btn:hover svg:last-child {
+    display: block;
+  }  
+  .add_cart_icon svg:last-child {
+    display: none;
+  }  
+  .add_cart_btn__active svg:last-child {
+    display: block;
+  }
+}
+
+

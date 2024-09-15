@@ -25,7 +25,7 @@ export default function Cart() {
       <Breadcrumb pageTitle={"Корзина"} padding />
       <div className="main_grid">
         <div className={styles.left_side}>
-          <CartProducts />
+          <CartProducts isLarge={false} />
         </div>
         <div className={styles.right_side}>
           <div className={styles.cart_tab}>
@@ -57,7 +57,7 @@ export default function Cart() {
                     <span>Рассчитывается при оформлении заказа</span>
                   </p>
                   <div className={styles.cart_products_mob}>
-                    <CartProducts />
+                    <CartProducts isLarge={false} />
                   </div>
                   <div className={styles.cart_total}>
                     <p>

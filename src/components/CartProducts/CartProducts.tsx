@@ -4,11 +4,16 @@ import Image from "next/image"
 import imageOne from "../../assets/images/product-img-1.jpg"
 import imagesTo from "../../assets/images/product-img-2.jpg"
 import clsx from "clsx"
+import { Typography } from "@/UI/Typography/Typography"
 
-export default function CartProducts() {
+type CartProductsProps = {
+  isLarge: boolean
+}
+
+export default function CartProducts({ isLarge }: CartProductsProps) {
   return (
     <div className={styles.product_list}>
-      <div className={styles.product_item}>
+      <div className={clsx(styles.product_item, isLarge && styles.product_item__large)}>
         <Link className={styles.product_img__wrap} href={"/"}>
           <Image className={styles.product_img} src={imageOne} alt="Picture of product" />
         </Link>
@@ -19,14 +24,25 @@ export default function CartProducts() {
           <span className={styles.product_price}>9600 P</span>
         </div>
         <div className={styles.product_parameters}>
-          <p className={styles.parameters_item}>
-            <span className={styles.parameters_title}>Размер:</span>
-            <span className={styles.parameters_value}>S</span>
-          </p>
-          <p className={styles.parameters_item}>
-            <span className={styles.parameters_title}>Цвет:</span>
-            <span className={clsx(styles.product_color, styles.product_color_violet)}></span>
-          </p>
+          <div className={styles.product_descriptions}>
+            <Typography className={styles.description_title} tag={"h4"} variant={"h1"}>
+              Состав
+            </Typography>
+            <ul className={styles.page_list}>
+              <li className={styles.page_list_item}>92% хлопок</li>
+              <li className={styles.page_list_item}>8% эластан</li>
+            </ul>
+          </div>
+          <ul className={styles.parameters_list}>
+            <li className={styles.parameters_item}>
+              <span className={styles.parameters_title}>Размер:</span>
+              <span className={styles.parameters_value}>S</span>
+            </li>
+            <li className={styles.parameters_item}>
+              <span className={styles.parameters_title}>Цвет:</span>
+              <span className={clsx(styles.product_color, styles.product_color_violet)}></span>
+            </li>
+          </ul>
         </div>
         <div className={styles.product_buttons}>
           <button type="button" className={styles.product_btn}>
@@ -37,7 +53,7 @@ export default function CartProducts() {
           </button>
         </div>
       </div>
-      <div className={styles.product_item}>
+      <div className={clsx(styles.product_item, isLarge && styles.product_item__large)}>
         <Link className={styles.product_img__wrap} href={"/"}>
           <Image className={styles.product_img} src={imagesTo} alt="Picture of product" />
         </Link>
@@ -48,14 +64,25 @@ export default function CartProducts() {
           <span className={styles.product_price}>9600 P</span>
         </div>
         <div className={styles.product_parameters}>
-          <p className={styles.parameters_item}>
-            <span className={styles.parameters_title}>Размер:</span>
-            <span className={styles.parameters_value}>S</span>
-          </p>
-          <p className={styles.parameters_item}>
-            <span className={styles.parameters_title}>Цвет:</span>
-            <span className={clsx(styles.product_color)}></span>
-          </p>
+          <div className={styles.product_descriptions}>
+            <Typography className={styles.description_title} tag={"h4"} variant={"h1"}>
+              Состав
+            </Typography>
+            <ul className={styles.page_list}>
+              <li className={styles.page_list_item}>92% хлопок</li>
+              <li className={styles.page_list_item}>8% эластан</li>
+            </ul>
+          </div>
+          <ul className={styles.parameters_list}>
+            <li className={styles.parameters_item}>
+              <span className={styles.parameters_title}>Размер:</span>
+              <span className={styles.parameters_value}>S</span>
+            </li>
+            <li className={styles.parameters_item}>
+              <span className={styles.parameters_title}>Цвет:</span>
+              <span className={clsx(styles.product_color)}></span>
+            </li>
+          </ul>
         </div>
         <div className={styles.product_buttons}>
           <button type="button" className={styles.product_btn}>
@@ -66,7 +93,7 @@ export default function CartProducts() {
           </button>
         </div>
       </div>
-      <div className={styles.product_item}>
+      <div className={clsx(styles.product_item, isLarge && styles.product_item__large)}>
         <Link className={styles.product_img__wrap} href={"/"}>
           <Image className={styles.product_img} src={imageOne} alt="Picture of product" />
         </Link>
@@ -77,14 +104,25 @@ export default function CartProducts() {
           <span className={styles.product_price}>9600 P</span>
         </div>
         <div className={styles.product_parameters}>
-          <p className={styles.parameters_item}>
-            <span className={styles.parameters_title}>Размер:</span>
-            <span className={styles.parameters_value}>S</span>
-          </p>
-          <p className={styles.parameters_item}>
-            <span className={styles.parameters_title}>Цвет:</span>
-            <span className={clsx(styles.product_color, styles.product_color_violet)}></span>
-          </p>
+          <div className={styles.product_descriptions}>
+            <Typography className={styles.description_title} tag={"h4"} variant={"h1"}>
+              Состав
+            </Typography>
+            <ul className={styles.page_list}>
+              <li className={styles.page_list_item}>92% хлопок</li>
+              <li className={styles.page_list_item}>8% эластан</li>
+            </ul>
+          </div>
+          <ul className={styles.parameters_list}>
+            <li className={styles.parameters_item}>
+              <span className={styles.parameters_title}>Размер:</span>
+              <span className={styles.parameters_value}>S</span>
+            </li>
+            <li className={styles.parameters_item}>
+              <span className={styles.parameters_title}>Цвет:</span>
+              <span className={clsx(styles.product_color, styles.product_color_violet)}></span>
+            </li>
+          </ul>
         </div>
         <div className={styles.product_buttons}>
           <button type="button" className={styles.product_btn}>
