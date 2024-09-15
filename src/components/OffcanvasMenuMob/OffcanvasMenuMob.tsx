@@ -15,7 +15,7 @@ export default function OffcanvasMenuMob({ isActive, activeHandler }: OffcanvasM
         <button type="button" className={styles.mobile_toggle} onClick={() => activeHandler(true)}>
           <span>Меню</span>
         </button>
-        <HeaderCart isActiveNeader={isActive} />
+        <HeaderCart isActiveHeader={isActive} />
       </div>
       <div className={styles.offcanvas_mobile_body}>
         <div className={styles.offcanvas_header}>
@@ -39,17 +39,17 @@ export default function OffcanvasMenuMob({ isActive, activeHandler }: OffcanvasM
               </Link>
             </li>
             <li className={styles.mobile_menu_item}>
-              <Link href={"/about"} className={styles.mobile_menu__link}>
+              <Link href={"/catalog"} className={styles.mobile_menu__link}>
                 Каталог
               </Link>
               <ul className={styles.mobile_submenu}>
                 <li className={styles.mobile_submenu__item}>
-                  <Link href="#" className={styles.mobile_submenu_title}>
+                  <Link href="/catalog" className={styles.mobile_submenu_title}>
                     Женщинам
                   </Link>
                 </li>
                 <li className={styles.main_submenu__item}>
-                  <Link href="#" className={styles.mobile_submenu_title}>
+                  <Link href="/catalog" className={styles.mobile_submenu_title}>
                     Мужчинам
                   </Link>
                 </li>

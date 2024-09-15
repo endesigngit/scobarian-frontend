@@ -1,0 +1,53 @@
+.offcanvas {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+}
+.offcanvas__active {
+  display: block;
+}
+.overlay {
+  width: 64%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.offcanvas_body {
+  position: absolute;
+  top: 0;
+  left: auto;
+  right: 0;
+  padding: 48px var(--container-padding-x);
+  min-width: 36%;
+  height: 100%;
+  background-color: #ffffff;
+}
+.offcanvas_nav {
+  display: flex;
+  justify-content: space-between;
+}
+.offcanvas_title,
+.offcanvas_close_btn {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  text-transform: uppercase;
+}
+.offcanvas_content {
+  margin-top: 60px;
+}
+
+
+@media (max-width:950px) {
+  .offcanvas_body {
+    width: 385px;
+  }
+}
+@media (max-width:767px) {
+  .offcanvas_body {
+    width: 100%;
+  }
+}

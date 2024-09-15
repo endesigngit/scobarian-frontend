@@ -11,78 +11,78 @@ type OffcanvasMenuTabProps = {
 export default function OffcanvasMenuTab({ isActive, activeHandler }: OffcanvasMenuTabProps) {
   return (
     <div className={clsx(styles.offcanvas, isActive && styles.offcanvas__active)}>
-      <div className={clsx(styles.tablet_header, styles.main_grid_container)}>
-        <div className={clsx(styles.tablet_logo, styles.left_side)}>
+      <div className={clsx(styles.tablet_header, "main_grid")}>
+        <div className={styles.tablet_logo}>
           <Link href={"/"}>I’am skobarian</Link>
         </div>
-        <div className={clsx(styles.tablet_toggles, styles.right_side)}>
+        <div className={styles.tablet_toggles}>
           <button type="button" className={styles.tablet_toggle} onClick={() => activeHandler(!isActive)}>
             {!isActive && <span>Меню</span>}
             {isActive && <span>Закрыть</span>}
           </button>
-          <HeaderCart isActiveNeader={isActive} />
+        </div>
+        <div className={styles.tablet_toggles}>
+          <HeaderCart isActiveHeader={isActive} />
         </div>
       </div>
       <div className={styles.offcanvas_tab_body}>
-        <nav className={clsx(styles.offcanvas_tab_nav, styles.main_grid_container)}>
-          <ul className={clsx(styles.tablet_menu, styles.left_side)}>
-            <li className={styles.tablet_menu_item}>
+        <nav className={clsx(styles.offcanvas_tab_nav)}>
+          <ul className={clsx(styles.tablet_menu, "main_grid")}>
+            <li className={clsx(styles.tablet_menu_item, "main_col_1")}>
               <Link href={"/about"} className={styles.tablet_menu__link}>
                 О нас
               </Link>
             </li>
-            <li className={styles.tablet_menu_item}>
-              <Link href={"/about"} className={styles.tablet_menu__link}>
+            <li className={clsx(styles.tablet_menu_item, "main_col_2")}>
+              <Link href={"/catalog"} className={styles.tablet_menu__link}>
                 Каталог
               </Link>
               <ul className={styles.tablet_submenu}>
                 <li className={styles.tablet_submenu__item}>
-                  <Link href="#" className={styles.tablet_submenu_title}>
+                  <Link href="/catalog" className={styles.tablet_submenu_title}>
                     Женщинам
                   </Link>
                   <ul className={styles.inner_submenu}>
                     <li className={styles.inner_submenu__item}>
-                      <Link href="#">Худи</Link>
+                      <Link href="/catalog">Худи</Link>
                     </li>
                     <li className={styles.inner_submenu__item}>
-                      <Link href="#">Бомбер</Link>
+                      <Link href="/catalog">Бомбер</Link>
                     </li>
                     <li className={styles.inner_submenu__item}>
-                      <Link href="#">Футболка</Link>
+                      <Link href="/catalog">Футболка</Link>
                     </li>
                   </ul>
                 </li>
                 <li className={styles.main_submenu__item}>
-                  <Link href="#" className={styles.tablet_submenu_title}>
+                  <Link href="/catalog" className={styles.tablet_submenu_title}>
                     Мужчинам
                   </Link>
                   <ul className={styles.inner_submenu}>
                     <li className={styles.inner_submenu__item}>
-                      <Link href="#">Худи</Link>
+                      <Link href="/catalog">Худи</Link>
                     </li>
                     <li className={styles.inner_submenu__item}>
-                      <Link href="#">Бомбер</Link>
+                      <Link href="/catalog">Бомбер</Link>
                     </li>
                     <li className={styles.inner_submenu__item}>
-                      <Link href="#">Футболка</Link>
+                      <Link href="/catalog">Футболка</Link>
                     </li>
                   </ul>
                 </li>
               </ul>
             </li>
-          </ul>
-          <ul className={clsx(styles.tablet_menu, styles.right_side)}>
-            <li className={styles.tablet_menu_item}>
+            <li className={clsx(styles.tablet_menu_item)}>
               <Link href={"/tailoring"} className={styles.tablet_menu__link}>
                 Пошив
               </Link>
             </li>
-            <li className={styles.tablet_menu_item}>
+            <li className={clsx(styles.tablet_menu_item, "main_col_4")}>
               <Link href={"/to-buyers"} className={styles.tablet_menu__link}>
                 Покупателям
               </Link>
             </li>
-            <li className={styles.tablet_menu_item}>
+            <li className={clsx(styles.tablet_menu_item, "main_col_5")}>
               <Link href={"/to-buyers"} className={styles.tablet_menu__link}>
                 Контакты
               </Link>
@@ -90,7 +90,6 @@ export default function OffcanvasMenuTab({ isActive, activeHandler }: OffcanvasM
           </ul>
         </nav>
       </div>
-      <div className={styles.offcanvas_mobile}></div>
     </div>
   )
 }

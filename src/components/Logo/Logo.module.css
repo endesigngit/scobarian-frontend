@@ -10,3 +10,10 @@
   letter-spacing: 0.09em;
   text-transform: uppercase;
 }
+
+@media (max-width:1400px){
+  .logo_title {
+    font-size: 13.4px;
+    line-height: 16.08px;
+  }
+}

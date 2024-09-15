@@ -48,7 +48,7 @@
 
 .cart_form textarea:focus + label,
 .cart_form input:focus + label {
-  transform: scale(0.9) translate(-15px, -5px) ;
+  transform: scale(0.9) translate(-5%, -5px) ;
   transition: transform 0.3s;
 }
 .submit_btn {
@@ -68,3 +68,17 @@
   background-color: #000000ab;
   transition: background-color 0.3s;
 } 
+
+@media (max-width:1105px){
+  .forms_grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(4,1fr);
+    gap: 30px;
+  }
+}
+@media (max-width:767px){
+  .submit_btn {
+    margin-top: 35px;
+  }
+}
