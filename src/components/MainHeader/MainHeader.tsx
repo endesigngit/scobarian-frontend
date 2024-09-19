@@ -3,18 +3,28 @@ import Link from "next/link"
 import styles from "./MainHeader.module.css"
 import { clsx } from "clsx"
 import OffcanvasMenuTab from "../OffcanvasMenuTab/OffcanvasMenuTab"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import HeaderCart from "../HeaderCart/HeaderCart"
 import OffcanvasMenuMob from "../OffcanvasMenuMob/OffcanvasMenuMob"
 
 export default function MainHeader() {
   const [IsActive, setActive] = useState<boolean>(false)
+  const [IsTab, setTab] = useState<boolean>(false)
   const menuClickHandler = (evt: any) => {
     evt.preventDefault()
-    setActive(!IsActive)
+    if (IsTab) setActive(!IsActive)
   }
+  useEffect(() => {
+    if (window.document.documentElement.clientWidth >= 950 && window.document.documentElement.clientWidth <= 1024) {
+      setTab(true)
+    }
+  }, [])
   return (
-    <header className={clsx(styles.header, IsActive && styles.header__active)}>
+    <header
+      className={clsx(styles.header, IsActive && styles.header__active)}
+      onMouseEnter={() => setActive(true)}
+      onMouseLeave={() => setActive(false)}
+    >
       <nav className={styles.header__nav}>
         <ul className={clsx("main_grid", styles.main_menu)}>
           <li className={clsx(styles.main_menu__item, "main_col_1")}>
