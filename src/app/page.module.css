@@ -16,6 +16,7 @@
   width: 100%;
 }
 .image_block_title {
+  display: none;
   padding:60px 0;
   grid-column: 4/9;
   mix-blend-mode: difference;
@@ -79,8 +80,16 @@
     grid-column: 5/13;
   }
 }
+@media (max-width:1024px){
+  .image_block__links {
+    position: static;
+    height: 100%;
+    align-items: center;
+  }
+}
 @media (max-width:950px){
   .image_block_title {
+    display: block;
     mix-blend-mode: normal;
     padding:40px 0;
     grid-column: 1/6;

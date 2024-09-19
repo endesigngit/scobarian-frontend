@@ -94,4 +94,7 @@
   .breadcrumb {
     top: 100px;
   }
+  .breadcrumb_col {
+    grid-column: 1/-1;
+  }
 }

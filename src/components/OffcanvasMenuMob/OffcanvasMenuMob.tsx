@@ -2,6 +2,7 @@ import Link from "next/link"
 import styles from "./OffcanvasMenuMob.module.css"
 import clsx from "clsx"
 import HeaderCart from "../HeaderCart/HeaderCart"
+import { useState } from "react"
 
 type OffcanvasMenuMobProps = {
   isActive: boolean
@@ -9,10 +10,15 @@ type OffcanvasMenuMobProps = {
 }
 
 export default function OffcanvasMenuMob({ isActive, activeHandler }: OffcanvasMenuMobProps) {
+  const [isOpen, setOpen] = useState<boolean>(isActive)
+  const activeInnerHandler = (status: boolean) => {
+    setOpen(status)
+    status ? activeHandler(status) : setTimeout(() => activeHandler(status), 300)
+  }
   return (
-    <div className={clsx(styles.offcanvas, isActive && styles.offcanvas__active)}>
+    <div className={clsx(styles.offcanvas, isOpen && styles.offcanvas__active)}>
       <div className={styles.mobile_header}>
-        <button type="button" className={styles.mobile_toggle} onClick={() => activeHandler(true)}>
+        <button type="button" className={styles.mobile_toggle} onClick={() => activeInnerHandler(true)}>
           <span>Меню</span>
         </button>
         <HeaderCart isActiveHeader={isActive} />
@@ -22,11 +28,11 @@ export default function OffcanvasMenuMob({ isActive, activeHandler }: OffcanvasM
           <div className={styles.mobile_logo}>
             <Link href={"/"}>I’am skobarian</Link>
           </div>
-          <button type="button" className={styles.mobile_toggle} onClick={() => activeHandler(false)}>
+          <button type="button" className={styles.mobile_toggle} onClick={() => activeInnerHandler(false)}>
             <span>Закрыть</span>
           </button>
         </div>
-        <nav className={styles.offcanvas_mobile_nav}>
+        <nav className={styles.offcanvas_mobile_nav} onClick={() => activeInnerHandler(false)}>
           <ul className={styles.mobile_menu}>
             <li className={styles.mobile_menu_item}>
               <Link href={"/"} className={styles.mobile_menu__link}>

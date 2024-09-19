@@ -17,7 +17,8 @@
 }
 
 .offcanvas_mobile_body {
-  display: none;
+  /* display: none; */
+  display: flex;
   flex-direction: column;
   padding: 47px var(--container-padding-x) 100px var(--container-padding-x);
   position: absolute;
@@ -26,15 +27,18 @@
   width: 100%;
   min-height: 100vh;
   z-index: 2;
+  background-color: #ffffff;
+  mix-blend-mode: normal;
+  animation: slideReverse 0.5s forwards;
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+  -webkit-animation: slideReverse 0.5s forwards;
   
 }
 .offcanvas__active .offcanvas_mobile_body {
-  display: flex;
-  /* left: 0; */
-  background-color: #ffffff;
+  animation: slide 0.5s forwards;
   -webkit-animation-delay: 1s;
   animation-delay: 1s;
-  animation: slide 0.5s forwards;
   -webkit-animation: slide 0.5s forwards;
 }
 .offcanvas_header {
@@ -148,6 +152,10 @@
 @keyframes slide {
   0%{left: -140vw;}
   100% { left: 0; }
+}
+@keyframes slideReverse {
+  0% { left: 0; }
+  100% {left: -140vw;}
 }
 
 @media (max-width:760px){
