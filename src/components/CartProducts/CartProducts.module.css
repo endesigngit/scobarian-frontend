@@ -325,6 +325,13 @@
     justify-content: space-between;
     flex-direction: column;
   }
+  .parameters_list {
+    margin-top: 18px;
+    flex-direction: column;
+  }
+  .product_buttons {
+    justify-content: flex-end;
+  }
   .product_item__large {
       min-height: 400px;
       max-height: 400px;

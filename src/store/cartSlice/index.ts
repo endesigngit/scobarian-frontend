@@ -3,14 +3,14 @@ import { actionWrapper } from "../utils"
 import { TCartSlice } from "./types"
 
 export const createCartSlice = (set: TSet): TCartSlice => ({
-  products: [],
+  cartProducts: [],
   addProduct: (product) => {
     actionWrapper(set, (state) => {
-      state.products.push(product)
+      state.cartProducts.push(product)
     })
   },
   deleteProduct: actionWrapper(set, (state) => {}),
   clearCart: actionWrapper(set, (state) => {
-    state.products = []
+    state.cartProducts = []
   })
 })

@@ -5,23 +5,27 @@ import Link from "next/link"
 import clsx from "clsx"
 import CartProducts from "@/components/CartProducts/CartProducts"
 import CartForm from "@/components/CartForm/CartForm"
-import { useState } from "react"
+import { MutableRefObject, useRef, useState } from "react"
+import scrollToElement from "@/utils/scrollToElement"
 
 export default function Cart() {
   const [isDetails, setIsDetails] = useState<boolean>(true)
   const [isForm, setIsForm] = useState<boolean>(false)
 
+  const refMain = useRef(null)
+
   const tabHanler = (stepFlag: boolean) => {
     if (stepFlag) {
       setIsForm(true)
       setIsDetails(false)
+      scrollToElement(refMain, "start")
     } else {
       setIsForm(false)
       setIsDetails(true)
     }
   }
   return (
-    <main>
+    <main ref={refMain}>
       <Breadcrumb pageTitle={"Корзина"} padding />
       <div className="main_grid">
         <div className={styles.left_side}>

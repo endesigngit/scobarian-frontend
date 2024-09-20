@@ -3,7 +3,7 @@ export type TProduct = {
   price: string
 }
 export type TCartSliceState = {
-  products: TProduct[]
+  cartProducts: TProduct[]
 }
 
 export type TCartSliceActions = {

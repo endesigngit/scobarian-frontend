@@ -45,7 +45,7 @@ export default function ProductItem() {
           </li>
         </ul>
       </div>
-      <Link href={"/"} className={styles.product_content}>
+      <Link href={"/product"} className={styles.product_content}>
         <h3 className={styles.product_title}>Худи I’am skobarian</h3>
         <span className={styles.product_price}>9 600 P</span>
       </Link>

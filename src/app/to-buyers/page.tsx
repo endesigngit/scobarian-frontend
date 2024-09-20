@@ -1,10 +1,10 @@
 "use client"
 import styles from "./page.module.css"
-import Link from "next/link"
 import { clsx } from "clsx"
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
 import { Typography } from "@/UI/Typography/Typography"
 import { MouseEvent, useRef, useState } from "react"
+import scrollToElement from "@/utils/scrollToElement"
 
 export default function ToBuyers() {
   const [payment, setPayment] = useState<boolean>(true)
@@ -17,12 +17,6 @@ export default function ToBuyers() {
   const backProdkRef = useRef(null)
   const warrantyRef = useRef(null)
 
-  const scrollToElement = (ref: any) => {
-    const { current } = ref
-    if (current !== null && current !== undefined) {
-      current.scrollIntoView({ block: "center", behavior: "smooth" })
-    }
-  }
   const resetActiveMenu = () => {
     setPayment(false)
     setDelivery(false)
@@ -33,22 +27,22 @@ export default function ToBuyers() {
     switch (currentRef) {
       case "paymentRef":
         resetActiveMenu()
-        scrollToElement(paymentRef)
+        scrollToElement(paymentRef, "center")
         setPayment(true)
         break
       case "deliveryRef":
         resetActiveMenu()
-        scrollToElement(deliveryRef)
+        scrollToElement(deliveryRef, "center")
         setDelivery(true)
         break
       case "backProdkRef":
         resetActiveMenu()
-        scrollToElement(backProdkRef)
+        scrollToElement(backProdkRef, "center")
         setBackProd(true)
         break
       case "warrantyRef":
         resetActiveMenu()
-        scrollToElement(warrantyRef)
+        scrollToElement(warrantyRef, "center")
         setWarranty(true)
         break
 
