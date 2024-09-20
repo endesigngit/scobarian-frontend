@@ -1,12 +1,12 @@
 "use client"
-import Link from "next/link"
+// import Link from "next/link"
 import styles from "./Breadcrumb.module.css"
 import { clsx } from "clsx"
 import Logo from "../Logo/Logo"
-import { useEffect, useState } from "react"
+// import { useEffect, useState } from "react"
 
 type BreadcrumbProps = {
-  pageTitle?: string
+  pageTitle: string
   padding?: boolean
 }
 
