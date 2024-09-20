@@ -23,7 +23,7 @@ export default function Home() {
       <InView onChange={() => setHeaderTitle("")} threshold={0.8}>
         <div className={styles.image_block}>
           <div className={styles.image_block_content}>
-            <Link className={styles.image_block__link} href={"/"}>
+            <Link className={styles.image_block__link} href={"/catalog"}>
               перейти к покупкам
             </Link>
           </div>
