@@ -6,10 +6,12 @@ import { useState } from "react"
 import Offcanvas from "@/components/Offcanvas/Offcanvas"
 import OffcanvasFilters from "@/components/OffcanvasFilters/OffcanvasFilters"
 import ProductItem from "@/components/ProductItem/ProductItem"
+import getGoods from "@/mock/goods"
 
 export default function Catalog() {
   const [gridStatus, setGridStatus] = useState<boolean>(true)
   const [offcanvasIsActive, setOffcanvasIsActive] = useState<boolean>(false)
+  const goods = getGoods()
   return (
     <main className={styles.page_main}>
       <Breadcrumb pageTitle={"Каталог"} padding />
@@ -44,69 +46,13 @@ export default function Catalog() {
       </div>
       <div className={styles.catalog_container}>
         <ul className={clsx(styles.product_list, !gridStatus && styles.product_list__second)}>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
-          <li className={styles.product_item}>
-            <ProductItem />
-          </li>
+          {goods
+            ? goods.map((good) => (
+                <li className={styles.product_item} key={good.id}>
+                  <ProductItem good={good} />
+                </li>
+              ))
+            : ""}
         </ul>
       </div>
       <Offcanvas isActive={offcanvasIsActive} closeHandler={setOffcanvasIsActive} title="Фильтры">

@@ -1,15 +1,29 @@
 import styles from "./ProductItem.module.css"
 import Image from "next/image"
-import image1 from "../../assets/images/product-img-3.jpg"
 import Link from "next/link"
 import ProductColors from "../ProductColors/ProductColors"
 import ProductDimensions from "../ProductDimensions/ProductDimensions"
+import getGoods from "@/mock/goods"
 
-export default function ProductItem() {
+type ProductItemProps = {
+  good: {
+    name: string
+    images: string[]
+    type: string[]
+    price: number
+    colors: string[]
+    sizes: string[]
+    slug: string
+  }
+}
+const goodFirst = getGoods()[0]
+export default function ProductItem({ good = goodFirst }: ProductItemProps) {
+  const { name, images, type, price, colors, sizes, slug } = good
+  // console.log(good.le)
   return (
     <div className={styles.product}>
       <div className={styles.product_img_wrap}>
-        <Image className={styles.product_img} src={image1} alt="Picture of product" />
+        <Image className={styles.product_img} src={images[0]} fill alt={name} />
         <button type="button" className={styles.add_cart_btn}>
           <span className={styles.add_cart_title}>в корзину</span>
           <span className={styles.add_cart_icon}>
@@ -46,8 +60,8 @@ export default function ProductItem() {
         </ul>
       </div>
       <Link href={"/product"} className={styles.product_content}>
-        <h3 className={styles.product_title}>Худи I’am skobarian</h3>
-        <span className={styles.product_price}>9 600 P</span>
+        <h3 className={styles.product_title}>{name}</h3>
+        <span className={styles.product_price}>{price} P</span>
       </Link>
     </div>
   )
