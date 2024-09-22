@@ -4,7 +4,8 @@ import { TFishSlice } from "./types"
 
 export const createFishSlice = (set: TSet): TFishSlice => ({
   fishes: 0,
-  addFish: actionWrapper(set, (state) => {
-    state.fishes++
-  })
+  addFish: () =>
+    actionWrapper(set, (state) => {
+      state.fishes++
+    })
 })
