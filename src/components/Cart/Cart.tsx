@@ -1,8 +1,16 @@
 import Link from "next/link"
 import CartProducts from "../CartProducts/CartProducts"
 import styles from "./Cart.module.css"
+import { useBoundStore } from "@/store/StoreProvider"
+import formatPriceNum from "@/utils/formatPriceNum"
 
 export default function Cart() {
+  const { cartProducts } = useBoundStore((state) => ({
+    cartProducts: state.cartProducts
+  }))
+  const getTotal = formatPriceNum(
+    cartProducts.reduce((accumulator, currentValue) => accumulator + currentValue.price, 0)
+  )
   return (
     <div className={styles.cart_container}>
       <div className={styles.product_list_container}>
@@ -12,7 +20,7 @@ export default function Cart() {
         <p className={styles.total_title}>
           Итого <span>С включенным НДС</span>
         </p>
-        <span className={styles.total_count}>9 600 P</span>
+        <span className={styles.total_count}>{getTotal} P</span>
       </div>
       <div className={styles.cart_buttons}>
         <Link href={"/cart"} type="button" className={styles.cart_btn__next}>

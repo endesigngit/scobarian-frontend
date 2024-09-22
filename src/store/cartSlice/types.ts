@@ -1,14 +1,12 @@
-export type TProduct = {
-  name: string
-  price: string
-}
+import { TcatalogGood } from "../../../types/goods"
+
 export type TCartSliceState = {
-  cartProducts: TProduct[]
+  cartProducts: TcatalogGood[]
 }
 
 export type TCartSliceActions = {
-  addProduct: (product: TProduct) => void
-  deleteProduct: () => void
+  addToCart: (product: TcatalogGood) => void
+  deleteProduct: (product: TcatalogGood) => void
   clearCart: () => void
 }
 

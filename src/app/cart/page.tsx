@@ -5,15 +5,20 @@ import Link from "next/link"
 import clsx from "clsx"
 import CartProducts from "@/components/CartProducts/CartProducts"
 import CartForm from "@/components/CartForm/CartForm"
-import { MutableRefObject, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import scrollToElement from "@/utils/scrollToElement"
+import { useBoundStore } from "@/store/StoreProvider"
+import formatPriceNum from "@/utils/formatPriceNum"
 
 export default function Cart() {
   const [isDetails, setIsDetails] = useState<boolean>(true)
   const [isForm, setIsForm] = useState<boolean>(false)
 
+  const { cartProducts, clearCart } = useBoundStore((state) => ({
+    cartProducts: state.cartProducts,
+    clearCart: state.clearCart
+  }))
   const refMain = useRef(null)
-
   const tabHanler = (stepFlag: boolean) => {
     if (stepFlag) {
       setIsForm(true)
@@ -24,6 +29,11 @@ export default function Cart() {
       setIsDetails(true)
     }
   }
+  const productCount = cartProducts.length
+  const getTotal = formatPriceNum(
+    cartProducts.reduce((accumulator, currentValue) => accumulator + currentValue.price, 0)
+  )
+
   return (
     <main ref={refMain}>
       <Breadcrumb pageTitle={"Корзина"} padding />
@@ -53,8 +63,8 @@ export default function Cart() {
               {isDetails && (
                 <div className={styles.cart_details}>
                   <p className={styles.cart_info}>
-                    <span>2 продукта</span>
-                    <span>18 200 P</span>
+                    <span>{productCount} продукта</span>
+                    <span>{getTotal} P</span>
                   </p>
                   <p className={styles.cart_info}>
                     <span>Доставка</span>
@@ -67,7 +77,7 @@ export default function Cart() {
                     <p>
                       Итого <span>С включенным НДС</span>
                     </p>
-                    <p>18 200 P</p>
+                    <p>{getTotal} P</p>
                   </div>
                   <button type="button" className={styles.cart_next_btn} onClick={() => tabHanler(true)}>
                     перйти к оформлению
@@ -93,7 +103,7 @@ export default function Cart() {
                 iamskobarianzakaz@iamskobarian.ru
               </p>
             </div>
-            <Link href={"/"} className={styles.cart_desc_link}>
+            <Link href={"/catalog"} className={styles.cart_desc_link}>
               Продолжить покупки
             </Link>
           </div>
