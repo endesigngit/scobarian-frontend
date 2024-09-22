@@ -6,27 +6,44 @@ import ProductDimensions from "../ProductDimensions/ProductDimensions"
 import getGoods from "@/mock/goods"
 import { useBoundStore } from "@/store/StoreProvider"
 import { TcatalogGood } from "../../../types/goods"
+import { useEffect, useState } from "react"
 
 type ProductItemProps = {
   good: TcatalogGood
+  ofcanvasHandler: () => void
 }
 const goodFirst = getGoods()[0]
-export default function ProductItem({ good = goodFirst }: ProductItemProps) {
-  const { name, images, type, price, colors, sizes, slug } = good
+export default function ProductItem({ good = goodFirst, ofcanvasHandler }: ProductItemProps) {
+  const { name, images, type, price, colors, sizes, slug, id } = good
+  const [inCart, setCart] = useState<boolean>(false)
 
-  const { addToCart } = useBoundStore((state) => ({
-    addToCart: state.addToCart
+  const { addToCart, cartProducts } = useBoundStore((state) => ({
+    addToCart: state.addToCart,
+    cartProducts: state.cartProducts
   }))
 
   const addToCartHandler = () => {
-    addToCart(good)
+    if (!inCart) {
+      addToCart(good)
+    }
+    ofcanvasHandler()
+    setCart(true)
   }
+  useEffect(() => {
+    if (cartProducts.find((prod) => prod.id == id)) {
+      setCart(true)
+    } else {
+      setCart(false)
+    }
+  }, [cartProducts, good, id])
+
   return (
     <div className={styles.product}>
       <div className={styles.product_img_wrap}>
-        <Image className={styles.product_img} src={images[0]} fill alt={name} />
+        <Image className={styles.product_img} src={images[0]} width={500} height={750} alt={name} priority={true} />
         <button type="button" className={styles.add_cart_btn} onClick={addToCartHandler}>
-          <span className={styles.add_cart_title}>в корзину</span>
+          {!inCart && <span className={styles.add_cart_title}>В корзину</span>}
+          {inCart && <span className={styles.add_cart_title}>Перейти в корзину</span>}
           <span className={styles.add_cart_icon}>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path

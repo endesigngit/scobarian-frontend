@@ -7,11 +7,23 @@ import Offcanvas from "@/components/Offcanvas/Offcanvas"
 import OffcanvasFilters from "@/components/OffcanvasFilters/OffcanvasFilters"
 import ProductItem from "@/components/ProductItem/ProductItem"
 import getGoods from "@/mock/goods"
+import Cart from "../../components/Cart/Cart"
 
 export default function Catalog() {
   const [gridStatus, setGridStatus] = useState<boolean>(true)
   const [offcanvasIsActive, setOffcanvasIsActive] = useState<boolean>(false)
+  const [offcanvasIsCart, setOffcanvasCart] = useState<boolean>(false)
+
   const goods = getGoods()
+
+  const filtersOpen = () => {
+    setOffcanvasIsActive(true)
+    setOffcanvasCart(false)
+  }
+  const cartOpen = () => {
+    setOffcanvasIsActive(true)
+    setOffcanvasCart(true)
+  }
   return (
     <main className={styles.page_main}>
       <Breadcrumb pageTitle={"Каталог"} padding />
@@ -35,11 +47,7 @@ export default function Catalog() {
           </button>
         </div>
         <div className={styles.filter_toggles}>
-          <button
-            type="button"
-            className={styles.filter_toggle}
-            onClick={() => setOffcanvasIsActive(!offcanvasIsActive)}
-          >
+          <button type="button" className={styles.filter_toggle} onClick={() => filtersOpen()}>
             Фильтры
           </button>
         </div>
@@ -49,14 +57,19 @@ export default function Catalog() {
           {goods
             ? goods.map((good) => (
                 <li className={styles.product_item} key={good.id}>
-                  <ProductItem good={good} />
+                  <ProductItem good={good} ofcanvasHandler={cartOpen} />
                 </li>
               ))
             : ""}
         </ul>
       </div>
-      <Offcanvas isActive={offcanvasIsActive} closeHandler={setOffcanvasIsActive} title="Фильтры">
-        <OffcanvasFilters />
+      <Offcanvas
+        isActive={offcanvasIsActive}
+        closeHandler={setOffcanvasIsActive}
+        title={offcanvasIsCart ? "Корзина" : "Фильтры"}
+      >
+        {!offcanvasIsCart && <OffcanvasFilters />}
+        {offcanvasIsCart && <Cart />}
       </Offcanvas>
     </main>
   )
