@@ -6,72 +6,79 @@ import { Typography } from "@/UI/Typography/Typography"
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
 import Image from "next/image"
 import Offcanvas from "@/components/Offcanvas/Offcanvas"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import SizeTable from "@/components/SizeTable/SizeTable"
 import Cart from "../../../components/Cart/Cart"
 import ProductItem from "@/components/ProductItem/ProductItem"
 import ProductColors from "@/components/ProductColors/ProductColors"
 import ProductDimensions from "@/components/ProductDimensions/ProductDimensions"
 import getGoods from "@/mock/goods"
+import { useBoundStore } from "@/store/StoreProvider"
+import scrollToElement from "@/utils/scrollToElement"
+import formatPriceNum from "@/utils/formatPriceNum"
 
 export default function Tailoring({ params }: { params: { slug: string } }) {
   const [offcanvasIsActive, setOffcanvasIsActive] = useState<boolean>(false)
+  const [offcanvasIsCart, setOffcanvasCart] = useState<boolean>(false)
+  const [inCart, setCart] = useState<boolean>(false)
+
   const goods = getGoods()
-  const goodItem = getGoods().find((product) => product.slug == params.slug)
+  const good = goods.find((product) => product.slug == params.slug) ?? goods[0]
+  const { name, id, colors, images, price, slug, consistPrimary, materialPrimary } = good
+
+  const { addToCart, cartProducts } = useBoundStore((state) => ({
+    addToCart: state.addToCart,
+    cartProducts: state.cartProducts
+  }))
+
+  const detailRef = useRef(null)
+  useEffect(() => {
+    if (cartProducts.find((prod) => prod.id == id)) {
+      setCart(true)
+    } else {
+      setCart(false)
+    }
+  }, [cartProducts, id])
+
+  const sizeTableOpen = () => {
+    setOffcanvasIsActive(true)
+    setOffcanvasCart(false)
+  }
+  const addToCartHandler = () => {
+    if (!inCart) {
+      addToCart(good)
+    }
+    setOffcanvasIsActive(true)
+    setOffcanvasCart(true)
+    setCart(true)
+  }
   return (
     <main className={styles.page_main}>
-      <Breadcrumb pageTitle={"Худи I’am skobarian Vintage Wash Distressed Hoodie"} padding />
+      <Breadcrumb pageTitle={name} padding />
       <div className={clsx("main_grid", styles.product_container)}>
         <div className={styles.left_side}>
           <div className={styles.product_gallery}>
-            <div className={styles.product_gallery__item}>
-              <Image
-                className={styles.gallery_img}
-                src={"/product-img-3.jpg"}
-                width={1000}
-                height={1000}
-                alt="Picture of product"
-              />
-            </div>
-            <div className={styles.product_gallery__item}>
-              <Image
-                className={styles.gallery_img}
-                src={"/product-img-4.jpg"}
-                width={1000}
-                height={1000}
-                alt="Picture of product"
-              />
-            </div>
-            <div className={styles.product_gallery__item}>
-              <Image
-                className={styles.gallery_img}
-                src={"/product-img-5.jpg"}
-                width={1000}
-                height={1000}
-                alt="Picture of product"
-              />
-            </div>
-            <div className={styles.product_gallery__item}>
-              <Image
-                className={styles.gallery_img}
-                src={"/product-img-6.jpg"}
-                width={1000}
-                height={1000}
-                alt="Picture of product"
-              />
-            </div>
+            {images.map((image, idx) => (
+              <div className={styles.product_gallery__item} key={idx}>
+                <Image className={styles.gallery_img} src={image} width={700} height={1050} priority alt={name} />
+              </div>
+            ))}
           </div>
         </div>
         <div className={styles.right_side}>
           <div className={styles.product_top}>
             <div className={styles.product_sticky}>
               <div className={styles.product_header}>
-                <h3 className={styles.product_cat__name}>{goodItem?.name}</h3>
-                <button type="button" className={styles.details_btn}>
+                <h3 className={styles.product_cat__name}>{name}</h3>
+                <button
+                  type="button"
+                  className={styles.details_btn}
+                  onClick={() => scrollToElement(detailRef, "center")}
+                >
                   Показать детали
                 </button>
               </div>
-              <p className={styles.product_main_price}>{goodItem?.price} P</p>
+              <p className={styles.product_main_price}>{formatPriceNum(price)} P</p>
               <div className={styles.product_parameters_container}>
                 <div className={styles.parameters}>
                   <div className={styles.parameters_item}>
@@ -83,76 +90,58 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
                     <ProductColors isLarge />
                   </div>
                 </div>
-                <button type="button" className={styles.more_colors} onClick={() => setOffcanvasIsActive(true)}>
+                <button type="button" className={styles.more_colors} onClick={() => sizeTableOpen()}>
                   Больше цветов
                 </button>
-                <button type="button" className={styles.product_btn__mobile} onClick={() => setOffcanvasIsActive(true)}>
+                <button type="button" className={styles.product_btn__mobile} onClick={() => sizeTableOpen()}>
                   Таблица размеров
                 </button>
               </div>
 
-              <button type="button" className={styles.add_to_cart} onClick={() => setOffcanvasIsActive(true)}>
-                <span className={styles.cart_main_title}>Добавить в корзину</span>
-                <span className={styles.cart_secondary_title}>перейти в корзину</span>
+              <button type="button" className={styles.add_to_cart} onClick={() => addToCartHandler()}>
+                {!inCart ? (
+                  <span className={styles.cart_main_title}>Добавить в корзину</span>
+                ) : (
+                  <span className={styles.cart_main_title}>перейти в корзину</span>
+                )}
               </button>
             </div>
           </div>
           <div className={styles.mini_gallery_container}>
             <div className={styles.mini_gallery_btns}>
-              <button type="button" className={styles.product_btn} onClick={() => setOffcanvasIsActive(true)}>
+              <button type="button" className={styles.product_btn} onClick={() => sizeTableOpen()}>
                 Таблица размеров
               </button>
-              <button type="button" className={styles.product_btn}>
+              <button type="button" className={styles.product_btn} onClick={() => scrollToElement(detailRef, "end")}>
                 Доставка и оплата
               </button>
             </div>
             <div className={styles.mini_gallery}>
-              <button type="button" className={styles.mini_gallery_btn}>
-                <Image
-                  className={styles.mini_gallery_btn__img}
-                  src={"/product-img-3.jpg"}
-                  width={47}
-                  height={70}
-                  alt="Picture of product"
-                />
-              </button>
-              <button type="button" className={styles.mini_gallery_btn}>
-                <Image
-                  className={styles.mini_gallery_btn__img}
-                  src={"/product-img-4.jpg"}
-                  width={47}
-                  height={70}
-                  alt="Picture of product"
-                />
-              </button>
-              <button type="button" className={styles.mini_gallery_btn}>
-                <Image
-                  className={styles.mini_gallery_btn__img}
-                  src={"/product-img-5.jpg"}
-                  width={47}
-                  height={70}
-                  alt="Picture of product"
-                />
-              </button>
-              <button type="button" className={styles.mini_gallery_btn}>
-                <Image
-                  className={styles.mini_gallery_btn__img}
-                  src={"/product-img-6.jpg"}
-                  width={47}
-                  height={70}
-                  alt="Picture of product"
-                />
-              </button>
+              {images.map((image, idx) => (
+                <button type="button" className={styles.mini_gallery_btn} key={idx}>
+                  <Image
+                    className={styles.mini_gallery_btn__img}
+                    src={image}
+                    width={70}
+                    height={105}
+                    priority
+                    alt={name}
+                  />
+                </button>
+              ))}
             </div>
           </div>
-          <div className={styles.product_bottom}>
+          <div className={styles.product_bottom} ref={detailRef}>
             <div className={styles.description_container}>
               <Typography className={styles.description_title} tag={"h4"} variant={"h1"}>
                 Состав
               </Typography>
               <ul className={styles.page_list}>
-                <li className={styles.page_list_item}>92% хлопок</li>
-                <li className={styles.page_list_item}>8% эластан</li>
+                {consistPrimary.split(",").map((str, idx) => (
+                  <li className={styles.page_list_item} key={idx}>
+                    {str}
+                  </li>
+                ))}
               </ul>
             </div>
             <div className={styles.description_container}>
@@ -185,9 +174,12 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
                 Вы можете получить здесь.
               </Typography>
             </div>
-            <button type="button" className={styles.add_to_cart} onClick={() => setOffcanvasIsActive(true)}>
-              <span className={styles.cart_main_title}>Добавить в корзину</span>
-              <span className={styles.cart_secondary_title}>перейти в корзину</span>
+            <button type="button" className={styles.add_to_cart} onClick={() => addToCartHandler()}>
+              {!inCart ? (
+                <span className={styles.cart_main_title}>Добавить в корзину</span>
+              ) : (
+                <span className={styles.cart_main_title}>перейти в корзину</span>
+              )}
             </button>
           </div>
         </div>
@@ -198,7 +190,7 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
               {goods
                 ? goods.slice(3).map((good) => (
                     <li className={styles.product_item} key={good.id}>
-                      <ProductItem good={good} />
+                      <ProductItem good={good} ofcanvasHandler={addToCartHandler} />
                     </li>
                   ))
                 : ""}
@@ -206,15 +198,17 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
           </div>
         </div>
         <div className={styles.add_to_cart_mobile_container}>
-          <button type="button" className={styles.add_to_cart_mobile} onClick={() => setOffcanvasIsActive(true)}>
-            <span className={styles.cart_main_title}>Добавить в корзину</span>
-            <span className={styles.cart_secondary_title}>перейти в корзину</span>
+          <button type="button" className={styles.add_to_cart_mobile} onClick={() => addToCartHandler()}>
+            {!inCart ? (
+              <span className={styles.cart_main_title}>Добавить в корзину</span>
+            ) : (
+              <span className={styles.cart_main_title}>перейти в корзину</span>
+            )}
           </button>
         </div>
       </div>
       <Offcanvas isActive={offcanvasIsActive} closeHandler={setOffcanvasIsActive} title="Корзина">
-        {/* <SizeTable /> */}
-        <Cart />
+        {!offcanvasIsCart ? <SizeTable /> : <Cart />}
       </Offcanvas>
     </main>
   )

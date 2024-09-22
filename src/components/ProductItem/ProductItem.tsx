@@ -7,6 +7,7 @@ import getGoods from "@/mock/goods"
 import { useBoundStore } from "@/store/StoreProvider"
 import { TcatalogGood } from "../../../types/goods"
 import { useEffect, useState } from "react"
+import formatPriceNum from "@/utils/formatPriceNum"
 
 type ProductItemProps = {
   good: TcatalogGood
@@ -79,7 +80,7 @@ export default function ProductItem({ good = goodFirst, ofcanvasHandler }: Produ
       </div>
       <Link href={`/catalog/${slug}`} className={styles.product_content}>
         <h3 className={styles.product_title}>{name}</h3>
-        <span className={styles.product_price}>{price} P</span>
+        <span className={styles.product_price}>{formatPriceNum(price)} P</span>
       </Link>
     </div>
   )
