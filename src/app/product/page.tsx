@@ -147,7 +147,7 @@ export default function Tailoring() {
         <div className={clsx("main_grid", styles.recommendations)}>
           <p className={styles.recommendations_title}>РЕКОМЕНДУЕМ</p>
           <div className={styles.product_list_container}>
-            <ul className={styles.product_list}>
+            {/* <ul className={styles.product_list}>
               <li className={styles.product_item}>
                 <ProductItem />
               </li>
@@ -160,7 +160,7 @@ export default function Tailoring() {
               <li className={styles.product_item}>
                 <ProductItem />
               </li>
-            </ul>
+            </ul> */}
           </div>
         </div>
         <div className={styles.add_to_cart_mobile_container}>
