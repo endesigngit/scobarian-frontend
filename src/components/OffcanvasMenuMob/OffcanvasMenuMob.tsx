@@ -3,6 +3,7 @@ import styles from "./OffcanvasMenuMob.module.css"
 import clsx from "clsx"
 import HeaderCart from "../HeaderCart/HeaderCart"
 import { useState } from "react"
+import { useBoundStore } from "@/store/StoreProvider"
 
 type OffcanvasMenuMobProps = {
   isActive: boolean
@@ -15,6 +16,10 @@ export default function OffcanvasMenuMob({ isActive, activeHandler }: OffcanvasM
     setOpen(status)
     status ? activeHandler(status) : setTimeout(() => activeHandler(status), 300)
   }
+  const { cartProduct } = useBoundStore((state) => ({
+    cartProduct: state.cartProducts
+  }))
+  const productCount = cartProduct.length ?? 0
   return (
     <div className={clsx(styles.offcanvas, isOpen && styles.offcanvas__active)}>
       <div className={styles.mobile_header}>
@@ -79,11 +84,11 @@ export default function OffcanvasMenuMob({ isActive, activeHandler }: OffcanvasM
           </ul>
         </nav>
         <div className={styles.offcanvas_mobile}>
-          <div className={clsx(styles.mobile_cart, styles.mobile_cart__empty)}>
+          <div className={clsx(styles.mobile_cart, productCount == 0 && styles.mobile_cart__empty)}>
             <Link href={"/cart"} className={styles.mobile_menu__link}>
               Корзина
             </Link>
-            <span className={styles.mobile_cart_count}>0</span>
+            <span className={styles.mobile_cart_count}>{productCount}</span>
           </div>
           <div className={styles.contacts}>
             <Link href={"tel:+79808005491"} className={styles.contacts_link}>
