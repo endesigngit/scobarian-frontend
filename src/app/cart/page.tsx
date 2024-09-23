@@ -9,6 +9,7 @@ import { useRef, useState } from "react"
 import scrollToElement from "@/utils/scrollToElement"
 import { useBoundStore } from "@/store/StoreProvider"
 import formatPriceNum from "@/utils/formatPriceNum"
+import getWordByCount from "@/utils/getWordByCount"
 
 export default function Cart() {
   const [isDetails, setIsDetails] = useState<boolean>(true)
@@ -63,7 +64,9 @@ export default function Cart() {
               {isDetails && (
                 <div className={styles.cart_details}>
                   <p className={styles.cart_info}>
-                    <span>{productCount} продукта</span>
+                    <span>
+                      {productCount} {getWordByCount(productCount, "продукт", "продукта", "продуктов")}
+                    </span>
                     <span>{getTotal} P</span>
                   </p>
                   <p className={styles.cart_info}>
