@@ -24,7 +24,7 @@ const goods: TcatalogGood[] = [
     price: 5800,
     type: ["Футболка"],
     colors: ["Сталь", "Черный", "Молочный"],
-    sizes: ["XS"],
+    sizes: ["S"],
     images: [
       "/t-shirt/t-shirt-st-1.webp",
       "/t-shirt/t-shirt-st-2.webp",
@@ -42,7 +42,7 @@ const goods: TcatalogGood[] = [
     price: 5800,
     type: ["Футболка"],
     colors: ["Черный", "Молочный", "Сталь"],
-    sizes: ["XS"],
+    sizes: ["M"],
     images: [
       "/t-shirt/t-shirt-bl-1.webp",
       "/t-shirt/t-shirt-bl-2.webp",
@@ -59,7 +59,7 @@ const goods: TcatalogGood[] = [
     price: 12000,
     type: ["Бомбер"],
     colors: ["Черный"],
-    sizes: ["XS"],
+    sizes: ["L"],
     images: [
       "/bomber/bomber-bl-2.webp",
       "/bomber/bomber-bl-1.webp",
@@ -78,7 +78,7 @@ const goods: TcatalogGood[] = [
     price: 7800,
     type: ["Худи"],
     colors: ["Черный", "Молочный", "Индиго"],
-    sizes: ["XS"],
+    sizes: ["L"],
     images: [
       "/hoodie/hoodie-bl-1.webp",
       "/hoodie/hoodie-bl-2.webp",
@@ -95,7 +95,7 @@ const goods: TcatalogGood[] = [
     price: 7800,
     type: ["Худи"],
     colors: ["Молочный", "Индиго", "Черный"],
-    sizes: ["XS"],
+    sizes: ["M"],
     images: [
       "/hoodie/hoodie-mk-1.webp",
       "/hoodie/hoodie-mk-2.webp",
@@ -112,7 +112,7 @@ const goods: TcatalogGood[] = [
     price: 7800,
     type: ["Худи"],
     colors: ["Индиго", "Черный", "Молочный"],
-    sizes: ["XS"],
+    sizes: ["XL"],
     images: [
       "/hoodie/hoodie-in-1.webp",
       "/hoodie/hoodie-in-2.webp",

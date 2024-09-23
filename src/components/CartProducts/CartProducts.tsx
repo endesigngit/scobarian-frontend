@@ -3,20 +3,28 @@ import { Typography } from "@/UI/Typography/Typography"
 import { useBoundStore } from "@/store/StoreProvider"
 import CartProductItem from "../CartProductItem/CartProductItem"
 import Link from "next/link"
+import { useEffect, useState } from "react"
+import { TcatalogGood } from "../../../types/goods"
 
 type CartProductsProps = {
   isLarge: boolean
 }
 
 export default function CartProducts({ isLarge }: CartProductsProps) {
+  const [products, setProducts] = useState<TcatalogGood[]>([])
   const { cartProducts } = useBoundStore((state) => ({
     cartProducts: state.cartProducts
   }))
+  useEffect(() => {
+    if (cartProducts) {
+      setProducts(cartProducts.slice().reverse())
+    }
+  }, [cartProducts])
 
   return (
     <ul className={styles.product_list}>
       {cartProducts && cartProducts.length > 0 ? (
-        cartProducts.map((product, ind) => (
+        products.map((product, ind) => (
           <li key={`${product.id} + ${ind}`}>
             <CartProductItem isLarge={isLarge} good={product} />
           </li>

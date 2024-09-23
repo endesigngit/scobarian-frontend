@@ -21,7 +21,7 @@ export default function CartProductItem({ isLarge, good = firstGood }: CartProdu
   return (
     <div className={clsx(styles.product_item, isLarge && styles.product_item__large)}>
       <Link className={styles.product_img__wrap} href={`/catalog/${slug}`}>
-        <Image className={styles.product_img} src={images[0]} alt={name} fill />
+        <Image className={styles.product_img} src={images[0]} alt={name} width={250} height={375} priority={true} />
       </Link>
       <div className={styles.product_header}>
         <Link className={styles.product_title} href={`/catalog/${slug}`}>
@@ -35,14 +35,17 @@ export default function CartProductItem({ isLarge, good = firstGood }: CartProdu
             Состав
           </Typography>
           <ul className={styles.page_list}>
-            <li className={styles.page_list_item}>92% хлопок</li>
-            <li className={styles.page_list_item}>8% эластан</li>
+            {consistPrimary.split(",").map((str, idx) => (
+              <li className={styles.page_list_item} key={idx}>
+                {str}
+              </li>
+            ))}
           </ul>
         </div>
         <ul className={styles.parameters_list}>
           <li className={styles.parameters_item}>
             <span className={styles.parameters_title}>Размер:</span>
-            <span className={styles.parameters_value}>S</span>
+            <span className={styles.parameters_value}>{sizes[0]}</span>
           </li>
           <li className={styles.parameters_item}>
             <span className={styles.parameters_title}>Цвет:</span>
