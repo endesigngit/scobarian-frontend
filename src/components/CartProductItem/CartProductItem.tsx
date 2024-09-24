@@ -6,6 +6,7 @@ import Image from "next/image"
 import { TcatalogGood } from "../../../types/goods"
 import getGoods from "@/mock/goods"
 import { useBoundStore } from "@/store/StoreProvider"
+import ProductColorItem from "../ProductColorItem/ProductColorItem"
 type CartProductItemProps = {
   isLarge: boolean
   good: TcatalogGood
@@ -49,7 +50,7 @@ export default function CartProductItem({ isLarge, good = firstGood }: CartProdu
           </li>
           <li className={styles.parameters_item}>
             <span className={styles.parameters_title}>Цвет:</span>
-            <span className={clsx(styles.product_color, styles.product_color_violet)}></span>
+            <ProductColorItem colorName={colors[0]} />
           </li>
         </ul>
       </div>
