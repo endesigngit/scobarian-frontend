@@ -71,7 +71,7 @@ export default function ProductItem({ good = goodFirst, ofcanvasHandler }: Produ
         </button>
         <ul className={styles.product_parameters}>
           <li className={styles.parameters_item}>
-            <ProductColors />
+            <ProductColors colors={colors} />
           </li>
           <li className={styles.parameters_item}>
             <ProductDimensions />

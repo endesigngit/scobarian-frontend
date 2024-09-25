@@ -87,7 +87,7 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
                   </div>
                   <div className={styles.parameters_item}>
                     <span className={styles.parameter_title}>Цвет:</span>
-                    <ProductColors isLarge />
+                    <ProductColors isLarge colors={colors} />
                   </div>
                 </div>
                 <button type="button" className={styles.more_colors} onClick={() => sizeTableOpen()}>

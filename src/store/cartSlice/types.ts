@@ -4,6 +4,7 @@ export type TCartSliceState = {
   cartProducts: TcatalogGood[]
 }
 
+
 export type TCartSliceActions = {
   addToCart: (product: TcatalogGood) => void
   deleteProduct: (product: TcatalogGood) => void
