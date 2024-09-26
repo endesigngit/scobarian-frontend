@@ -95,13 +95,12 @@ main {
 
 .moveTop_anim {
   transform: translateY(100%);
-  animation: 0.3s linear 0.6s forwards moveTop;
-  animation-delay: 0.6s
+  animation: linear 0.3s forwards moveToUp;
 }
 
 
 
-@keyframes moveTop {
+@keyframes moveToUp {
   0%{
     transform: translateY(100%);
   }

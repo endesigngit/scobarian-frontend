@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <main className={styles.image_blocks}>
       {showBreadcrumb && <Breadcrumb padding pageTitle={headerTitle} />}
-      <InView onChange={() => setHeaderTitle("")} threshold={0.8}>
+      <InView onChange={() => setHeaderTitle("")} threshold={0.6}>
         <div className={styles.image_block}>
           <div className={styles.image_block_content}>
             <Link className={styles.image_block__link} href={"/catalog"}>
