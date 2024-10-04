@@ -23,6 +23,7 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
   const [offcanvasIsCart, setOffcanvasCart] = useState<boolean>(false)
   const [inCart, setCart] = useState<boolean>(false)
   const [pageTitle, setPageTitle] = useState<string>("")
+  const [framePos, setFramePos] = useState<number>(0)
 
   const [refRecommendations, inView] = useInView({
     threshold: 0.6
@@ -38,6 +39,37 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
   }))
 
   const detailRef = useRef(null)
+  const imageRef1 = useRef<HTMLDivElement>(null)
+  const imageRef2 = useRef<HTMLDivElement>(null)
+  const imageRef3 = useRef<HTMLDivElement>(null)
+  const imageRef4 = useRef<HTMLDivElement>(null)
+  const frameRef = useRef<HTMLDivElement>(null)
+
+  const imageRefs = [imageRef1, imageRef2, imageRef3, imageRef4]
+
+  const framePositions = [
+    "",
+    styles.mini_gallery__frame__s1,
+    styles.mini_gallery__frame__s2,
+    styles.mini_gallery__frame__s3
+  ]
+
+  const setFramePositionByScroll = (scroll: any, chunk: number) => {
+    if (scroll >= chunk && scroll < chunk * 2) {
+      setFramePos(1)
+      return
+    }
+    if (scroll >= chunk * 2 && scroll < chunk * 3) {
+      setFramePos(2)
+      return
+    }
+    if (scroll >= chunk * 3) {
+      setFramePos(3)
+      return
+    }
+    setFramePos(0)
+  }
+
   useEffect(() => {
     if (cartProducts.find((prod) => prod.id == id)) {
       setCart(true)
@@ -49,6 +81,12 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
     } else {
       setPageTitle(name)
     }
+
+    const chunk = imageRef1.current ? imageRef1.current.offsetHeight - 100 : 700
+
+    window.addEventListener("scroll", () => {
+      setFramePositionByScroll(window.scrollY, chunk)
+    })
   }, [cartProducts, id, name, inView])
 
   const sizeTableOpen = () => {
@@ -70,8 +108,8 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
       <div className={clsx("main_grid", styles.product_container)}>
         <div className={styles.left_side}>
           <div className={styles.product_gallery}>
-            {images.map((image, idx) => (
-              <div className={styles.product_gallery__item} key={idx}>
+            {images.slice(0, 4).map((image, idx) => (
+              <div className={styles.product_gallery__item} key={idx} ref={imageRefs[idx]}>
                 <Image className={styles.gallery_img} src={image} width={700} height={1050} priority alt={name} />
               </div>
             ))}
@@ -129,8 +167,15 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
               </button>
             </div>
             <div className={styles.mini_gallery}>
-              {images.map((image, idx) => (
-                <button type="button" className={styles.mini_gallery_btn} key={idx}>
+              {images.slice(0, 4).map((image, idx) => (
+                <button
+                  type="button"
+                  className={styles.mini_gallery_btn}
+                  key={idx}
+                  onClick={() => {
+                    scrollToElement(imageRefs[idx], "start")
+                  }}
+                >
                   <Image
                     className={styles.mini_gallery_btn__img}
                     src={image}
@@ -141,7 +186,7 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
                   />
                 </button>
               ))}
-              <div className={styles.mini_gallery__frame}></div>
+              <div className={clsx(styles.mini_gallery__frame, framePositions[framePos])} ref={frameRef}></div>
             </div>
           </div>
           <div className={styles.product_bottom} ref={detailRef}>
