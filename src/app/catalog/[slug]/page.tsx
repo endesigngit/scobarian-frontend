@@ -16,11 +16,17 @@ import getGoods from "@/mock/goods"
 import { useBoundStore } from "@/store/StoreProvider"
 import scrollToElement from "@/utils/scrollToElement"
 import formatPriceNum from "@/utils/formatPriceNum"
+import { useInView } from "react-intersection-observer"
 
 export default function Tailoring({ params }: { params: { slug: string } }) {
   const [offcanvasIsActive, setOffcanvasIsActive] = useState<boolean>(false)
   const [offcanvasIsCart, setOffcanvasCart] = useState<boolean>(false)
   const [inCart, setCart] = useState<boolean>(false)
+  const [pageTitle, setPageTitle] = useState<string>("")
+
+  const [refRecommendations, inView] = useInView({
+    threshold: 0.6
+  })
 
   const goods = getGoods()
   const good = goods.find((product) => product.slug == params.slug) ?? goods[0]
@@ -38,7 +44,12 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
     } else {
       setCart(false)
     }
-  }, [cartProducts, id])
+    if (inView) {
+      setPageTitle("РЕКОМЕНДУЕМ")
+    } else {
+      setPageTitle(name)
+    }
+  }, [cartProducts, id, name, inView])
 
   const sizeTableOpen = () => {
     setOffcanvasIsActive(true)
@@ -52,9 +63,10 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
     setOffcanvasCart(true)
     setCart(true)
   }
+
   return (
     <main className={styles.page_main}>
-      <Breadcrumb pageTitle={name} padding />
+      <Breadcrumb pageTitle={pageTitle} padding />
       <div className={clsx("main_grid", styles.product_container)}>
         <div className={styles.left_side}>
           <div className={styles.product_gallery}>
@@ -129,6 +141,7 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
                   />
                 </button>
               ))}
+              <div className={styles.mini_gallery__frame}></div>
             </div>
           </div>
           <div className={styles.product_bottom} ref={detailRef}>
@@ -183,7 +196,7 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
             </button>
           </div>
         </div>
-        <div className={clsx("main_grid", styles.recommendations)}>
+        <div className={clsx("main_grid", styles.recommendations)} ref={refRecommendations}>
           <p className={styles.recommendations_title}>РЕКОМЕНДУЕМ</p>
           <div className={styles.product_list_container}>
             <ul className={styles.product_list}>
