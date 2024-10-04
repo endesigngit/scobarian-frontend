@@ -26,7 +26,7 @@ export default function Breadcrumb({ pageTitle, padding }: BreadcrumbProps) {
           <Logo />
         </div>
         <div className={clsx(styles.breadcrumb_col, "main_col_2")}>
-          <h3 className={clsx(styles.breadcrumb_title, isActive && "moveTop_anim")}>{pageTitle}</h3>
+          <h3 className={clsx(styles.breadcrumb_title, isActive && "moveTop_anim", "moveTop_anim_s2")}>{pageTitle}</h3>
         </div>
       </div>
     </div>

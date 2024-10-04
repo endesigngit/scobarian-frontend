@@ -95,8 +95,29 @@ main {
 
 .moveTop_anim {
   transform: translateY(100%);
-  animation: linear 0.3s forwards moveToUp;
+  /* animation: linear 0.3s forwards moveToUp; */
+  animation-name: moveToUp;
+  animation-duration: 0.3s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-delay: 0.3s;
 }
+.moveTop_anim_s1 {
+  animation-delay: 0.5s;
+}
+.moveTop_anim_s2 {
+  animation-delay: 0.6s;
+}
+.moveTop_anim_s3 {
+  animation-delay: 0.7s;
+}
+.moveTop_anim_s4 {
+  animation-delay: 0.8s;
+}
+.moveTop_anim_s5 {
+  animation-delay: 0.9s;
+}
+
 
 
 

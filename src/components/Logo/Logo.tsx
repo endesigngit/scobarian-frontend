@@ -6,7 +6,7 @@ import { clsx } from "clsx"
 export default function Logo() {
   return (
     <div className={styles.logo}>
-      <Link href="/" className={styles.logo_title}>
+      <Link href="/" className={clsx(styles.logo_title, "moveTop_anim", "moveTop_anim_s1")}>
         I’am skobarian
       </Link>
     </div>
