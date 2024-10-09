@@ -3,14 +3,14 @@ import styles from "./page.module.css"
 import { clsx } from "clsx"
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
 import { Typography } from "@/UI/Typography/Typography"
-import { MouseEvent, useRef, useState } from "react"
-import scrollToElement from "@/utils/scrollToElement"
+import { MouseEvent, useEffect, useRef, useState } from "react"
 
 export default function ToBuyers() {
   const [payment, setPayment] = useState<boolean>(true)
   const [delivery, setDelivery] = useState<boolean>(false)
   const [backProd, setBackProd] = useState<boolean>(false)
   const [warranty, setWarranty] = useState<boolean>(false)
+  const [scrollChank, setScrollChank] = useState<number>(0)
 
   const paymentRef = useRef(null)
   const deliveryRef = useRef(null)
@@ -23,27 +23,40 @@ export default function ToBuyers() {
     setBackProd(false)
     setWarranty(false)
   }
+  const setActiveMenuItem = (cb: (par: boolean) => void) => {
+    resetActiveMenu()
+    cb(true)
+  }
+
   const refSwitcher = (currentRef: string) => {
     switch (currentRef) {
       case "paymentRef":
-        resetActiveMenu()
-        scrollToElement(paymentRef, "center")
-        setPayment(true)
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        })
+        setActiveMenuItem(setPayment)
         break
       case "deliveryRef":
-        resetActiveMenu()
-        scrollToElement(deliveryRef, "center")
-        setDelivery(true)
+        window.scrollTo({
+          top: scrollChank + 1,
+          behavior: "smooth"
+        })
+        setActiveMenuItem(setDelivery)
         break
       case "backProdkRef":
-        resetActiveMenu()
-        scrollToElement(backProdkRef, "center")
-        setBackProd(true)
+        window.scrollTo({
+          top: scrollChank * 2 + 1,
+          behavior: "smooth"
+        })
+        setActiveMenuItem(setBackProd)
         break
       case "warrantyRef":
-        resetActiveMenu()
-        scrollToElement(warrantyRef, "center")
-        setWarranty(true)
+        window.scrollTo({
+          top: scrollChank * 3 + 1,
+          behavior: "smooth"
+        })
+        setActiveMenuItem(setWarranty)
         break
 
       default:
@@ -56,6 +69,24 @@ export default function ToBuyers() {
     refName && refSwitcher(refName)
   }
 
+  useEffect(() => {
+    const scrollChank = (window.document.body.offsetHeight - window.innerHeight) / 4
+    setScrollChank(scrollChank)
+    window.addEventListener("scroll", (evt) => {
+      if (window.scrollY <= scrollChank) {
+        setActiveMenuItem(setPayment)
+      }
+      if (window.scrollY >= scrollChank && window.scrollY <= scrollChank * 2) {
+        setActiveMenuItem(setDelivery)
+      }
+      if (window.scrollY >= scrollChank * 2 && window.scrollY <= scrollChank * 3) {
+        setActiveMenuItem(setBackProd)
+      }
+      if (window.scrollY >= scrollChank * 3 && window.scrollY <= scrollChank * 4) {
+        setActiveMenuItem(setWarranty)
+      }
+    })
+  }, [])
   return (
     <main className={styles.page_main}>
       <Breadcrumb pageTitle={"Покупателям"} padding />

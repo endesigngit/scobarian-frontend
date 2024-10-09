@@ -9,7 +9,14 @@ export const createCartSlice = (set: TSet): TCartSlice => ({
     state.cartProducts.push(payload)
   }),
   deleteProduct: actionWrapper(set, (state, payload: TcatalogGood) => {
-    state.cartProducts = state.cartProducts.filter((product) => product.id != payload.id)
+    const currentIndex = state.cartProducts.findIndex((product) => product.id == payload.id)
+    const length = state.cartProducts.length
+    if (currentIndex >= 0) {
+      state.cartProducts = [
+        ...state.cartProducts.slice(0, currentIndex),
+        ...state.cartProducts.slice(currentIndex + 1, length)
+      ]
+    }
   }),
   clearCart: () =>
     actionWrapper(set, (state, payload) => {

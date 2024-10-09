@@ -1,7 +1,10 @@
 .logo {
   width: 100%;
+  height: 25px;
+  overflow: hidden;
 }
 .logo_title {
+  display: block;
   mix-blend-mode: difference;
   color: #ffffff;
   font-size: 20px;

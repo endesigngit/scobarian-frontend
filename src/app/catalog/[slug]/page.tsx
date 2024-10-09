@@ -16,11 +16,18 @@ import getGoods from "@/mock/goods"
 import { useBoundStore } from "@/store/StoreProvider"
 import scrollToElement from "@/utils/scrollToElement"
 import formatPriceNum from "@/utils/formatPriceNum"
+import { useInView } from "react-intersection-observer"
 
 export default function Tailoring({ params }: { params: { slug: string } }) {
   const [offcanvasIsActive, setOffcanvasIsActive] = useState<boolean>(false)
   const [offcanvasIsCart, setOffcanvasCart] = useState<boolean>(false)
   const [inCart, setCart] = useState<boolean>(false)
+  const [pageTitle, setPageTitle] = useState<string>("")
+  const [framePos, setFramePos] = useState<number>(0)
+
+  const [refRecommendations, inView] = useInView({
+    threshold: 0.6
+  })
 
   const goods = getGoods()
   const good = goods.find((product) => product.slug == params.slug) ?? goods[0]
@@ -32,13 +39,55 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
   }))
 
   const detailRef = useRef(null)
+  const imageRef1 = useRef<HTMLDivElement>(null)
+  const imageRef2 = useRef<HTMLDivElement>(null)
+  const imageRef3 = useRef<HTMLDivElement>(null)
+  const imageRef4 = useRef<HTMLDivElement>(null)
+  const frameRef = useRef<HTMLDivElement>(null)
+
+  const imageRefs = [imageRef1, imageRef2, imageRef3, imageRef4]
+
+  const framePositions = [
+    "",
+    styles.mini_gallery__frame__s1,
+    styles.mini_gallery__frame__s2,
+    styles.mini_gallery__frame__s3
+  ]
+
+  const setFramePositionByScroll = (scroll: any, chunk: number) => {
+    if (scroll >= chunk && scroll < chunk * 2) {
+      setFramePos(1)
+      return
+    }
+    if (scroll >= chunk * 2 && scroll < chunk * 3) {
+      setFramePos(2)
+      return
+    }
+    if (scroll >= chunk * 3) {
+      setFramePos(3)
+      return
+    }
+    setFramePos(0)
+  }
+
   useEffect(() => {
     if (cartProducts.find((prod) => prod.id == id)) {
       setCart(true)
     } else {
       setCart(false)
     }
-  }, [cartProducts, id])
+    if (inView) {
+      setPageTitle("РЕКОМЕНДУЕМ")
+    } else {
+      setPageTitle(name)
+    }
+
+    const chunk = imageRef1.current ? imageRef1.current.offsetHeight - 100 : 700
+
+    window.addEventListener("scroll", () => {
+      setFramePositionByScroll(window.scrollY, chunk)
+    })
+  }, [cartProducts, id, name, inView])
 
   const sizeTableOpen = () => {
     setOffcanvasIsActive(true)
@@ -52,14 +101,15 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
     setOffcanvasCart(true)
     setCart(true)
   }
+
   return (
     <main className={styles.page_main}>
-      <Breadcrumb pageTitle={name} padding />
+      <Breadcrumb pageTitle={pageTitle} padding />
       <div className={clsx("main_grid", styles.product_container)}>
         <div className={styles.left_side}>
           <div className={styles.product_gallery}>
-            {images.map((image, idx) => (
-              <div className={styles.product_gallery__item} key={idx}>
+            {images.slice(0, 4).map((image, idx) => (
+              <div className={styles.product_gallery__item} key={idx} ref={imageRefs[idx]}>
                 <Image className={styles.gallery_img} src={image} width={700} height={1050} priority alt={name} />
               </div>
             ))}
@@ -87,7 +137,7 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
                   </div>
                   <div className={styles.parameters_item}>
                     <span className={styles.parameter_title}>Цвет:</span>
-                    <ProductColors isLarge />
+                    <ProductColors isLarge colors={colors} />
                   </div>
                 </div>
                 <button type="button" className={styles.more_colors} onClick={() => sizeTableOpen()}>
@@ -117,8 +167,15 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
               </button>
             </div>
             <div className={styles.mini_gallery}>
-              {images.map((image, idx) => (
-                <button type="button" className={styles.mini_gallery_btn} key={idx}>
+              {images.slice(0, 4).map((image, idx) => (
+                <button
+                  type="button"
+                  className={styles.mini_gallery_btn}
+                  key={idx}
+                  onClick={() => {
+                    scrollToElement(imageRefs[idx], "start")
+                  }}
+                >
                   <Image
                     className={styles.mini_gallery_btn__img}
                     src={image}
@@ -129,6 +186,7 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
                   />
                 </button>
               ))}
+              <div className={clsx(styles.mini_gallery__frame, framePositions[framePos])} ref={frameRef}></div>
             </div>
           </div>
           <div className={styles.product_bottom} ref={detailRef}>
@@ -183,7 +241,7 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
             </button>
           </div>
         </div>
-        <div className={clsx("main_grid", styles.recommendations)}>
+        <div className={clsx("main_grid", styles.recommendations)} ref={refRecommendations}>
           <p className={styles.recommendations_title}>РЕКОМЕНДУЕМ</p>
           <div className={styles.product_list_container}>
             <ul className={styles.product_list}>

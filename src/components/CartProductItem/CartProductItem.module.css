@@ -109,7 +109,7 @@
 .parameters_value {
   text-decoration: underline;
 }
-.product_color {
+/* .product_color {
   display: block;
   width: 14px;
   height: 14px;
@@ -118,7 +118,7 @@
 }
 .product_color_violet {
   background-color: #3A3297;
-}
+} */
 
 .product_buttons {
   margin-top: 50px;

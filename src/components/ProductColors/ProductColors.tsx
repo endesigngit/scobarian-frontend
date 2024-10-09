@@ -1,15 +1,19 @@
 import clsx from "clsx"
 import styles from "./ProductColors.module.css"
+import ProductColorItem from "../ProductColorItem/ProductColorItem"
 
 type ProductColorsProps = {
   isLarge?: boolean
+  colors: string[]
 }
-export default function ProductColors({ isLarge }: ProductColorsProps) {
+export default function ProductColors({ isLarge, colors }: ProductColorsProps) {
   return (
     <ul className={clsx(styles.colors, isLarge && styles.colors__L)}>
-      <li className={styles.color_brown}></li>
-      <li className={styles.color_grey}></li>
-      <li className={styles.color_violet}></li>
+      {colors.map((color: string) => (
+        <li key={color}>
+          <ProductColorItem colorName={color} />
+        </li>
+      ))}
     </ul>
   )
 }
