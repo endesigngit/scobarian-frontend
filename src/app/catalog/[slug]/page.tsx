@@ -116,38 +116,103 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
           </div>
         </div>
         <div className={styles.right_side}>
-          <div className={styles.product_top}>
-            <div className={styles.product_sticky}>
-              <div className={styles.product_header}>
-                <h3 className={styles.product_cat__name}>{name}</h3>
-                <button
-                  type="button"
-                  className={styles.details_btn}
-                  onClick={() => scrollToElement(detailRef, "center")}
-                >
-                  Показать детали
-                </button>
-              </div>
-              <p className={styles.product_main_price}>{formatPriceNum(price)} P</p>
-              <div className={styles.product_parameters_container}>
-                <div className={styles.parameters}>
-                  <div className={styles.parameters_item}>
-                    <span className={styles.parameter_title}>Размер:</span>
-                    <ProductDimensions isLarge />
-                  </div>
-                  <div className={styles.parameters_item}>
-                    <span className={styles.parameter_title}>Цвет:</span>
-                    <ProductColors isLarge colors={colors} />
-                  </div>
+          <div className={styles.product_content}>
+            <div className={styles.product_top}>
+              <div className={styles.product_sticky}>
+                <div className={styles.product_header}>
+                  <h3 className={styles.product_cat__name}>{name}</h3>
+                  <button
+                    type="button"
+                    className={styles.details_btn}
+                    onClick={() => scrollToElement(detailRef, "center")}
+                  >
+                    Показать детали
+                  </button>
                 </div>
-                <button type="button" className={styles.more_colors} onClick={() => sizeTableOpen()}>
-                  Больше цветов
-                </button>
-                <button type="button" className={styles.product_btn__mobile} onClick={() => sizeTableOpen()}>
-                  Таблица размеров
-                </button>
-              </div>
+                <p className={styles.product_main_price}>{formatPriceNum(price)} P</p>
+                <div className={styles.product_parameters_container}>
+                  <div className={styles.parameters}>
+                    <div className={styles.parameters_item}>
+                      <span className={styles.parameter_title}>Размер:</span>
+                      <ProductDimensions isLarge />
+                    </div>
+                    <div className={styles.parameters_item}>
+                      <span className={styles.parameter_title}>Цвет:</span>
+                      <ProductColors isLarge colors={colors} />
+                    </div>
+                  </div>
+                  <button type="button" className={styles.more_colors} onClick={() => sizeTableOpen()}>
+                    Больше цветов
+                  </button>
+                  <button type="button" className={styles.product_btn__mobile} onClick={() => sizeTableOpen()}>
+                    Таблица размеров
+                  </button>
+                </div>
 
+                <button type="button" className={styles.add_to_cart} onClick={() => addToCartHandler()}>
+                  {!inCart ? (
+                    <span className={styles.cart_main_title}>Добавить в корзину</span>
+                  ) : (
+                    <span className={styles.cart_main_title}>перейти в корзину</span>
+                  )}
+                </button>
+                <div className={styles.mini_gallery_btns}>
+                  <button type="button" className={styles.product_btn} onClick={() => sizeTableOpen()}>
+                    Таблица размеров
+                  </button>
+                  <button
+                    type="button"
+                    className={styles.product_btn}
+                    onClick={() => scrollToElement(detailRef, "end")}
+                  >
+                    Доставка и оплата
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className={styles.product_bottom} ref={detailRef}>
+              <div className={styles.description_container}>
+                <Typography className={styles.description_title} tag={"h4"} variant={"h1"}>
+                  Состав
+                </Typography>
+                <ul className={styles.page_list}>
+                  {consistPrimary.split(",").map((str, idx) => (
+                    <li className={styles.page_list_item} key={idx}>
+                      {str}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className={styles.description_container}>
+                <Typography className={styles.description_title} tag={"h4"} variant={"h1"}>
+                  Уход
+                </Typography>
+                <ul className={styles.page_list}>
+                  <li className={styles.page_list_item}>
+                    бережная машинная стирка на изнаночной стороне при температуре 30-40°С
+                  </li>
+                  <li className={styles.page_list_item}>не отбеливать</li>
+                  <li className={styles.page_list_item}>не использовать агрессивные моющие средства</li>
+                  <li className={styles.page_list_item}>утюжить при температуре утюга до 150°С</li>
+                </ul>
+              </div>
+              <div className={styles.description_container}>
+                <Typography className={styles.description_title} tag={"h4"} variant={"h1"}>
+                  Доставка
+                </Typography>
+                <Typography className={styles.description_text} tag={"p"} variant={"text"}>
+                  Подробнее о доставке вы можете прочитать здесь.
+                </Typography>
+              </div>
+              <div className={styles.description_container}>
+                <Typography className={styles.description_title} tag={"h4"} variant={"h1"}>
+                  Помощь
+                </Typography>
+                <Typography className={styles.description_text} tag={"p"} variant={"text"}>
+                  Товар надлежащего качества может быть возвращен в течение x дней. Подробную информацию о возврате
+                  товара Вы можете получить здесь.
+                </Typography>
+              </div>
               <button type="button" className={styles.add_to_cart} onClick={() => addToCartHandler()}>
                 {!inCart ? (
                   <span className={styles.cart_main_title}>Добавить в корзину</span>
@@ -157,15 +222,8 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
               </button>
             </div>
           </div>
+
           <div className={styles.mini_gallery_container}>
-            <div className={styles.mini_gallery_btns}>
-              <button type="button" className={styles.product_btn} onClick={() => sizeTableOpen()}>
-                Таблица размеров
-              </button>
-              <button type="button" className={styles.product_btn} onClick={() => scrollToElement(detailRef, "end")}>
-                Доставка и оплата
-              </button>
-            </div>
             <div className={styles.mini_gallery}>
               {images.slice(0, 4).map((image, idx) => (
                 <button
@@ -188,57 +246,6 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
               ))}
               <div className={clsx(styles.mini_gallery__frame, framePositions[framePos])} ref={frameRef}></div>
             </div>
-          </div>
-          <div className={styles.product_bottom} ref={detailRef}>
-            <div className={styles.description_container}>
-              <Typography className={styles.description_title} tag={"h4"} variant={"h1"}>
-                Состав
-              </Typography>
-              <ul className={styles.page_list}>
-                {consistPrimary.split(",").map((str, idx) => (
-                  <li className={styles.page_list_item} key={idx}>
-                    {str}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className={styles.description_container}>
-              <Typography className={styles.description_title} tag={"h4"} variant={"h1"}>
-                Уход
-              </Typography>
-              <ul className={styles.page_list}>
-                <li className={styles.page_list_item}>
-                  бережная машинная стирка на изнаночной стороне при температуре 30-40°С
-                </li>
-                <li className={styles.page_list_item}>не отбеливать</li>
-                <li className={styles.page_list_item}>не использовать агрессивные моющие средства</li>
-                <li className={styles.page_list_item}>утюжить при температуре утюга до 150°С</li>
-              </ul>
-            </div>
-            <div className={styles.description_container}>
-              <Typography className={styles.description_title} tag={"h4"} variant={"h1"}>
-                Доставка
-              </Typography>
-              <Typography className={styles.description_text} tag={"p"} variant={"text"}>
-                Подробнее о доставке вы можете прочитать здесь.
-              </Typography>
-            </div>
-            <div className={styles.description_container}>
-              <Typography className={styles.description_title} tag={"h4"} variant={"h1"}>
-                Помощь
-              </Typography>
-              <Typography className={styles.description_text} tag={"p"} variant={"text"}>
-                Товар надлежащего качества может быть возвращен в течение x дней. Подробную информацию о возврате товара
-                Вы можете получить здесь.
-              </Typography>
-            </div>
-            <button type="button" className={styles.add_to_cart} onClick={() => addToCartHandler()}>
-              {!inCart ? (
-                <span className={styles.cart_main_title}>Добавить в корзину</span>
-              ) : (
-                <span className={styles.cart_main_title}>перейти в корзину</span>
-              )}
-            </button>
           </div>
         </div>
         <div className={clsx("main_grid", styles.recommendations)} ref={refRecommendations}>
