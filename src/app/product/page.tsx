@@ -57,7 +57,7 @@ export default function Tailoring() {
                   </div>
                   <div className={styles.parameters_item}>
                     <span className={styles.parameter_title}>Цвет:</span>
-                    <ProductColors isLarge />
+                    <ProductColors isLarge colors={[]} />
                   </div>
                 </div>
                 <button type="button" className={styles.more_colors} onClick={() => setOffcanvasIsActive(true)}>
