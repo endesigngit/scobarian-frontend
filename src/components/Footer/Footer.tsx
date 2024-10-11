@@ -62,8 +62,8 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="mailto:info@iamskobarian.ru" className={styles.secondary_footer__link}>
-                info@iamskobarian.ru
+              <Link href="mailto:zakaz@skobarian.ru" className={styles.secondary_footer__link}>
+                zakaz@skobarian.ru
               </Link>
             </li>
           </ul>
