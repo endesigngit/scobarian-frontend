@@ -40,12 +40,12 @@ export default function Footer() {
           </Link>
           <ul className={styles.footer_list}>
             <li>
-              <Link href="#" className={styles.secondary_footer__link}>
+              <Link href="/contacts" className={styles.secondary_footer__link}>
                 Доставка и оплата
               </Link>
             </li>
             <li>
-              <Link href="#" className={styles.secondary_footer__link}>
+              <Link href="/contacts" className={styles.secondary_footer__link}>
                 Возврат и гарантия
               </Link>
             </li>
@@ -57,8 +57,8 @@ export default function Footer() {
           </Link>
           <ul className={styles.footer_list}>
             <li>
-              <Link href="tel:+79808005491" className={styles.secondary_footer__link}>
-                {`+7 (980) 800-54-91`}
+              <Link href="tel:+78112702080" className={styles.secondary_footer__link}>
+                {`+7 (8112) 70-20-80`}
               </Link>
             </li>
             <li>
@@ -81,12 +81,12 @@ export default function Footer() {
           </Link>
         </div>
         <div className={clsx(styles.footer_col, styles.footer_social, "main_col_4")}>
-          <Link href="#" className={styles.main_footer__link}>
+          <Link href="https://wa.me/+79113719950" className={styles.main_footer__link}>
             WhatsApp
           </Link>
         </div>
         <div className={clsx(styles.footer_col, styles.footer_social, "main_col_5")}>
-          <Link href="#" className={styles.main_footer__link}>
+          <Link href="https://t.me/+79113719950" className={styles.main_footer__link}>
             Telegram
           </Link>
         </div>

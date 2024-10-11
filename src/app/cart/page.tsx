@@ -107,8 +107,13 @@ export default function Cart() {
             <div className={styles.cart_contacts}>
               <h4 className={styles.contacts_title}>Нужна помощь? Связаться с нами</h4>
               <p className={styles.contacts_text}>
-                +7 (8112) 70-20-80, ежедневно, с 10 до 20 часов <br />
-                iamskobarianzakaz@iamskobarian.ru
+                <Link className={styles.contacts_link} href={"tel:+78112702080"}>
+                  +7 (8112) 70-20-80
+                </Link>
+                , ежедневно, с 10 до 20 часов <br />
+                <Link className={styles.contacts_link} href={"mailto:zakaz@skobarian.ru"}>
+                  zakaz@skobarian.ru
+                </Link>
               </p>
             </div>
             <Link href={"/catalog"} className={styles.cart_desc_link}>

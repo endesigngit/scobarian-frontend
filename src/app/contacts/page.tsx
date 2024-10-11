@@ -17,8 +17,8 @@ export default function Contacts() {
               +7 (8112) 70-20-80
             </Link>
             <span className={styles.page_paragraph}>Ежедневно, с 10 до 20 часов</span>
-            <Link className={styles.contacts_link} href={"mailto:iamskobarianzakaz@iamskobarian.ru"}>
-              iamskobarianzakaz@iamskobarian.ru
+            <Link className={styles.contacts_link} href={"mailto:zakaz@skobarian.ru"}>
+              zakaz@skobarian.ru
             </Link>
           </div>
           <div className={styles.contacts_wrap}>
