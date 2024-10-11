@@ -1,4 +1,3 @@
-import { createFeedback } from "@/utils/api/queries/createFeedback"
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
 import { Tfeedback } from "../../../types/feedback"
 import styles from "./CartForm.module.css"
@@ -6,6 +5,7 @@ import { InputMask } from "@react-input/mask"
 import clsx from "clsx"
 import { useBoundStore } from "@/store/StoreProvider"
 import { TcatalogGood } from "../../../types/goods"
+import { createOrder } from "@/utils/api/queries/createOrder"
 
 export default function CartForm() {
   const {
@@ -41,7 +41,7 @@ export default function CartForm() {
       products: prodList
     }
 
-    console.log(order)
+    createOrder(order)
     clearCart(true)
     reset()
   }

@@ -1,7 +1,7 @@
 import { Torder } from "../../../../types/order"
 import { TresponseData } from "../types"
 
-export const createFeedback = async (order: Torder): Promise<TresponseData<Torder> | null> => {
+export const createOrder = async (order: Torder): Promise<TresponseData<Torder> | null> => {
   try {
     const res = await fetch(`/api/order`, {
       method: "POST",
