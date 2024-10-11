@@ -12,28 +12,28 @@ import formatPriceNum from "@/utils/formatPriceNum"
 import getWordByCount from "@/utils/getWordByCount"
 
 export default function Cart() {
-  const [isDetails, setIsDetails] = useState<boolean>(true)
-  const [isForm, setIsForm] = useState<boolean>(false)
+  const [stepState, setStepstate] = useState<boolean>(true)
 
   const { cartProducts, clearCart } = useBoundStore((state) => ({
     cartProducts: state.cartProducts,
     clearCart: state.clearCart
   }))
   const refMain = useRef(null)
-  const tabHanler = (stepFlag: boolean) => {
-    if (stepFlag) {
-      setIsForm(true)
-      setIsDetails(false)
-      scrollToElement(refMain, "start")
-    } else {
-      setIsForm(false)
-      setIsDetails(true)
-    }
-  }
+
   const productCount = cartProducts.length
   const getTotal = formatPriceNum(
     cartProducts.reduce((accumulator, currentValue) => accumulator + currentValue.price, 0)
   )
+
+  const tabHanler = (stepFlag: boolean) => {
+    if (productCount <= 0) {
+      return
+    }
+    if (stepFlag) {
+      scrollToElement(refMain, "start")
+    }
+    setStepstate(stepFlag)
+  }
 
   return (
     <main ref={refMain}>
@@ -46,22 +46,22 @@ export default function Cart() {
           <div className={styles.cart_tab}>
             <div className={styles.cart_tab_nav}>
               <div
-                className={clsx(styles.cart_tab_step, isDetails && styles.cart_tab_step__active)}
-                onClick={() => tabHanler(false)}
+                className={clsx(styles.cart_tab_step, stepState && styles.cart_tab_step__active)}
+                onClick={() => tabHanler(true)}
               >
                 <span className={styles.step_count}>1 из 2</span>
                 <span className={styles.step_count}>Корзина</span>
               </div>
               <div
-                className={clsx(styles.cart_tab_step, isForm && styles.cart_tab_step__active)}
-                onClick={() => tabHanler(true)}
+                className={clsx(styles.cart_tab_step, !stepState && styles.cart_tab_step__active)}
+                onClick={() => tabHanler(false)}
               >
                 <span className={styles.step_count}>2 из 2</span>
                 <span className={styles.step_count}>Контакты для связи</span>
               </div>
             </div>
             <div className={styles.cart_tab_content}>
-              {isDetails && (
+              {stepState && (
                 <div className={styles.cart_details}>
                   <p className={styles.cart_info}>
                     <span>
@@ -82,12 +82,17 @@ export default function Cart() {
                     </p>
                     <p>{getTotal} P</p>
                   </div>
-                  <button type="button" className={styles.cart_next_btn} onClick={() => tabHanler(true)}>
+                  <button
+                    type="button"
+                    className={clsx(styles.cart_next_btn, productCount <= 0 && styles.cart_next_btn__disabled)}
+                    onClick={() => tabHanler(false)}
+                    disabled={productCount <= 0}
+                  >
                     перйти к оформлению
                   </button>
                 </div>
               )}
-              {isForm && (
+              {!stepState && (
                 <div className={styles.cart_form}>
                   <CartForm />
                 </div>

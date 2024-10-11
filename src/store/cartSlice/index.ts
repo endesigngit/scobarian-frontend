@@ -18,8 +18,7 @@ export const createCartSlice = (set: TSet): TCartSlice => ({
       ]
     }
   }),
-  clearCart: () =>
-    actionWrapper(set, (state, payload) => {
-      state.cartProducts = []
-    })
+  clearCart: actionWrapper(set, (state) => {
+    state.cartProducts = []
+  })
 })

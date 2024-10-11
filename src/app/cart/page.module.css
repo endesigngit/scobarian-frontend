@@ -103,6 +103,9 @@
   background-color: #000000ab;
   transition: background-color 0.3s;
 }
+.cart_next_btn__disabled {
+  cursor: no-drop;
+}
 .cart_form {
   margin-top: 60px;
 }

@@ -68,6 +68,37 @@
   background-color: #000000ab;
   transition: background-color 0.3s;
 } 
+.submit_btn__disabled {
+  background-color: #000000ab;
+  transition: background-color 0.3s;
+  cursor: not-allowed;
+}
+.form_row  {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+.error_text {
+  position: absolute;
+  top: 40px;
+  color: #f44545;
+  font-family: var(--font-steppe);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 13px;
+  order: 2;
+}
+
+.success_text {
+  margin-top: 8px;
+  color: var(--button-font-color);
+  font-family: var(--font-steppe);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+}
+
 
 @media (max-width:1105px){
   .forms_grid {
