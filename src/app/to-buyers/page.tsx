@@ -158,7 +158,7 @@ export default function ToBuyers() {
           </div>
           <div className={styles.content_wrap} ref={backProdkRef}>
             <Typography className={styles.title} tag="h3" variant="h1">
-              Получение заказа, оформленного на сайте
+              Возврат заказа, оформленного на сайте
             </Typography>
             <Typography className={styles.description} tag="p" variant="text">
               Если после покупки изделия вы поняли, что оно вам не нравится, не подходит по цвету, размеру, вы можете
