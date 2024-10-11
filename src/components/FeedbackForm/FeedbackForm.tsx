@@ -2,6 +2,8 @@ import clsx from "clsx"
 import styles from "./FeedbackForm.module.css"
 import { SubmitHandler, useForm, Controller } from "react-hook-form"
 import { InputMask } from "@react-input/mask"
+import { createFeedback } from "@/utils/api/queries/createFeedback"
+import { Tfeedback } from "../../../types/feedback"
 
 type FormInputs = {
   phone: string
@@ -14,14 +16,17 @@ export default function FeedbackForm() {
     register,
     control,
     handleSubmit,
-    formState: { errors, isValid, isSubmitSuccessful },
+    formState: { errors, isValid, isSubmitSuccessful, isSubmitting},
     reset
-  } = useForm<FormInputs>({ mode: "onBlur" })
+  } = useForm<Tfeedback>({ mode: "onBlur" })
 
-  const onSubmit: SubmitHandler<FormInputs> = (data) => {
-    validateUserText(data.userText) ? console.log(data) : console.log("error")
-
+  const submitDataHandler = (data: Tfeedback) => {
+    createFeedback(data)
     reset()
+  }
+
+  const onSubmit: SubmitHandler<Tfeedback> = (data) => {
+    validateUserText(data.userText) ? submitDataHandler(data) : console.log("error")
   }
   const validateUserText = (text: string) => {
     if (text.match(/<|>|\=|\?|@/)) return false
@@ -45,7 +50,7 @@ export default function FeedbackForm() {
         </div>
         <div className={styles.form_row}>
           <Controller
-            name="phone"
+            name="userPhone"
             control={control}
             rules={{
               required: "Это поле обязвтельно"
@@ -56,17 +61,17 @@ export default function FeedbackForm() {
             )}
           />
           <label htmlFor="user-phone">Телефон</label>
-          {errors.phone && <span className={styles.error_text}>{errors.phone.message}</span>}
+          {errors.userPhone && <span className={styles.error_text}>{errors.userPhone.message}</span>}
         </div>
         <div className={styles.form_row}>
           <input
             id="user-email"
-            {...register("email", {
+            {...register("userEmail", {
               pattern: { value: /[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+/, message: "Введите корректную почту" }
             })}
           />
           <label htmlFor="user-email">E-mail</label>
-          {errors.email && <span className={styles.error_text}>{errors.email.message}</span>}
+          {errors.userEmail && <span className={styles.error_text}>{errors.userEmail.message}</span>}
         </div>
         <div className={styles.form_row}>
           <textarea id="user-text" cols={30} rows={5} {...register("userText")}></textarea>

@@ -89,11 +89,12 @@
 }
 
 .success_text {
+  margin-top: 8px;
   color: var(--button-font-color);
   font-family: var(--font-steppe);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 13px;
+  line-height: 14px;
 }
 
 @media(max-width:950px) {
