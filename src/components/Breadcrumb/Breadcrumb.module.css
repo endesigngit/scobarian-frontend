@@ -72,6 +72,12 @@
   .breadcrumb_col:nth-child(1) {
     display: none;
   }
+  .breadcrumb_col {
+    grid-column: 1 / -1;
+  }
+  .breadcrumb_title {
+    width: 100%;
+  }
 }
 @media (max-width:767px){
   .breadcrumb {

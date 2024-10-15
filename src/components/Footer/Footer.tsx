@@ -76,7 +76,7 @@ export default function Footer() {
           </Link>
         </div>
         <div className={clsx(styles.footer_col, styles.footer_colspan)}>
-          <Link href="#" className={styles.main_footer__link}>
+          <Link href="/privacy" className={styles.main_footer__link}>
             Политика конфиденциальности
           </Link>
         </div>

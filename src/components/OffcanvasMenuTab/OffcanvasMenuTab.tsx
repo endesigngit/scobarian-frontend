@@ -83,7 +83,7 @@ export default function OffcanvasMenuTab({ isActive, activeHandler }: OffcanvasM
               </Link>
             </li>
             <li className={clsx(styles.tablet_menu_item, "main_col_5")}>
-              <Link href={"/to-buyers"} className={styles.tablet_menu__link}>
+              <Link href={"/contacts"} className={styles.tablet_menu__link}>
                 Контакты
               </Link>
             </li>
