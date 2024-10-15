@@ -201,7 +201,7 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
                   Доставка
                 </Typography>
                 <Typography className={styles.description_text} tag={"p"} variant={"text"}>
-                  Подробнее о доставке вы можете прочитать здесь.
+                  Подробнее о доставке вы можете прочитать <Link href={"/to-buyers"}>здесь</Link>.
                 </Typography>
               </div>
               <div className={styles.description_container}>
@@ -210,7 +210,7 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
                 </Typography>
                 <Typography className={styles.description_text} tag={"p"} variant={"text"}>
                   Товар надлежащего качества может быть возвращен в течение x дней. Подробную информацию о возврате
-                  товара Вы можете получить здесь.
+                  товара Вы можете получить <Link href={"/to-buyers"}>здесь</Link>.
                 </Typography>
               </div>
               <button type="button" className={styles.add_to_cart} onClick={() => addToCartHandler()}>
