@@ -4,13 +4,23 @@ import { TresponseData } from "@/utils/api/types"
 import { NextRequest } from "next/server"
 import { TcatalogGood } from "../../../../types/goods"
 import qs from "qs"
+import { transformCatalogGoodItem } from "@/utils/api/transformCatalogGoodItems"
+import { TcatalogGoodItem } from "../../../../types/goodItem"
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
 
   const query = qs.stringify({
-    fields: ["name", "size", "color", "count", "discount"],
+    fields: ["name", "size", "color", "count", "discount", "gender"],
     populate: {
+      good: {
+        fields: ["name", "price", "slug", "type", "care", "compound", "material"],
+        populate: {
+          item_goods: {
+            fields: ["color", "size"]
+          }
+        }
+      },
       images: {
         fields: ["url"]
       }
@@ -25,6 +35,7 @@ export async function GET(request: NextRequest) {
     credentials: "include"
   })
   const data = await res.json()
-
-  return Response.json({ data })
+  const transformedData = transformCatalogGoodItem(data)
+  const responseData: TresponseData<TcatalogGoodItem[]> = { data: transformedData }
+  return Response.json({ data: responseData })
 }
