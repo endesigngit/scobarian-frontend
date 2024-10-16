@@ -1,0 +1,115 @@
+.cart_form__wrap {
+  margin-top: 50px;
+}
+.cart_form {
+}
+.forms_grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2,1fr);
+  gap: 41px;
+}
+.cart_form textarea,
+.cart_form input,
+.cart_form label {
+  width: 100%;
+}
+.cart_form textarea,
+.cart_form input {
+  font-family: var(--font-lack);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.4px;
+  border-bottom: 1px solid #E4E4E4;
+  order: 1;
+}
+.cart_form textarea {
+  resize: none;
+}
+.cart_form p {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart_form label {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.4px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  order: 0;
+  transition: transform 0.3s;
+}
+.cart_form textarea:focus,
+.cart_form input:focus {
+  border-color: var(--button-font-color);
+}
+
+.cart_form textarea:focus + label,
+.cart_form input:focus + label {
+  transform: scale(0.9) translate(-5%, -5px) ;
+  transition: transform 0.3s;
+}
+.submit_btn {
+  margin-top: 118px;
+  width: 100%;
+  padding: 18px;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.4px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+}
+.submit_btn:hover {
+  background-color: #000000ab;
+  transition: background-color 0.3s;
+} 
+.submit_btn__disabled {
+  background-color: #000000ab;
+  transition: background-color 0.3s;
+  cursor: not-allowed;
+}
+.form_row  {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+.error_text {
+  position: absolute;
+  top: 40px;
+  color: #f44545;
+  font-family: var(--font-steppe);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 13px;
+  order: 2;
+}
+
+.success_text {
+  margin-top: 8px;
+  color: var(--button-font-color);
+  font-family: var(--font-steppe);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+
+@media (max-width:1105px){
+  .forms_grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(4,1fr);
+    gap: 30px;
+  }
+}
+@media (max-width:767px){
+  .submit_btn {
+    margin-top: 35px;
+  }
+}

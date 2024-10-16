@@ -1,0 +1,33 @@
+.colors {
+  display: flex;
+  width: max-content;
+  gap: 4px;
+}
+.colors li {
+  width: 10px;
+  height: 10px;
+  aspect-ratio: 1/1;
+  background-color: #000000;
+  border-radius: 50%;
+}
+li.color_brown {
+  background-color: #6A2C2C;
+}
+li.color_grey {
+  background-color: #C7C7C7;
+}
+li.color_violet {
+  background-color: #3A3297;
+}
+
+.colors__L {
+  margin-left: 19px;
+  gap: 8px;
+}
+.colors__L li {
+  width: 14px;
+  height: 14px;
+}
+.colors__L li:first-child{
+  margin-right: 34px;
+}
