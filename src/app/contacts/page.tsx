@@ -24,7 +24,7 @@ export default function Contacts() {
           <div className={styles.contacts_wrap}>
             <h3 className={styles.page_title}>Адрес для возврата товара:</h3>
             <span className={styles.page_paragraph}>
-              109004, г. Псков, Красноармейская, 4.
+              180007, г. Псков, Красноармейская, 4.
               <br />
               Возвраты принимаются в будние дни, с 9 до 18 часов.
               <br /> В пятницу до 17.00

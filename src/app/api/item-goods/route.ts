@@ -4,7 +4,7 @@ import { TresponseData } from "@/utils/api/types"
 import { NextRequest } from "next/server"
 import { TcatalogGood } from "../../../../types/goods"
 import qs from "qs"
-import { transformCatalogGoodItem } from "@/utils/api/transformCatalogGoodItems"
+import { transformCatalogGoodItems } from "@/utils/api/transformCatalogGoodItems"
 import { TcatalogGoodItem } from "../../../../types/goodItem"
 
 export async function GET(request: NextRequest) {
@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
     credentials: "include"
   })
   const data = await res.json()
-  const transformedData = transformCatalogGoodItem(data)
+  const transformedData = transformCatalogGoodItems(data)
   const responseData: TresponseData<TcatalogGoodItem[]> = { data: transformedData }
   return Response.json({ data: responseData })
 }

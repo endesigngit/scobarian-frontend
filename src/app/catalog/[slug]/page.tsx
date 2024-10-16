@@ -6,7 +6,7 @@ import { Typography } from "@/UI/Typography/Typography"
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
 import Image from "next/image"
 import Offcanvas from "@/components/Offcanvas/Offcanvas"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import SizeTable from "@/components/SizeTable/SizeTable"
 import Cart from "../../../components/Cart/Cart"
 import ProductItem from "@/components/ProductItem/ProductItem"
@@ -20,6 +20,7 @@ import { useInView } from "react-intersection-observer"
 import { TcatalogGoodItem } from "../../../../types/goodItem"
 import { getAllItemGoods } from "@/utils/api/queries/getAllItemGoods"
 import { getItemGood } from "@/utils/api/queries/getItemGood"
+import { STRAPI_URL } from "@/utils/api/endpoints"
 
 export default function Tailoring({ params }: { params: { slug: string } }) {
   const [offcanvasIsActive, setOffcanvasIsActive] = useState<boolean>(false)
@@ -27,33 +28,40 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
   const [inCart, setCart] = useState<boolean>(false)
   const [pageTitle, setPageTitle] = useState<string>("")
   const [framePos, setFramePos] = useState<number>(0)
-  const [data, setData] = useState<TcatalogGoodItem[]>([])
+  const [goods, setGoods] = useState<TcatalogGoodItem[]>([])
+  const [goodItem, setGoodItem] = useState<TcatalogGoodItem>(getGoods()[1])
 
   const [refRecommendations, inView] = useInView({
     threshold: 0.6
   })
 
-  const goods = getGoods()
-  useEffect(() => {
+
+  useLayoutEffect(() => {
     getAllItemGoods()
       .then((data) => data?.data)
       .then((data) => {
-        setData(data.data)
+        setGoods(data.data)
       })
       
     getItemGood(getId(params.slug))
-      // .then((data) => data?.data)
+      .then((data) => data?.data)
       .then((data) => {
-        console.log(data?.data)
+        setGoodItem(data.data)
       })
+      if (cartProducts.find((prod) => prod.id == id)) {
+        setCart(true)
+      } else {
+        setCart(false)
+      }
+
+  
   }, [])
   const getId = (pars: string)=>{
     const par = pars.split("-")
     return par[par.length-1]
   }
-  // console.log(getId(params.slug))
-  const good = data.find((product) => product.id == getId(params.slug)) ?? goods[1]
-  const { name, id, colors, images, price, slug, care, material, compound, sizes } = good
+
+  const { name, id, colors, images, price, slug, care, material, compound, sizes, type } = goodItem
 
   const { addToCart, cartProducts } = useBoundStore((state) => ({
     addToCart: state.addToCart,
@@ -93,23 +101,17 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
   }
 
   useEffect(() => {
-    if (cartProducts.find((prod) => prod.id == id)) {
-      setCart(true)
-    } else {
-      setCart(false)
-    }
     if (inView) {
       setPageTitle("РЕКОМЕНДУЕМ")
     } else {
-      setPageTitle(name)
+      setPageTitle(type)
     }
-
     const chunk = imageRef1.current ? imageRef1.current.offsetHeight - 100 : 700
 
     window.addEventListener("scroll", () => {
       setFramePositionByScroll(window.scrollY, chunk)
     })
-  }, [cartProducts, id, name, inView])
+  }, [inView])
 
   const sizeTableOpen = () => {
     setOffcanvasIsActive(true)
@@ -117,12 +119,13 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
   }
   const addToCartHandler = () => {
     if (!inCart) {
-      addToCart(good)
+      addToCart(goodItem)
     }
     setOffcanvasIsActive(true)
     setOffcanvasCart(true)
     setCart(true)
   }
+
 
   return (
     <main className={styles.page_main}>
@@ -130,11 +133,11 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
       <div className={clsx("main_grid", styles.product_container)}>
         <div className={styles.left_side}>
           <div className={styles.product_gallery}>
-            {images.slice(0, 4).map((image, idx) => (
+            {goodItem.images.slice(0, 4).map((image, idx) => (
               <div className={styles.product_gallery__item} key={idx} ref={imageRefs[idx]}>
                 <Image
                   className={styles.gallery_img}
-                  src={`http://admin.skobarian.ru${image}`}
+                  src={`${STRAPI_URL}${image}`}
                   width={700}
                   height={1050}
                   priority
@@ -265,7 +268,7 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
                 >
                   <Image
                     className={styles.mini_gallery_btn__img}
-                    src={`http://admin.skobarian.ru${image}`}
+                    src={`${STRAPI_URL}${image}`}
                     width={70}
                     height={105}
                     priority
@@ -281,8 +284,8 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
           <p className={styles.recommendations_title}>РЕКОМЕНДУЕМ</p>
           <div className={styles.product_list_container}>
             <ul className={styles.product_list}>
-              {data
-                ? data.slice(3).map((good) => (
+              {goods
+                ? goods.slice(3).map((good) => (
                     <li className={styles.product_item} key={good.id}>
                       <ProductItem good={good} ofcanvasHandler={addToCartHandler} />
                     </li>

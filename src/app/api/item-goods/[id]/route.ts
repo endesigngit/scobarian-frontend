@@ -1,7 +1,9 @@
 import { endpoints } from "@/utils/api/endpoints"
-import { transformCatalogGoods } from "@/utils/api/transformCatalogGoods"
+import { transformCatalogGoodItem } from "@/utils/api/transformCatalogGoodItem"
+import { TresponseData } from "@/utils/api/types"
 import { NextRequest } from "next/server"
 import qs from "qs"
+import { TcatalogGoodItem } from "../../../../../types/goodItem"
 
 export async function GET(request: NextRequest, { params: { id } }: { params: { id: number } }) {
   const searchParams = request.nextUrl.searchParams
@@ -30,6 +32,7 @@ export async function GET(request: NextRequest, { params: { id } }: { params: { 
     credentials: "include"
   })
   const data = await res.json()
-
-  return Response.json({ data })
+  const transformedData = transformCatalogGoodItem(data)
+  const responseData: TresponseData<TcatalogGoodItem> = { data: transformedData }
+  return Response.json({ data: responseData })
 }

@@ -1,6 +1,6 @@
 import { TcatalogGoodItem } from "../../../types/goodItem"
 
-export const transformCatalogGoodItem = (data: any): TcatalogGoodItem[] => {
+export const transformCatalogGoodItems = (data: any): TcatalogGoodItem[] => {
   return data.data.map((item: any) => {
     return {
       id: item.id,
