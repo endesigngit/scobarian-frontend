@@ -1,4 +1,5 @@
 import clsx from "clsx"
+import Link from "next/link"
 import styles from "./FeedbackForm.module.css"
 import { SubmitHandler, useForm, Controller } from "react-hook-form"
 import { InputMask } from "@react-input/mask"
@@ -86,7 +87,7 @@ export default function FeedbackForm() {
             Отправить
           </button>
           <p className={styles.policy_text}>
-            Нажимая на кнопку «Отправить» вы даете согласие на обработку <span>персональных данных</span>
+            Нажимая на кнопку «Отправить» вы даете согласие на обработку <span><Link href={"/privacy"}>персональных данных</Link></span>
           </p>
           {isSubmitSuccessful && <p className={styles.success_text}>Сообщение успешно отправлено</p>}
         </div>
