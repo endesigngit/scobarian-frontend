@@ -3,7 +3,7 @@ import { TcatalogGoodItem } from "../../../types/goodItem"
 export const transformCatalogGoodItem = (data: any): TcatalogGoodItem[] => {
   return data.data.map((item: any) => {
     return {
-      id: item.attributes.id,
+      id: item.id,
       name: item.attributes.name,
       price: item.attributes.good.data.attributes.price,
       type: item.attributes.good.data.attributes.type[0],
@@ -15,7 +15,8 @@ export const transformCatalogGoodItem = (data: any): TcatalogGoodItem[] => {
       care: item.attributes.good.data.attributes.care,
       compound: item.attributes.good.data.attributes.compound,
       material: item.attributes.good.data.attributes.material,
-      category: item.attributes.good.data.attributes.name
+      category: item.attributes.good.data.attributes.name,
+      slug: item.attributes.good.data.attributes.slug
     }
   })
 }

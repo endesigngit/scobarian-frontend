@@ -7,8 +7,8 @@ import Footer from "@/components/Footer/Footer"
 import MainHeader from "@/components/MainHeader/MainHeader"
 
 export const metadata: Metadata = {
-  title: "I’am skobarian",
-  description: "skobarian app"
+  title: "I’am skobarian - пошив корпоративного мерча с доставкой",
+  description: "Шьём мерч с символикой бизнеса по нашим лекалам с любыми нанесениями большим тиражом"
 }
 
 interface RootLayoutProps {

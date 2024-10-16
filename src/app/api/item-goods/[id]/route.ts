@@ -8,6 +8,14 @@ export async function GET(request: NextRequest, { params: { id } }: { params: { 
 
   const query = qs.stringify({
     populate: {
+      good: {
+        fields: ["name", "price", "slug", "type", "care", "compound", "material", "slug"],
+        populate: {
+          item_goods: {
+            fields: ["color", "size"]
+          }
+        }
+      },
       images: {
         fields: ["url"]
       }

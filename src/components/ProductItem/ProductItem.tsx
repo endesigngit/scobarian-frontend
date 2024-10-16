@@ -8,14 +8,16 @@ import { useBoundStore } from "@/store/StoreProvider"
 import { TcatalogGood } from "../../../types/goods"
 import { useEffect, useState } from "react"
 import formatPriceNum from "@/utils/formatPriceNum"
+import { TcatalogGoodItem } from "../../../types/goodItem"
+import { STRAPI_URL } from "@/utils/api/endpoints"
 
 type ProductItemProps = {
-  good: TcatalogGood
+  good: TcatalogGoodItem
   ofcanvasHandler: () => void
 }
 const goodFirst = getGoods()[0]
-export default function ProductItem({ good = goodFirst, ofcanvasHandler }: ProductItemProps) {
-  const { name, images, type, price, colors, sizes, slug, id } = good
+export default function ProductItem({ good, ofcanvasHandler }: ProductItemProps) {
+  const { name, images, type, price, colors, sizes, id, slug } = good
   const [inCart, setCart] = useState<boolean>(false)
 
   const { addToCart, cartProducts } = useBoundStore((state) => ({
@@ -41,7 +43,14 @@ export default function ProductItem({ good = goodFirst, ofcanvasHandler }: Produ
   return (
     <div className={styles.product}>
       <div className={styles.product_img_wrap}>
-        <Image className={styles.product_img} src={images[0]} width={500} height={750} alt={name} priority={true} />
+        <Image
+          className={styles.product_img}
+          src={`${STRAPI_URL}${images[0]}`}
+          width={500}
+          height={750}
+          alt={name}
+          priority={true}
+        />
         <button type="button" className={styles.add_cart_btn} onClick={addToCartHandler}>
           {!inCart && <span className={styles.add_cart_title}>В корзину</span>}
           {inCart && <span className={styles.add_cart_title}>Перейти в корзину</span>}
@@ -74,11 +83,11 @@ export default function ProductItem({ good = goodFirst, ofcanvasHandler }: Produ
             <ProductColors colors={colors} />
           </li>
           <li className={styles.parameters_item}>
-            <ProductDimensions />
+            <ProductDimensions sizes={sizes} />
           </li>
         </ul>
       </div>
-      <Link href={`/catalog/${slug}`} className={styles.product_content}>
+      <Link href={`/catalog/${slug}-${id}`} className={styles.product_content}>
         <h3 className={styles.product_title}>{name}</h3>
         <span className={styles.product_price}>{formatPriceNum(price)} P</span>
       </Link>

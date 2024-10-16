@@ -12,4 +12,5 @@ export type TcatalogGoodItem = {
   compound: string
   material: string
   category: string
+  slug: string
 }

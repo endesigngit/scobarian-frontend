@@ -17,6 +17,9 @@ import { useBoundStore } from "@/store/StoreProvider"
 import scrollToElement from "@/utils/scrollToElement"
 import formatPriceNum from "@/utils/formatPriceNum"
 import { useInView } from "react-intersection-observer"
+import { TcatalogGoodItem } from "../../../../types/goodItem"
+import { getAllItemGoods } from "@/utils/api/queries/getAllItemGoods"
+import { getItemGood } from "@/utils/api/queries/getItemGood"
 
 export default function Tailoring({ params }: { params: { slug: string } }) {
   const [offcanvasIsActive, setOffcanvasIsActive] = useState<boolean>(false)
@@ -24,14 +27,33 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
   const [inCart, setCart] = useState<boolean>(false)
   const [pageTitle, setPageTitle] = useState<string>("")
   const [framePos, setFramePos] = useState<number>(0)
+  const [data, setData] = useState<TcatalogGoodItem[]>([])
 
   const [refRecommendations, inView] = useInView({
     threshold: 0.6
   })
 
   const goods = getGoods()
-  const good = goods.find((product) => product.slug == params.slug) ?? goods[0]
-  const { name, id, colors, images, price, slug, consistPrimary, materialPrimary } = good
+  useEffect(() => {
+    getAllItemGoods()
+      .then((data) => data?.data)
+      .then((data) => {
+        setData(data.data)
+      })
+      
+    getItemGood(getId(params.slug))
+      // .then((data) => data?.data)
+      .then((data) => {
+        console.log(data?.data)
+      })
+  }, [])
+  const getId = (pars: string)=>{
+    const par = pars.split("-")
+    return par[par.length-1]
+  }
+  // console.log(getId(params.slug))
+  const good = data.find((product) => product.id == getId(params.slug)) ?? goods[1]
+  const { name, id, colors, images, price, slug, care, material, compound, sizes } = good
 
   const { addToCart, cartProducts } = useBoundStore((state) => ({
     addToCart: state.addToCart,
@@ -110,7 +132,14 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
           <div className={styles.product_gallery}>
             {images.slice(0, 4).map((image, idx) => (
               <div className={styles.product_gallery__item} key={idx} ref={imageRefs[idx]}>
-                <Image className={styles.gallery_img} src={image} width={700} height={1050} priority alt={name} />
+                <Image
+                  className={styles.gallery_img}
+                  src={`http://admin.skobarian.ru${image}`}
+                  width={700}
+                  height={1050}
+                  priority
+                  alt={name}
+                />
               </div>
             ))}
           </div>
@@ -134,7 +163,7 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
                   <div className={styles.parameters}>
                     <div className={styles.parameters_item}>
                       <span className={styles.parameter_title}>Размер:</span>
-                      <ProductDimensions isLarge />
+                      <ProductDimensions isLarge sizes={sizes} />
                     </div>
                     <div className={styles.parameters_item}>
                       <span className={styles.parameter_title}>Цвет:</span>
@@ -176,7 +205,7 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
                   Состав
                 </Typography>
                 <ul className={styles.page_list}>
-                  {consistPrimary.split(",").map((str, idx) => (
+                  {compound.split(";").map((str, idx) => (
                     <li className={styles.page_list_item} key={idx}>
                       {str}
                     </li>
@@ -236,7 +265,7 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
                 >
                   <Image
                     className={styles.mini_gallery_btn__img}
-                    src={image}
+                    src={`http://admin.skobarian.ru${image}`}
                     width={70}
                     height={105}
                     priority
@@ -252,8 +281,8 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
           <p className={styles.recommendations_title}>РЕКОМЕНДУЕМ</p>
           <div className={styles.product_list_container}>
             <ul className={styles.product_list}>
-              {goods
-                ? goods.slice(3).map((good) => (
+              {data
+                ? data.slice(3).map((good) => (
                     <li className={styles.product_item} key={good.id}>
                       <ProductItem good={good} ofcanvasHandler={addToCartHandler} />
                     </li>

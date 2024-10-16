@@ -11,10 +11,10 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
 
   const query = qs.stringify({
-    fields: ["name", "size", "color", "count", "discount", "gender"],
+    fields: ["name", "size", "color", "count", "discount", "gender", "id"],
     populate: {
       good: {
-        fields: ["name", "price", "slug", "type", "care", "compound", "material"],
+        fields: ["name", "price", "slug", "type", "care", "compound", "material", "slug"],
         populate: {
           item_goods: {
             fields: ["color", "size"]

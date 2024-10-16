@@ -3,17 +3,17 @@ import styles from "./CartProductItem.module.css"
 import { Typography } from "@/UI/Typography/Typography"
 import Link from "next/link"
 import Image from "next/image"
-import { TcatalogGood } from "../../../types/goods"
 import getGoods from "@/mock/goods"
 import { useBoundStore } from "@/store/StoreProvider"
 import ProductColorItem from "../ProductColorItem/ProductColorItem"
+import { TcatalogGoodItem } from "../../../types/goodItem"
 type CartProductItemProps = {
   isLarge: boolean
-  good: TcatalogGood
+  good: TcatalogGoodItem
 }
 const firstGood = getGoods()[0]
 export default function CartProductItem({ isLarge, good = firstGood }: CartProductItemProps) {
-  const { name, images, price, colors, sizes, slug, consistPrimary, id } = good
+  const { name, images, price, color, size, compound, slug } = good
   // console.log(consistPrimary)
   const { addToCart, deleteProduct } = useBoundStore((state) => ({
     addToCart: state.addToCart,
@@ -22,7 +22,14 @@ export default function CartProductItem({ isLarge, good = firstGood }: CartProdu
   return (
     <div className={clsx(styles.product_item, isLarge && styles.product_item__large)}>
       <Link className={styles.product_img__wrap} href={`/catalog/${slug}`}>
-        <Image className={styles.product_img} src={images[0]} alt={name} width={250} height={375} priority={true} />
+        <Image
+          className={styles.product_img}
+          src={`http://admin.skobarian.ru${images[0]}`}
+          alt={name}
+          width={250}
+          height={375}
+          priority={true}
+        />
       </Link>
       <div className={styles.product_header}>
         <Link className={styles.product_title} href={`/catalog/${slug}`}>
@@ -36,7 +43,7 @@ export default function CartProductItem({ isLarge, good = firstGood }: CartProdu
             Состав
           </Typography>
           <ul className={styles.page_list}>
-            {consistPrimary.split(",").map((str, idx) => (
+            {compound.split(";").map((str, idx) => (
               <li className={styles.page_list_item} key={idx}>
                 {str}
               </li>
@@ -46,11 +53,11 @@ export default function CartProductItem({ isLarge, good = firstGood }: CartProdu
         <ul className={styles.parameters_list}>
           <li className={styles.parameters_item}>
             <span className={styles.parameters_title}>Размер:</span>
-            <span className={styles.parameters_value}>{sizes[0]}</span>
+            <span className={styles.parameters_value}>{size}</span>
           </li>
           <li className={styles.parameters_item}>
             <span className={styles.parameters_title}>Цвет:</span>
-            <ProductColorItem colorName={colors[0]} />
+            <ProductColorItem colorName={color} />
           </li>
         </ul>
       </div>

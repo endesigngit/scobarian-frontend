@@ -1,6 +1,6 @@
 import { TresponseData } from "../types"
 
-export const getItemGood = async (id: number): Promise<TresponseData<any> | null> => {
+export const getItemGood = async (id: number|string): Promise<TresponseData<any> | null> => {
   try {
     const res = await fetch(`/api/item-goods/${id}`)
     const data = await res.json()

@@ -1,12 +1,12 @@
-import { TcatalogGood } from "../../../types/goods"
+import { TcatalogGoodItem } from "../../../types/goodItem"
 
 export type TCartSliceState = {
-  cartProducts: TcatalogGood[]
+  cartProducts: TcatalogGoodItem[]
 }
 
 export type TCartSliceActions = {
-  addToCart: (product: TcatalogGood) => void
-  deleteProduct: (product: TcatalogGood) => void
+  addToCart: (product: TcatalogGoodItem) => void
+  deleteProduct: (product: TcatalogGoodItem) => void
   clearCart: (status: boolean) => void
 }
 
