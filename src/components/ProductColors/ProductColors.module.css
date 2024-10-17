@@ -11,6 +11,11 @@
   /* background-color: #000000; */
   border-radius: 50%;
 }
+.colors .actual_color{
+  width: 13px;
+  height: 13px;
+  width: 20px;
+}
 li.color_brown {
   background-color: #6A2C2C;
 }
@@ -29,11 +34,6 @@ li.color_violet {
   width: 14px;
   height: 14px;
 }
-.colors__L li:first-child{
+.colors__L .actual_color{
   width: 40px;
-}
-.colors li:first-child{
-  width: 13px;
-  height: 13px;
-  width: 20px;
 }

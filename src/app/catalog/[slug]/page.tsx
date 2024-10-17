@@ -6,7 +6,7 @@ import { Typography } from "@/UI/Typography/Typography"
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
 import Image from "next/image"
 import Offcanvas from "@/components/Offcanvas/Offcanvas"
-import { useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import SizeTable from "@/components/SizeTable/SizeTable"
 import Cart from "../../../components/Cart/Cart"
 import ProductItem from "@/components/ProductItem/ProductItem"
@@ -21,33 +21,45 @@ import { TcatalogGoodItem } from "../../../../types/goodItem"
 import { getAllItemGoods } from "@/utils/api/queries/getAllItemGoods"
 import { getItemGood } from "@/utils/api/queries/getItemGood"
 import { STRAPI_URL } from "@/utils/api/endpoints"
+import OtherProducts from "@/components/OtherProducts/OtherProducts"
 
-export default function Tailoring({ params }: { params: { slug: string } }) {
+export default function SingleProduct({ params }: { params: { slug: string } }) {
   const [offcanvasIsActive, setOffcanvasIsActive] = useState<boolean>(false)
-  const [offcanvasIsCart, setOffcanvasCart] = useState<boolean>(false)
+  const [offcanvasTitle, setOffcanvasTitle] = useState<string>("")
   const [inCart, setCart] = useState<boolean>(false)
-  const [pageTitle, setPageTitle] = useState<string>("")
   const [framePos, setFramePos] = useState<number>(0)
-  const [goods, setGoods] = useState<TcatalogGoodItem[]>([])
   const [goodItem, setGoodItem] = useState<TcatalogGoodItem>(getGoods()[1])
 
   const [refRecommendations, inView] = useInView({
     threshold: 0.6
   })
-  const { addToCart, cartProducts, setPTitle } = useBoundStore((state) => ({
+
+  const { itemsGoods, addToCart, cartProducts, addItemsGoods, setPTitle } = useBoundStore((state) => ({
     addToCart: state.addToCart,
+    itemsGoods: state.itemsGoods,
+    addItemsGoods: state.addItemsGoods,
     cartProducts: state.cartProducts,
     setPTitle: state.setTitle
   }))
 
-  const { name, id, colors, color, images, price, slug, care, material, compound, sizes, type, size } = goodItem
+  const { name, id, colors, color, images, price, care, compound, sizes, type, size, slug } = goodItem
 
-  useLayoutEffect(() => {
-    getAllItemGoods()
-      .then((data) => data?.data)
-      .then((data) => {
-        setGoods(data.data)
-      })
+  const filteredGoods = itemsGoods.filter((good) => good.id != id).slice(0, 4)
+  const otherProduct = itemsGoods.filter((good) => good.slug == slug)
+
+  const getId = (pars: string) => {
+    const par = pars.split("-")
+    return par[par.length - 1]
+  }
+
+  useEffect(() => {
+    if (itemsGoods.length == 0) {
+      getAllItemGoods()
+        .then((data) => data?.data)
+        .then((data) => {
+          addItemsGoods(data.data)
+        })
+    }
 
     getItemGood(getId(params.slug))
       .then((data) => data?.data)
@@ -60,11 +72,7 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
     } else {
       setCart(false)
     }
-  }, [params.slug, id, cartProducts])
-  const getId = (pars: string) => {
-    const par = pars.split("-")
-    return par[par.length - 1]
-  }
+  }, [params.slug, id, cartProducts, itemsGoods, addItemsGoods])
 
   const detailRef = useRef(null)
   const imageRef1 = useRef<HTMLDivElement>(null)
@@ -111,17 +119,47 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
     })
   }, [inView, type, setPTitle])
 
-  const sizeTableOpen = () => {
-    setOffcanvasIsActive(true)
-    setOffcanvasCart(false)
-  }
   const addToCartHandler = () => {
     if (!inCart) {
       addToCart(goodItem)
     }
     setOffcanvasIsActive(true)
-    setOffcanvasCart(true)
     setCart(true)
+  }
+
+  const offcanvasHandler = (title: string) => {
+    switch (title) {
+      case "Корзина":
+        addToCartHandler()
+        setOffcanvasTitle("Корзина")
+        return
+      case "Таблица размеров":
+        setOffcanvasTitle("Таблица размеров")
+        setOffcanvasIsActive(true)
+        return
+      case "Больше цветов":
+        setOffcanvasTitle("Больше цветов")
+        setOffcanvasIsActive(true)
+        return
+
+      default:
+        addToCartHandler()
+        return
+    }
+  }
+
+  const contentSwitch = (title: string) => {
+    switch (title) {
+      case "Корзина":
+        return <Cart />
+      case "Таблица размеров":
+        return <SizeTable />
+      case "Больше цветов":
+        return <OtherProducts products={otherProduct} />
+
+      default:
+        return <OtherProducts products={otherProduct} />
+    }
   }
 
   return (
@@ -171,18 +209,26 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
                     </div>
                   </div>
                   {colors.length > 1 ? (
-                    <button type="button" className={styles.more_colors} onClick={() => sizeTableOpen()}>
+                    <button
+                      type="button"
+                      className={styles.more_colors}
+                      onClick={() => offcanvasHandler("Больше цветов")}
+                    >
                       Больше цветов
                     </button>
                   ) : (
                     ""
                   )}
-                  <button type="button" className={styles.product_btn__mobile} onClick={() => sizeTableOpen()}>
+                  <button
+                    type="button"
+                    className={styles.product_btn__mobile}
+                    onClick={() => offcanvasHandler("Таблица размеров")}
+                  >
                     Таблица размеров
                   </button>
                 </div>
 
-                <button type="button" className={styles.add_to_cart} onClick={() => addToCartHandler()}>
+                <button type="button" className={styles.add_to_cart} onClick={() => offcanvasHandler("Корзина")}>
                   {!inCart ? (
                     <span className={styles.cart_main_title}>Добавить в корзину</span>
                   ) : (
@@ -190,7 +236,11 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
                   )}
                 </button>
                 <div className={styles.mini_gallery_btns}>
-                  <button type="button" className={styles.product_btn} onClick={() => sizeTableOpen()}>
+                  <button
+                    type="button"
+                    className={styles.product_btn}
+                    onClick={() => offcanvasHandler("Таблица размеров")}
+                  >
                     Таблица размеров
                   </button>
                   <button
@@ -203,7 +253,7 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
                 </div>
               </div>
             </div>
-            <div className={styles.product_bottom} ref={detailRef}>
+            <div id={"detail"} className={styles.product_bottom} ref={detailRef}>
               <div className={styles.description_container}>
                 <Typography className={styles.description_title} tag={"h4"} variant={"h1"}>
                   Состав
@@ -247,7 +297,7 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
                   товара Вы можете получить <Link href={"/to-buyers"}>здесь</Link>.
                 </Typography>
               </div>
-              <button type="button" className={styles.add_to_cart} onClick={() => addToCartHandler()}>
+              <button type="button" className={styles.add_to_cart} onClick={() => offcanvasHandler("Корзина")}>
                 {!inCart ? (
                   <span className={styles.cart_main_title}>Добавить в корзину</span>
                 ) : (
@@ -286,8 +336,8 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
           <p className={styles.recommendations_title}>РЕКОМЕНДУЕМ</p>
           <div className={styles.product_list_container}>
             <ul className={styles.product_list}>
-              {goods
-                ? goods.slice(3).map((good) => (
+              {filteredGoods
+                ? filteredGoods.map((good) => (
                     <li className={styles.product_item} key={good.id}>
                       <ProductItem good={good} ofcanvasHandler={addToCartHandler} />
                     </li>
@@ -306,8 +356,10 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
           </button>
         </div>
       </div>
-      <Offcanvas isActive={offcanvasIsActive} closeHandler={setOffcanvasIsActive} title="Корзина">
-        {!offcanvasIsCart ? <SizeTable /> : <Cart />}
+      <Offcanvas isActive={offcanvasIsActive} closeHandler={setOffcanvasIsActive} title={offcanvasTitle}>
+        {/* <OtherProducts products={otherProduct} /> */}
+        {/* {!offcanvasIsCart ? <SizeTable /> : <Cart />} */}
+        {contentSwitch(offcanvasTitle)}
       </Offcanvas>
     </main>
   )

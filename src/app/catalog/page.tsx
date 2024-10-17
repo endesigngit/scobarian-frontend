@@ -9,14 +9,12 @@ import ProductItem from "@/components/ProductItem/ProductItem"
 import Cart from "../../components/Cart/Cart"
 import { useBoundStore } from "@/store/StoreProvider"
 import { getAllItemGoods } from "@/utils/api/queries/getAllItemGoods"
-import { TcatalogGoodItem } from "../../../types/goodItem"
 
 export default function Catalog() {
   const [gridStatus, setGridStatus] = useState<boolean>(true)
   const [offcanvasIsActive, setOffcanvasIsActive] = useState<boolean>(false)
   const [offcanvasIsCart, setOffcanvasCart] = useState<boolean>(false)
 
-  const [data, setData] = useState<TcatalogGoodItem[]>([])
   const { itemsGoods, addItemsGoods, setPageTitle } = useBoundStore((state) => ({
     itemsGoods: state.itemsGoods,
     addItemsGoods: state.addItemsGoods,
@@ -32,14 +30,16 @@ export default function Catalog() {
   }
 
   useEffect(() => {
-    getAllItemGoods()
-      .then((data) => data?.data)
-      .then((data) => {
-        setData(data.data)
-        addItemsGoods(data.data)
-      })
+    if (itemsGoods.length == 0) {
+      getAllItemGoods()
+        .then((data) => data?.data)
+        .then((data) => {
+          addItemsGoods(data.data)
+        })
+    }
+
     setPageTitle("Каталог")
-  }, [setPageTitle, addItemsGoods])
+  }, [setPageTitle, addItemsGoods, itemsGoods])
 
   return (
     <main className={styles.page_main}>
@@ -71,8 +71,8 @@ export default function Catalog() {
       </div>
       <div className={styles.catalog_container}>
         <ul className={clsx(styles.product_list, !gridStatus && styles.product_list__second)}>
-          {data
-            ? data.map((good, idx) => (
+          {itemsGoods
+            ? itemsGoods.map((good, idx) => (
                 <li className={styles.product_item} key={`${good.id}--${idx}`}>
                   <ProductItem good={good} ofcanvasHandler={cartOpen} />
                 </li>

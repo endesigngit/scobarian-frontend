@@ -3,10 +3,9 @@
   width: max-content;
   gap: 8px;
   align-items: baseline;
-  /* mix-blend-mode: difference; */
 }
 
-.dimensions li {
+.size {
   font-size: 10px;
   font-weight: 400;
   line-height: 12px;
@@ -16,19 +15,21 @@
 .dimensions__L {
   margin-left: 20px;
 }
-.dimensions__L li {
+.dimensions__L .size {
   color: var(--secondary-menu-font-color);
   font-size: 20px;
   font-weight: 400;
   line-height: 24px;
   text-transform: uppercase;
 }
-.dimensions__L li:first-child {
-  width: 40px;
-  color: #000000;
-}
-.dimensions li:first-child {
+.dimensions .size_actual {
   font-size: 15px;
   text-decoration: underline;
+  color: #000000;
+}
+.dimensions__L .size_actual{
+  font-size: 20px;
+  text-decoration: none;
+  width: 40px;
   color: #000000;
 }

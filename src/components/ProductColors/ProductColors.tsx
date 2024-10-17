@@ -11,7 +11,7 @@ export default function ProductColors({ isLarge, colors, actualColor }: ProductC
   const restColor = colors.filter((color) => color != actualColor).slice(0, 2)
   return (
     <ul className={clsx(styles.colors, isLarge && styles.colors__L)}>
-      <li>
+      <li className={styles.actual_color}>
         <ProductColorItem colorName={actualColor} />
       </li>
       {restColor.map((color: string) => (
