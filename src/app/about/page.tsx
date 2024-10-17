@@ -1,12 +1,23 @@
+"use client"
 import styles from "./page.module.css"
 import { clsx } from "clsx"
 import { Typography } from "@/UI/Typography/Typography"
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
+import { useEffect } from "react"
+import { useBoundStore } from "@/store/StoreProvider"
+import { Metadata } from "next"
 
 export default function About() {
+  const { setTitle } = useBoundStore((state) => ({
+    setTitle: state.setTitle
+  }))
+
+  useEffect(() => {
+    setTitle("О нас")
+  }, [setTitle])
   return (
     <main className={styles.page_main}>
-      <Breadcrumb pageTitle={"О нас"} padding />
+      <Breadcrumb padding />
       <div className="main_grid">
         <div className={styles.grid_col_img}></div>
         <div className={styles.grid_col}>

@@ -4,21 +4,30 @@ import styles from "./Breadcrumb.module.css"
 import { clsx } from "clsx"
 import Logo from "../Logo/Logo"
 import { useEffect, useState } from "react"
+import { useBoundStore } from "@/store/StoreProvider"
 // import { useEffect, useState } from "react"
 
 type BreadcrumbProps = {
-  pageTitle: string
   padding?: boolean
 }
 
-export default function Breadcrumb({ pageTitle, padding }: BreadcrumbProps) {
+export default function Breadcrumb({ padding }: BreadcrumbProps) {
   const [isActive, setActive] = useState<boolean>(false)
+
+  const { title } = useBoundStore((state) => ({
+    title: state.title
+  }))
+  const [pageTitle, setPageTitle] = useState<string>(title)
   useEffect(() => {
-    if (pageTitle != "") setActive(true)
+    if (title != pageTitle) {
+      setActive(true)
+      setPageTitle(title)
+    }
     setTimeout(() => {
       setActive(false)
     }, 1000)
-  }, [pageTitle])
+  }, [title, pageTitle])
+
   return (
     <div className={clsx(styles.breadcrumb, padding && styles.breadcrumb_full)}>
       <div className={styles.main_grid_container}>

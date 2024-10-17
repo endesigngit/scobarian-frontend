@@ -5,7 +5,7 @@ import Link from "next/link"
 import clsx from "clsx"
 import CartProducts from "@/components/CartProducts/CartProducts"
 import CartForm from "@/components/CartForm/CartForm"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import scrollToElement from "@/utils/scrollToElement"
 import { useBoundStore } from "@/store/StoreProvider"
 import formatPriceNum from "@/utils/formatPriceNum"
@@ -14,9 +14,10 @@ import getWordByCount from "@/utils/getWordByCount"
 export default function Cart() {
   const [stepState, setStepstate] = useState<boolean>(true)
 
-  const { cartProducts, clearCart } = useBoundStore((state) => ({
+  const { cartProducts, clearCart, setTitle } = useBoundStore((state) => ({
     cartProducts: state.cartProducts,
-    clearCart: state.clearCart
+    clearCart: state.clearCart,
+    setTitle: state.setTitle
   }))
   const refMain = useRef(null)
 
@@ -35,9 +36,13 @@ export default function Cart() {
     setStepstate(stepFlag)
   }
 
+  useEffect(() => {
+    setTitle("Корзина")
+  }, [setTitle])
+
   return (
     <main ref={refMain}>
-      <Breadcrumb pageTitle={"Корзина"} padding />
+      <Breadcrumb padding />
       <div className="main_grid">
         <div className={styles.left_side}>
           <CartProducts isLarge={false} />

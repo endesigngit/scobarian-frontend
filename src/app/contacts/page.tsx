@@ -4,11 +4,20 @@ import styles from "./page.module.css"
 import Link from "next/link"
 import FeedbackForm from "@/components/FeedbackForm/FeedbackForm"
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
+import { useBoundStore } from "@/store/StoreProvider"
+import { useEffect } from "react"
 
 export default function Contacts() {
+  const { setTitle } = useBoundStore((state) => ({
+    setTitle: state.setTitle
+  }))
+
+  useEffect(() => {
+    setTitle("Контакты")
+  }, [setTitle])
   return (
     <main className={styles.page_main}>
-      <Breadcrumb pageTitle={"Контакты"} padding />
+      <Breadcrumb padding />
       <div className={clsx("main_grid", styles.main_container)}>
         <div className={clsx("main_col_2", styles.contacts_first_col)}>
           <div className={styles.contacts_wrap}>

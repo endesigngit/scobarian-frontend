@@ -1,13 +1,21 @@
 import styles from "./page.module.css"
-import Link from "next/link"
 import { clsx } from "clsx"
 import { Typography } from "@/UI/Typography/Typography"
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
+import { useBoundStore } from "@/store/StoreProvider"
+import { useEffect } from "react"
 
 export default function Privacy() {
+  const { setTitle } = useBoundStore((state) => ({
+    setTitle: state.setTitle
+  }))
+
+  useEffect(() => {
+    setTitle("Политика конфиденциальности")
+  }, [setTitle])
   return (
     <main className={styles.page_main}>
-      <Breadcrumb pageTitle={"Политика конфиденциальности"} padding />
+      <Breadcrumb padding />
       <div className={clsx("main_grid", styles.main_container)}>
         <div className={styles.grid_col}>
           <Typography className={styles.page_title} tag={"h1"} variant={"h1"}>

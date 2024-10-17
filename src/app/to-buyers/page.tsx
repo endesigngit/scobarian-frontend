@@ -4,6 +4,7 @@ import { clsx } from "clsx"
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
 import { Typography } from "@/UI/Typography/Typography"
 import { MouseEvent, useEffect, useRef, useState } from "react"
+import { useBoundStore } from "@/store/StoreProvider"
 
 export default function ToBuyers() {
   const [payment, setPayment] = useState<boolean>(true)
@@ -16,6 +17,10 @@ export default function ToBuyers() {
   const deliveryRef = useRef(null)
   const backProdkRef = useRef(null)
   const warrantyRef = useRef(null)
+
+  const { setTitle } = useBoundStore((state) => ({
+    setTitle: state.setTitle
+  }))
 
   const resetActiveMenu = () => {
     setPayment(false)
@@ -70,6 +75,7 @@ export default function ToBuyers() {
   }
 
   useEffect(() => {
+    setTitle("Покупателям")
     const scrollChank = (window.document.body.offsetHeight - window.innerHeight) / 4
     setScrollChank(scrollChank)
     window.addEventListener("scroll", (evt) => {
@@ -89,7 +95,7 @@ export default function ToBuyers() {
   }, [])
   return (
     <main className={styles.page_main}>
-      <Breadcrumb pageTitle={"Покупателям"} padding />
+      <Breadcrumb padding />
       <div className={clsx(styles.main_container, "main_grid")}>
         <div className={clsx(styles.page_nav, "main_col_1")}>
           <ul className={styles.nav_list}>

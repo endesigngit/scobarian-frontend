@@ -95,6 +95,7 @@ main {
 
 .moveTop_anim {
   transform: translateY(100%);
+  opacity: 0;
   /* animation: linear 0.3s forwards moveToUp; */
   animation-name: moveToUp;
   animation-duration: 0.3s;
@@ -124,9 +125,11 @@ main {
 @keyframes moveToUp {
   0%{
     transform: translateY(100%);
+    opacity: 0;
   }
   100%{
     transform: translateY(0%);
+    opacity: 1;
   }
 }
 @media (max-width:1400px) {

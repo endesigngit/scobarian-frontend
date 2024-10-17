@@ -17,10 +17,11 @@ export default function Catalog() {
   const [offcanvasIsCart, setOffcanvasCart] = useState<boolean>(false)
 
   const [data, setData] = useState<TcatalogGoodItem[]>([])
-  // const { itemsGoods, addItemsGoods } = useBoundStore((state) => ({
-  //   itemsGoods: state.itemsGoods,
-  //   addItemsGoods: state.addItemsGoods
-  // }))
+  const { itemsGoods, addItemsGoods, setPageTitle } = useBoundStore((state) => ({
+    itemsGoods: state.itemsGoods,
+    addItemsGoods: state.addItemsGoods,
+    setPageTitle: state.setTitle
+  }))
   const filtersOpen = () => {
     setOffcanvasIsActive(true)
     setOffcanvasCart(false)
@@ -29,21 +30,20 @@ export default function Catalog() {
     setOffcanvasIsActive(true)
     setOffcanvasCart(true)
   }
-  // const setit = (data: TcatalogGoodItem[]) => {
-  //   addItemsGoods(data)
-  // }
 
   useEffect(() => {
     getAllItemGoods()
       .then((data) => data?.data)
       .then((data) => {
         setData(data.data)
+        addItemsGoods(data.data)
       })
-  }, [])
+    setPageTitle("Каталог")
+  }, [setPageTitle, addItemsGoods])
 
   return (
     <main className={styles.page_main}>
-      <Breadcrumb pageTitle={"Каталог"} padding />
+      <Breadcrumb padding />
       <div className={`${styles.catalog_top} main_grid`}>
         <div className={styles.grid_toggles}>
           <button

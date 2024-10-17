@@ -34,9 +34,10 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
   const [refRecommendations, inView] = useInView({
     threshold: 0.6
   })
-  const { addToCart, cartProducts } = useBoundStore((state) => ({
+  const { addToCart, cartProducts, setPTitle } = useBoundStore((state) => ({
     addToCart: state.addToCart,
-    cartProducts: state.cartProducts
+    cartProducts: state.cartProducts,
+    setPTitle: state.setTitle
   }))
 
   const { name, id, colors, color, images, price, slug, care, material, compound, sizes, type, size } = goodItem
@@ -99,16 +100,16 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
 
   useEffect(() => {
     if (inView) {
-      setPageTitle("РЕКОМЕНДУЕМ")
+      setPTitle("РЕКОМЕНДУЕМ")
     } else {
-      setPageTitle(type)
+      setPTitle(type)
     }
     const chunk = imageRef1.current ? imageRef1.current.offsetHeight - 100 : 700
 
     window.addEventListener("scroll", () => {
       setFramePositionByScroll(window.scrollY, chunk)
     })
-  }, [inView, type])
+  }, [inView, type, setPTitle])
 
   const sizeTableOpen = () => {
     setOffcanvasIsActive(true)
@@ -123,11 +124,9 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
     setCart(true)
   }
 
-  // console.log(care)
-
   return (
     <main className={styles.page_main}>
-      <Breadcrumb pageTitle={pageTitle} padding />
+      <Breadcrumb padding />
       <div className={clsx("main_grid", styles.product_container)}>
         <div className={styles.left_side}>
           <div className={styles.product_gallery}>
