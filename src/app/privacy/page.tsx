@@ -1,3 +1,4 @@
+"use client"
 import styles from "./page.module.css"
 import { clsx } from "clsx"
 import { Typography } from "@/UI/Typography/Typography"

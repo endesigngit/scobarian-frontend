@@ -4,8 +4,8 @@ import styles from "./CartForm.module.css"
 import { InputMask } from "@react-input/mask"
 import clsx from "clsx"
 import { useBoundStore } from "@/store/StoreProvider"
-import { TcatalogGood } from "../../../types/goods"
 import { createOrder } from "@/utils/api/queries/createOrder"
+import { TcatalogGoodItem } from "../../../types/goodItem"
 
 export default function CartForm() {
   const {
@@ -21,7 +21,7 @@ export default function CartForm() {
     clearCart: state.clearCart
   }))
 
-  const getProductList = (products: TcatalogGood[]) => {
+  const getProductList = (products: TcatalogGoodItem[]) => {
     let prodList: string[] = []
     products.forEach((product) => {
       let prodListItem = `Товар:${product.name}--Цвет:${product.colors[0]}--Размер:${product.sizes[0]}--Цена:${product.price}p`

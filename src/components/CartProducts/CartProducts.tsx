@@ -4,14 +4,14 @@ import { useBoundStore } from "@/store/StoreProvider"
 import CartProductItem from "../CartProductItem/CartProductItem"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { TcatalogGood } from "../../../types/goods"
+import { TcatalogGoodItem } from "../../../types/goodItem"
 
 type CartProductsProps = {
   isLarge: boolean
 }
 
 export default function CartProducts({ isLarge }: CartProductsProps) {
-  const [products, setProducts] = useState<TcatalogGood[]>([])
+  const [products, setProducts] = useState<TcatalogGoodItem[]>([])
   const { cartProducts } = useBoundStore((state) => ({
     cartProducts: state.cartProducts
   }))
