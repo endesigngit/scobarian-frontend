@@ -34,7 +34,12 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
   const [refRecommendations, inView] = useInView({
     threshold: 0.6
   })
+  const { addToCart, cartProducts } = useBoundStore((state) => ({
+    addToCart: state.addToCart,
+    cartProducts: state.cartProducts
+  }))
 
+  const { name, id, colors, color, images, price, slug, care, material, compound, sizes, type, size } = goodItem
 
   useLayoutEffect(() => {
     getAllItemGoods()
@@ -42,31 +47,23 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
       .then((data) => {
         setGoods(data.data)
       })
-      
+
     getItemGood(getId(params.slug))
       .then((data) => data?.data)
       .then((data) => {
         setGoodItem(data.data)
       })
-      if (cartProducts.find((prod) => prod.id == id)) {
-        setCart(true)
-      } else {
-        setCart(false)
-      }
 
-  
-  }, [])
-  const getId = (pars: string)=>{
+    if (cartProducts.find((prod) => prod.id == id)) {
+      setCart(true)
+    } else {
+      setCart(false)
+    }
+  }, [params.slug, id, cartProducts])
+  const getId = (pars: string) => {
     const par = pars.split("-")
-    return par[par.length-1]
+    return par[par.length - 1]
   }
-
-  const { name, id, colors, images, price, slug, care, material, compound, sizes, type } = goodItem
-
-  const { addToCart, cartProducts } = useBoundStore((state) => ({
-    addToCart: state.addToCart,
-    cartProducts: state.cartProducts
-  }))
 
   const detailRef = useRef(null)
   const imageRef1 = useRef<HTMLDivElement>(null)
@@ -111,7 +108,7 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
     window.addEventListener("scroll", () => {
       setFramePositionByScroll(window.scrollY, chunk)
     })
-  }, [inView])
+  }, [inView, type])
 
   const sizeTableOpen = () => {
     setOffcanvasIsActive(true)
@@ -126,6 +123,7 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
     setCart(true)
   }
 
+  // console.log(care)
 
   return (
     <main className={styles.page_main}>
@@ -166,16 +164,20 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
                   <div className={styles.parameters}>
                     <div className={styles.parameters_item}>
                       <span className={styles.parameter_title}>Размер:</span>
-                      <ProductDimensions isLarge sizes={sizes} />
+                      <ProductDimensions isLarge sizes={sizes} actualSize={size} />
                     </div>
                     <div className={styles.parameters_item}>
                       <span className={styles.parameter_title}>Цвет:</span>
-                      <ProductColors isLarge colors={colors} />
+                      <ProductColors isLarge colors={colors} actualColor={color} />
                     </div>
                   </div>
-                  <button type="button" className={styles.more_colors} onClick={() => sizeTableOpen()}>
-                    Больше цветов
-                  </button>
+                  {colors.length > 1 ? (
+                    <button type="button" className={styles.more_colors} onClick={() => sizeTableOpen()}>
+                      Больше цветов
+                    </button>
+                  ) : (
+                    ""
+                  )}
                   <button type="button" className={styles.product_btn__mobile} onClick={() => sizeTableOpen()}>
                     Таблица размеров
                   </button>
@@ -215,19 +217,20 @@ export default function Tailoring({ params }: { params: { slug: string } }) {
                   ))}
                 </ul>
               </div>
-              <div className={styles.description_container}>
-                <Typography className={styles.description_title} tag={"h4"} variant={"h1"}>
-                  Уход
-                </Typography>
-                <ul className={styles.page_list}>
-                  <li className={styles.page_list_item}>
-                    бережная машинная стирка на изнаночной стороне при температуре 30-40°С
-                  </li>
-                  <li className={styles.page_list_item}>не отбеливать</li>
-                  <li className={styles.page_list_item}>не использовать агрессивные моющие средства</li>
-                  <li className={styles.page_list_item}>утюжить при температуре утюга до 150°С</li>
-                </ul>
-              </div>
+              {care && (
+                <div className={styles.description_container}>
+                  <Typography className={styles.description_title} tag={"h4"} variant={"h1"}>
+                    Уход
+                  </Typography>
+                  <ul className={styles.page_list}>
+                    {care.split(";").map((item, idx) => (
+                      <li className={styles.page_list_item} key={idx}>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               <div className={styles.description_container}>
                 <Typography className={styles.description_title} tag={"h4"} variant={"h1"}>
                   Доставка

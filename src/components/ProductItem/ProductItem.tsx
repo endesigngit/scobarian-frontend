@@ -17,7 +17,7 @@ type ProductItemProps = {
 }
 const goodFirst = getGoods()[0]
 export default function ProductItem({ good, ofcanvasHandler }: ProductItemProps) {
-  const { name, images, type, price, colors, sizes, id, slug } = good
+  const { name, images, type, price, colors, color, sizes, id, slug, size } = good
   const [inCart, setCart] = useState<boolean>(false)
 
   const { addToCart, cartProducts } = useBoundStore((state) => ({
@@ -80,10 +80,10 @@ export default function ProductItem({ good, ofcanvasHandler }: ProductItemProps)
         </button>
         <ul className={styles.product_parameters}>
           <li className={styles.parameters_item}>
-            <ProductColors colors={colors} />
+            <ProductColors colors={colors} actualColor={color} />
           </li>
           <li className={styles.parameters_item}>
-            <ProductDimensions sizes={sizes} />
+            <ProductDimensions sizes={sizes} actualSize={size} />
           </li>
         </ul>
       </div>

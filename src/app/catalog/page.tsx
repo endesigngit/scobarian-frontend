@@ -6,11 +6,8 @@ import { useEffect, useState } from "react"
 import Offcanvas from "@/components/Offcanvas/Offcanvas"
 import OffcanvasFilters from "@/components/OffcanvasFilters/OffcanvasFilters"
 import ProductItem from "@/components/ProductItem/ProductItem"
-import getGoods from "@/mock/goods"
 import Cart from "../../components/Cart/Cart"
 import { useBoundStore } from "@/store/StoreProvider"
-import { getAllGoods } from "@/utils/api/queries/getAllGoods"
-import { TcatalogGood } from "../../../types/goods"
 import { getAllItemGoods } from "@/utils/api/queries/getAllItemGoods"
 import { TcatalogGoodItem } from "../../../types/goodItem"
 
@@ -18,12 +15,12 @@ export default function Catalog() {
   const [gridStatus, setGridStatus] = useState<boolean>(true)
   const [offcanvasIsActive, setOffcanvasIsActive] = useState<boolean>(false)
   const [offcanvasIsCart, setOffcanvasCart] = useState<boolean>(false)
-  // const goodsMain = getGoods()
+
   const [data, setData] = useState<TcatalogGoodItem[]>([])
-  const { itemsGoods, addItemsGoods } = useBoundStore((state) => ({
-    itemsGoods: state.itemsGoods,
-    addItemsGoods: state.addItemsGoods
-  }))
+  // const { itemsGoods, addItemsGoods } = useBoundStore((state) => ({
+  //   itemsGoods: state.itemsGoods,
+  //   addItemsGoods: state.addItemsGoods
+  // }))
   const filtersOpen = () => {
     setOffcanvasIsActive(true)
     setOffcanvasCart(false)
@@ -32,9 +29,9 @@ export default function Catalog() {
     setOffcanvasIsActive(true)
     setOffcanvasCart(true)
   }
-  const setit = (data: TcatalogGoodItem[]) => {
-    addItemsGoods(data)
-  }
+  // const setit = (data: TcatalogGoodItem[]) => {
+  //   addItemsGoods(data)
+  // }
 
   useEffect(() => {
     getAllItemGoods()
@@ -43,9 +40,7 @@ export default function Catalog() {
         setData(data.data)
       })
   }, [])
-  // setit(data)
-  // console.log(data)
-  // addItems(data)
+
   return (
     <main className={styles.page_main}>
       <Breadcrumb pageTitle={"Каталог"} padding />
