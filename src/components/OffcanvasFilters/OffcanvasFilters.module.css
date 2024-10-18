@@ -1,6 +1,6 @@
 
 .filters {
-  width: 100%;
+  width: min(100%, 740px);
   height: 80vh;
   overflow: scroll;
   scrollbar-width: none;
@@ -11,43 +11,6 @@
   row-gap: 30px;
 }
 
-/* .filter_list__colors {
-  display: flex;
-  flex-direction: row;
-  gap: 0;
-  justify-content: space-between;
-} */
-
-/* .filter_list__colors .filter_name {
-  width: 31px;
-  height: 31px;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  background-color: #000000;
-  border: 1px solid currentColor;
-}
-.filter_list__colors .filter_name[value="white"]{
-  background-color: #ffffff;
-  border-color: #E4E4E4;
-}
-.filter_list__colors .filter_name[value="green"]{
-  background-color: #1BCA4C;
-  border-color: #000000;
-}
-.filter_list__colors .filter_name[value="violet"]{
-  background-color: #3A3297;
-}
-.filter_list__colors .filter_name[value="brown"]{
-  background-color: #6A2C2C;
-  border-color: #000000;
-}
-.filter_list__colors .filter_name[value="grey"]{
-  background-color: #C6D4F5;
-}
-
-.filter_list__colors .filter_name span {
-  display: none;
-} */
 
 .send_filters {
   position: absolute;

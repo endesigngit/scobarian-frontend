@@ -1,5 +1,6 @@
 .products_container {
   width: 100%;
+  width: max(50vw, 740px);
   height: 90vh;
 }
 .products_list {

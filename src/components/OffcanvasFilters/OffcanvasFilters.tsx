@@ -4,7 +4,7 @@ import FiltersItem from "../FiltersItem/FiltersItem"
 
 const sortList = ["Низкая цена", "Высокая цена", "Новое", "скидки"]
 const sizeList = ["XS", "S", "M", "L", "ХL"]
-const typeList = ["Худи", "Бомбер", "Футболка", "Толстовка"]
+const typeList = ["Худи", "Бомбер", "Футболка"]
 const colorList = ["milk", "steel", "black", "indigo"]
 
 export default function OffcanvasFilters() {

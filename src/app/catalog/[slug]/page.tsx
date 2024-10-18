@@ -357,8 +357,6 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
         </div>
       </div>
       <Offcanvas isActive={offcanvasIsActive} closeHandler={setOffcanvasIsActive} title={offcanvasTitle}>
-        {/* <OtherProducts products={otherProduct} /> */}
-        {/* {!offcanvasIsCart ? <SizeTable /> : <Cart />} */}
         {contentSwitch(offcanvasTitle)}
       </Offcanvas>
     </main>

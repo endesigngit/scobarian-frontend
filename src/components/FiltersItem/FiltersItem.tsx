@@ -10,7 +10,7 @@ type FiltersItemProps = {
 }
 
 export default function FiltersItem({ title, list, type }: FiltersItemProps) {
-  const [isActive, setActive] = useState<boolean>(true)
+  const [isActive, setActive] = useState<boolean>(false)
 
   const buttonHandler = (title: string, status: boolean) => {
     console.log(title, status)
