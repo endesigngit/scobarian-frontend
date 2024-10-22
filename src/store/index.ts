@@ -3,6 +3,7 @@ import { createCartSlice } from "./cartSlice"
 import { createGoodsSlice } from "./goodsSlice"
 import { createGoodItemsSlice } from "./itemGoodsSlice"
 import { createPageTitleSlice } from "./pageTitle"
+import { createFiltersSlice } from "./filtersSlice"
 import { TStore } from "./types"
 
 export const createBoundStore = () => {
@@ -10,6 +11,7 @@ export const createBoundStore = () => {
     ...createCartSlice(set),
     ...createGoodsSlice(set),
     ...createGoodItemsSlice(set),
-    ...createPageTitleSlice(set)
+    ...createPageTitleSlice(set),
+    ...createFiltersSlice(set)
   }))
 }

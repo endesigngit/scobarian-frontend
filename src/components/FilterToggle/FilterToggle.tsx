@@ -1,19 +1,20 @@
 import clsx from "clsx"
 import styles from "./FilterToggle.module.css"
 import { useState } from "react"
+import { filterType } from "@/utils/filtersConst"
 
 type FilterToggleProps = {
   title: string
-  type?: "size" | "color"
-  hadler: (title: string, value: boolean) => void
+  type?: filterType
+  handler: (title: string, value: boolean) => void
 }
 
-export default function FilterToggle({ title, type, hadler }: FilterToggleProps) {
+export default function FilterToggle({ title, type, handler }: FilterToggleProps) {
   const [isActive, setActive] = useState<boolean>(false)
 
   const onClickHanler = () => {
     setActive(!isActive)
-    hadler(title, !isActive)
+    handler(title, !isActive)
   }
   return (
     <button

@@ -7,5 +7,6 @@ export const createGoodItemsSlice = (set: TSet): TGoodItemsSlice => ({
   itemsGoods: [],
   addItemsGoods: actionWrapper(set, (state, payload: TcatalogGoodItem[]) => {
     state.itemsGoods = payload
+    state.filetredGoods = payload
   })
 })

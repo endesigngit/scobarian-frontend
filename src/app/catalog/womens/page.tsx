@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 import Offcanvas from "@/components/Offcanvas/Offcanvas"
 import OffcanvasFilters from "@/components/OffcanvasFilters/OffcanvasFilters"
 import ProductItem from "@/components/ProductItem/ProductItem"
-import Cart from "../../components/Cart/Cart"
+import Cart from "../../../components/Cart/Cart"
 import { useBoundStore } from "@/store/StoreProvider"
 import { getAllItemGoods } from "@/utils/api/queries/getAllItemGoods"
 
@@ -18,10 +18,11 @@ export default function Catalog() {
   const { itemsGoods, addItemsGoods, setPageTitle, filteredGoods, setFilters } = useBoundStore((state) => ({
     itemsGoods: state.itemsGoods,
     addItemsGoods: state.addItemsGoods,
-    setPageTitle: state.setTitle,
     setFilters: state.setFilters,
+    setPageTitle: state.setTitle,
     filteredGoods: state.filetredGoods
   }))
+
   const filtersOpen = () => {
     setOffcanvasIsActive(true)
     setOffcanvasCart(false)
@@ -32,15 +33,14 @@ export default function Catalog() {
   }
 
   useEffect(() => {
-    getAllItemGoods("")
+    getAllItemGoods("?gender=Женщинам")
       .then((data) => data?.data)
       .then((data) => {
         addItemsGoods(data.data)
       })
-
-    setPageTitle("Каталог")
+    setPageTitle("Женщинам")
   }, [setPageTitle, addItemsGoods])
-  // console.log(filteredGoods)
+
   return (
     <main className={styles.page_main}>
       <Breadcrumb padding />

@@ -20,7 +20,8 @@ const goods: TcatalogGoodItem[] = [
     color: "",
     size: "",
     care: "",
-    slug: ""
+    slug: "",
+    gender: ""
   },
   {
     id: "5",
@@ -42,7 +43,8 @@ const goods: TcatalogGoodItem[] = [
     compound: "",
     material: "",
     category: "",
-    slug: ""
+    slug: "",
+    gender: ""
   },
   {
     id: "6",
@@ -63,7 +65,8 @@ const goods: TcatalogGoodItem[] = [
     size: "",
     care: "",
     category: "",
-    slug: ""
+    slug: "",
+    gender: ""
   },
   {
     id: "2",
@@ -84,7 +87,8 @@ const goods: TcatalogGoodItem[] = [
     size: "",
     care: "",
     category: "",
-    slug: ""
+    slug: "",
+    gender: ""
   },
   {
     id: "3",
@@ -105,7 +109,8 @@ const goods: TcatalogGoodItem[] = [
     size: "",
     care: "",
     category: "",
-    slug: ""
+    slug: "",
+    gender: ""
   },
   {
     id: "7",
@@ -126,7 +131,8 @@ const goods: TcatalogGoodItem[] = [
     size: "",
     care: "",
     category: "",
-    slug: ""
+    slug: "",
+    gender: ""
   },
   {
     id: "8",
@@ -148,7 +154,8 @@ const goods: TcatalogGoodItem[] = [
     size: "",
     care: "",
     category: "",
-    slug: ""
+    slug: "",
+    gender: ""
   }
 ]
 

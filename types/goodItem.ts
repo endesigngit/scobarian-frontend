@@ -3,6 +3,7 @@ export type TcatalogGoodItem = {
   name: string
   price: number
   type: string
+  gender: string
   color: string
   size: string
   colors: string[]

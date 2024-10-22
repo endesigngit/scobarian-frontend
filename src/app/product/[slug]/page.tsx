@@ -53,13 +53,11 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
   }
 
   useEffect(() => {
-    if (itemsGoods.length == 0) {
-      getAllItemGoods()
-        .then((data) => data?.data)
-        .then((data) => {
-          addItemsGoods(data.data)
-        })
-    }
+    getAllItemGoods("")
+      .then((data) => data?.data)
+      .then((data) => {
+        addItemsGoods(data.data)
+      })
 
     getItemGood(getId(params.slug))
       .then((data) => data?.data)
@@ -72,7 +70,7 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
     } else {
       setCart(false)
     }
-  }, [params.slug, id, cartProducts, itemsGoods, addItemsGoods])
+  }, [params.slug, id, cartProducts, addItemsGoods])
 
   const detailRef = useRef(null)
   const imageRef1 = useRef<HTMLDivElement>(null)

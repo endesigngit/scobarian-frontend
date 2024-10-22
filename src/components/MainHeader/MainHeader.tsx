@@ -6,6 +6,7 @@ import OffcanvasMenuTab from "../OffcanvasMenuTab/OffcanvasMenuTab"
 import { MouseEvent, useEffect, useState } from "react"
 import HeaderCart from "../HeaderCart/HeaderCart"
 import OffcanvasMenuMob from "../OffcanvasMenuMob/OffcanvasMenuMob"
+import { useBoundStore } from "@/store/StoreProvider"
 
 export default function MainHeader() {
   const [IsActive, setActive] = useState<boolean>(false)
@@ -40,7 +41,7 @@ export default function MainHeader() {
             </Link>
             <ul className={styles.main_submenu}>
               <li className={styles.main_submenu__item}>
-                <Link href="/catalog" className={styles.main_submenu__title}>
+                <Link href="/catalog/womens" className={styles.main_submenu__title}>
                   Женщинам
                 </Link>
                 <ul className={styles.inner_submenu}>
@@ -56,7 +57,7 @@ export default function MainHeader() {
                 </ul>
               </li>
               <li className={styles.main_submenu__item}>
-                <Link href="/catalog" className={styles.main_submenu__title}>
+                <Link href="/catalog/mens" className={styles.main_submenu__title}>
                   Мужчинам
                 </Link>
                 <ul className={styles.inner_submenu}>

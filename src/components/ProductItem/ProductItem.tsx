@@ -87,7 +87,7 @@ export default function ProductItem({ good, ofcanvasHandler }: ProductItemProps)
           </li>
         </ul>
       </div>
-      <Link href={`/catalog/${slug}-${id}`} className={styles.product_content}>
+      <Link href={`/product/${slug}-${id}`} className={styles.product_content}>
         <h3 className={styles.product_title}>{name}</h3>
         <span className={styles.product_price}>{formatPriceNum(price)} P</span>
       </Link>

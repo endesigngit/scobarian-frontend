@@ -1,27 +1,23 @@
 import clsx from "clsx"
 import styles from "./OffcanvasFilters.module.css"
 import FiltersItem from "../FiltersItem/FiltersItem"
-
-const sortList = ["Низкая цена", "Высокая цена", "Новое", "скидки"]
-const sizeList = ["XS", "S", "M", "L", "ХL"]
-const typeList = ["Худи", "Бомбер", "Футболка"]
-const colorList = ["milk", "steel", "black", "indigo"]
+import { filtersConst, filterType } from "@/utils/filtersConst"
 
 export default function OffcanvasFilters() {
   return (
     <div className={styles.filters}>
       <ul className={styles.filters_list}>
         <li className={styles.filters_item}>
-          <FiltersItem list={sortList} title="Сортировка" />
+          <FiltersItem list={filtersConst.sortList} title="Сортировка" type={filterType.SORT} />
         </li>
         <li className={styles.filters_item}>
-          <FiltersItem list={sizeList} title="Размер" type="size" />
+          <FiltersItem list={filtersConst.sizeList} title="Размер" type={filterType.SIZE} />
         </li>
         <li className={styles.filters_item}>
-          <FiltersItem list={colorList} title="Цвет" type="color" />
+          <FiltersItem list={filtersConst.colorList} title="Цвет" type={filterType.COLOR} />
         </li>
         <li className={styles.filters_item}>
-          <FiltersItem list={typeList} title="Тип" />
+          <FiltersItem list={filtersConst.typeList} title="Тип" type={filterType.CATEGORY} />
         </li>
       </ul>
       <button type="button" className={styles.send_filters}>

@@ -6,6 +6,7 @@ export const transformCatalogGoodItems = (data: any): TcatalogGoodItem[] => {
       id: item.id,
       name: item.attributes.name,
       price: item.attributes.good.data.attributes.price,
+      gender: item.attributes.gender,
       type: item.attributes.good.data.attributes.type[0],
       color: item.attributes.color,
       size: item.attributes.size,

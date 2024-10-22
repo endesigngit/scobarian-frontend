@@ -9,6 +9,7 @@ import { TcatalogGoodItem } from "../../../../types/goodItem"
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
+  const gender = searchParams.get("gender") || ""
 
   const query = qs.stringify({
     fields: ["name", "size", "color", "count", "discount", "gender", "id"],
@@ -23,6 +24,11 @@ export async function GET(request: NextRequest) {
       },
       images: {
         fields: ["url"]
+      }
+    },
+    filters: {
+      gender: {
+        $contains: gender
       }
     }
   })
