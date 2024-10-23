@@ -23,7 +23,7 @@ export default function FiltersItem({ title, list, type }: FiltersItemProps) {
   const buttonHandler = (filterName: string, status: boolean) => {
     status ? setFilters({ type: type, value: filterName }) : removeFilters({ type: type, value: filterName })
   }
-  console.log(filtersState)
+  // console.log(filtersState)
   return (
     <div className={styles.filter}>
       <button
