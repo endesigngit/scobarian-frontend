@@ -1,27 +1,31 @@
 "use client"
 import clsx from "clsx"
-import styles from "./page.module.css"
+import styles from "../page.module.css"
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
 import { useEffect, useState } from "react"
 import Offcanvas from "@/components/Offcanvas/Offcanvas"
 import OffcanvasFilters from "@/components/OffcanvasFilters/OffcanvasFilters"
 import ProductItem from "@/components/ProductItem/ProductItem"
-import Cart from "../../components/Cart/Cart"
+import Cart from "../../../../components/Cart/Cart"
 import { useBoundStore } from "@/store/StoreProvider"
 import { getAllItemGoods } from "@/utils/api/queries/getAllItemGoods"
+import { categoryNames, filterType } from "@/utils/filtersConst"
+import { TcatalogGoodItem } from "../../../../../types/goodItem"
 
-export default function Catalog() {
+export default function Catalog({ params }: { params: { type: string } }) {
   const [gridStatus, setGridStatus] = useState<boolean>(true)
   const [offcanvasIsActive, setOffcanvasIsActive] = useState<boolean>(false)
   const [offcanvasIsCart, setOffcanvasCart] = useState<boolean>(false)
+  const [goods, setGoods] = useState<TcatalogGoodItem[]>([])
 
-  const { itemsGoods, addItemsGoods, setPageTitle, filteredGoods, setFilters } = useBoundStore((state) => ({
-    itemsGoods: state.itemsGoods,
+  const { addItemsGoods, setPageTitle, filteredGoods, setFilters, filters } = useBoundStore((state) => ({
     addItemsGoods: state.addItemsGoods,
     setPageTitle: state.setTitle,
     setFilters: state.setFilters,
-    filteredGoods: state.filetredGoods
+    filteredGoods: state.filetredGoods,
+    filters: state.filters
   }))
+
   const filtersOpen = () => {
     setOffcanvasIsActive(true)
     setOffcanvasCart(false)
@@ -32,15 +36,17 @@ export default function Catalog() {
   }
 
   useEffect(() => {
-    getAllItemGoods("")
+    getAllItemGoods("?gender=Женщинам")
       .then((data) => data?.data)
       .then((data) => {
         addItemsGoods(data.data)
       })
+    setPageTitle(`Женщинам`)
+  }, [setPageTitle, addItemsGoods, params])
+  useEffect(() => {
+    setGoods(filteredGoods.filter((good) => good.type == categoryNames[params.type]))
+  }, [filteredGoods])
 
-    setPageTitle("Каталог")
-  }, [setPageTitle, addItemsGoods])
-  // console.log(filteredGoods)
   return (
     <main className={styles.page_main}>
       <Breadcrumb padding />
@@ -70,9 +76,9 @@ export default function Catalog() {
         </div>
       </div>
       <div className={styles.catalog_container}>
-        {filteredGoods.length > 0 ? (
+        {goods.length > 0 ? (
           <ul className={clsx(styles.product_list, !gridStatus && styles.product_list__second)}>
-            {filteredGoods.map((good, idx) => (
+            {goods.map((good, idx) => (
               <li className={styles.product_item} key={`${good.id}--${idx}`}>
                 <ProductItem good={good} ofcanvasHandler={cartOpen} />
               </li>

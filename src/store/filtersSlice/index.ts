@@ -3,7 +3,7 @@ import { TcatalogGoodItem } from "../../../types/goodItem"
 import { TSet, TStore } from "../types"
 import { actionWrapper } from "../utils"
 import { TFiltersSlice } from "./types"
-import { getFilteredGoods } from "@/store/filtersUtils"
+import { getFilteredGoods, isEmptyFilters } from "@/store/filtersUtils"
 
 export const createFiltersSlice = (set: TSet): TFiltersSlice => ({
   filters: {
@@ -28,8 +28,15 @@ export const createFiltersSlice = (set: TSet): TFiltersSlice => ({
       case filterType.GENDER:
         state.filters.gender = payload.value
         break
+      case filterType.SORT:
+        state.filters.sortList = [payload.value]
+        break
     }
-    state.filetredGoods = getFilteredGoods(state.itemsGoods, state.filters)
+    if (isEmptyFilters(state.filters)) {
+      state.filetredGoods = state.itemsGoods
+    } else {
+      state.filetredGoods = getFilteredGoods(state.itemsGoods, state.filters)
+    }
   }),
   removeFilters: actionWrapper(set, (state, payload: { type: filterType; value: string }) => {
     switch (payload.type) {
@@ -45,7 +52,14 @@ export const createFiltersSlice = (set: TSet): TFiltersSlice => ({
       case filterType.GENDER:
         state.filters.gender = payload.value
         break
+      case filterType.SORT:
+        state.filters.sortList = []
+        break
     }
-    state.filetredGoods = getFilteredGoods(state.itemsGoods, state.filters)
+    if (isEmptyFilters(state.filters)) {
+      state.filetredGoods = state.itemsGoods
+    } else {
+      state.filetredGoods = getFilteredGoods(state.itemsGoods, state.filters)
+    }
   })
 })

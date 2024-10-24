@@ -48,6 +48,9 @@
   /* grid-template-rows: minmax(508px, 1fr); */
   grid-auto-rows: minmax(508px, 1fr);
 } 
+.empty_list {
+  text-align: center;
+}
 
 @media (min-width:1140px) {
   .grid_toggle span:nth-child(2) {

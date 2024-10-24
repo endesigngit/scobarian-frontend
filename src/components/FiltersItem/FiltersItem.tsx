@@ -14,15 +14,15 @@ type FiltersItemProps = {
 export default function FiltersItem({ title, list, type }: FiltersItemProps) {
   const [isActive, setActive] = useState<boolean>(false)
 
-  const { setFilters, filtersState, removeFilters } = useBoundStore((state) => ({
-    setFilters: state.setFilters,
-    removeFilters: state.removeFilters,
-    filtersState: state.filters
-  }))
+  // const { setFilters, filtersState, removeFilters } = useBoundStore((state) => ({
+  //   setFilters: state.setFilters,
+  //   removeFilters: state.removeFilters,
+  //   filtersState: state.filters
+  // }))
 
-  const buttonHandler = (filterName: string, status: boolean) => {
-    status ? setFilters({ type: type, value: filterName }) : removeFilters({ type: type, value: filterName })
-  }
+  // const buttonHandler = (filterName: string, status: boolean) => {
+  //   status ? setFilters({ type: type, value: filterName }) : removeFilters({ type: type, value: filterName })
+  // }
   // console.log(filtersState)
   return (
     <div className={styles.filter}>
@@ -38,7 +38,7 @@ export default function FiltersItem({ title, list, type }: FiltersItemProps) {
           {list
             ? list.map((title) => (
                 <li className={clsx(styles.filter_item)} key={title}>
-                  <FilterToggle title={title} handler={buttonHandler} type={type} />
+                  <FilterToggle title={title} type={type} />
                 </li>
               ))
             : ""}

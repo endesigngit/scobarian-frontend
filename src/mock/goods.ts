@@ -31,11 +31,10 @@ const goods: TcatalogGoodItem[] = [
     colors: ["Сталь", "Черный", "Молочный"],
     sizes: ["S"],
     images: [
-      "/uploads/t_shirt_st_1_e7f401e72c.webp",
-      "/uploads/t_shirt_st_2_b85f0f79e9.webp",
-      "/uploads/t_shirt_st_3_8a9023a93c.webp",
-      "/uploads/t_shirt_st_4_1f5891e2d7.webp",
-      "/uploads/t_shirt_st_5_0a501389a1.webp"
+      "/uploads/fon_8d1e79154a.webp",
+      "/uploads/fon_8d1e79154a.webp",
+      "/uploads/fon_8d1e79154a.webp",
+      "/uploads/fon_8d1e79154a.webp"
     ],
     color: "",
     size: "",
@@ -76,10 +75,10 @@ const goods: TcatalogGoodItem[] = [
     colors: ["Черный"],
     sizes: ["L"],
     images: [
-      "http://admin.skobarian.ru/uploads/bomber_bl_2_4a7c43189d.webp",
-      "http://admin.skobarian.ru/uploads/bomber_bl_1_3889d8dc14.webp",
-      "http://admin.skobarian.ru/uploads/bomber_bl_3_e42ad1cd6b.webp",
-      "http://admin.skobarian.ru/uploads/bomber_bl_4_92b4863d89.webp"
+      "https://admin.skobarian.ru/uploads/bomber_bl_2_4a7c43189d.webp",
+      "https://admin.skobarian.ru/uploads/bomber_bl_1_3889d8dc14.webp",
+      "https://admin.skobarian.ru/uploads/bomber_bl_3_e42ad1cd6b.webp",
+      "https://admin.skobarian.ru/uploads/bomber_bl_4_92b4863d89.webp"
     ],
     compound: "70% хлопок, 30% полиэстер.",
     material: "футер 3-хнитка начес, плотность 330-340г/м^2",

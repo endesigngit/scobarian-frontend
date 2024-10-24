@@ -39,10 +39,10 @@ export default function Home() {
             <h3 className={styles.image_block_title}>худи</h3>
           </div>
           <div className={styles.image_block__links}>
-            <Link className={styles.image_block__link} href={"/catalog"}>
+            <Link className={styles.image_block__link} href={"/catalog/mens"}>
               мужчины
             </Link>
-            <Link className={styles.image_block__link} href={"/catalog"}>
+            <Link className={styles.image_block__link} href={"/catalog/womens"}>
               женщины
             </Link>
           </div>

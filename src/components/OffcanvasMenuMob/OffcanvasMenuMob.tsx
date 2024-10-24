@@ -55,12 +55,12 @@ export default function OffcanvasMenuMob({ isActive, activeHandler }: OffcanvasM
               </Link>
               <ul className={styles.mobile_submenu}>
                 <li className={styles.mobile_submenu__item}>
-                  <Link href="/catalog" className={styles.mobile_submenu_title}>
+                  <Link href="/catalog/womens" className={styles.mobile_submenu_title}>
                     Женщинам
                   </Link>
                 </li>
                 <li className={styles.main_submenu__item}>
-                  <Link href="/catalog" className={styles.mobile_submenu_title}>
+                  <Link href="/catalog/mens" className={styles.mobile_submenu_title}>
                     Мужчинам
                   </Link>
                 </li>
@@ -91,11 +91,11 @@ export default function OffcanvasMenuMob({ isActive, activeHandler }: OffcanvasM
             <span className={styles.mobile_cart_count}>{productCount}</span>
           </div>
           <div className={styles.contacts}>
-            <Link href={"tel:+79808005491"} className={styles.contacts_link}>
-              +7 (980) 800-54-91
+            <Link href={"tel:+78112702080"} className={styles.contacts_link}>
+              +7 (8112) 70-20-80
             </Link>
-            <Link href={"mailto:info@iamskobarian.ru"} className={styles.contacts_link}>
-              info@iamskobarian.ru
+            <Link href={"mailto:zakaz@skobarian.ru"} className={styles.contacts_link}>
+              zakaz@skobarian.ru
             </Link>
           </div>
         </div>

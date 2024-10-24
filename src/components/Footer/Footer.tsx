@@ -18,12 +18,12 @@ export default function Footer() {
           </Link>
           <ul className={styles.footer_list}>
             <li>
-              <Link href="/catalog" className={styles.secondary_footer__link}>
+              <Link href="/catalog/womens" className={styles.secondary_footer__link}>
                 Женщинам
               </Link>
             </li>
             <li>
-              <Link href="/catalog" className={styles.secondary_footer__link}>
+              <Link href="/catalog/mens" className={styles.secondary_footer__link}>
                 Мужчинам
               </Link>
             </li>

@@ -39,34 +39,34 @@ export default function OffcanvasMenuTab({ isActive, activeHandler }: OffcanvasM
               </Link>
               <ul className={styles.tablet_submenu}>
                 <li className={styles.tablet_submenu__item}>
-                  <Link href="/catalog" className={styles.tablet_submenu_title}>
+                  <Link href="/catalog/womens" className={styles.tablet_submenu_title}>
                     Женщинам
                   </Link>
                   <ul className={styles.inner_submenu}>
                     <li className={styles.inner_submenu__item}>
-                      <Link href="/catalog">Худи</Link>
+                      <Link href="/catalog/womens/hoodie">Худи</Link>
                     </li>
                     <li className={styles.inner_submenu__item}>
-                      <Link href="/catalog">Бомбер</Link>
+                      <Link href="/catalog/womens/bomber">Бомбер</Link>
                     </li>
                     <li className={styles.inner_submenu__item}>
-                      <Link href="/catalog">Футболка</Link>
+                      <Link href="/catalog/womens/t-shirt">Футболка</Link>
                     </li>
                   </ul>
                 </li>
                 <li className={styles.main_submenu__item}>
-                  <Link href="/catalog" className={styles.tablet_submenu_title}>
+                  <Link href="/catalog/mens" className={styles.tablet_submenu_title}>
                     Мужчинам
                   </Link>
                   <ul className={styles.inner_submenu}>
                     <li className={styles.inner_submenu__item}>
-                      <Link href="/catalog">Худи</Link>
+                      <Link href="/catalog/mens/hoodie">Худи</Link>
                     </li>
                     <li className={styles.inner_submenu__item}>
-                      <Link href="/catalog">Бомбер</Link>
+                      <Link href="/catalog/mens/bomber">Бомбер</Link>
                     </li>
                     <li className={styles.inner_submenu__item}>
-                      <Link href="/catalog">Футболка</Link>
+                      <Link href="/catalog/mens/t-shirt">Футболка</Link>
                     </li>
                   </ul>
                 </li>

@@ -15,10 +15,8 @@ export default function Catalog() {
   const [offcanvasIsActive, setOffcanvasIsActive] = useState<boolean>(false)
   const [offcanvasIsCart, setOffcanvasCart] = useState<boolean>(false)
 
-  const { itemsGoods, addItemsGoods, setPageTitle, filteredGoods, setFilters } = useBoundStore((state) => ({
-    itemsGoods: state.itemsGoods,
+  const { addItemsGoods, setPageTitle, filteredGoods } = useBoundStore((state) => ({
     addItemsGoods: state.addItemsGoods,
-    setFilters: state.setFilters,
     setPageTitle: state.setTitle,
     filteredGoods: state.filetredGoods
   }))
@@ -70,15 +68,17 @@ export default function Catalog() {
         </div>
       </div>
       <div className={styles.catalog_container}>
-        <ul className={clsx(styles.product_list, !gridStatus && styles.product_list__second)}>
-          {filteredGoods
-            ? filteredGoods.map((good, idx) => (
-                <li className={styles.product_item} key={`${good.id}--${idx}`}>
-                  <ProductItem good={good} ofcanvasHandler={cartOpen} />
-                </li>
-              ))
-            : ""}
-        </ul>
+        {filteredGoods.length > 0 ? (
+          <ul className={clsx(styles.product_list, !gridStatus && styles.product_list__second)}>
+            {filteredGoods.map((good, idx) => (
+              <li className={styles.product_item} key={`${good.id}--${idx}`}>
+                <ProductItem good={good} ofcanvasHandler={cartOpen} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <h3 className={styles.empty_list}>Список товаров по выбранному фильтру пуст</h3>
+        )}
       </div>
       <Offcanvas
         isActive={offcanvasIsActive}
