@@ -1,10 +1,9 @@
 export const filtersConst = {
   // sortList = ["Низкая цена", "Высокая цена", "Новое", "скидки"]
   sortList: ["Низкая цена", "Высокая цена"],
-  sizeList: ["XS", "S", "M", "L", "ХL"],
+  sizeList: ["XS", "S", "M", "L", "XL"],
   typeList: ["Худи", "Бомбер", "Футболка"],
   colorList: ["Молочный", "Сталь", "Черный", "Индиго"]
-  // colorList: ["milk", "steel", "black", "indigo"]
 }
 
 export enum filterType {
