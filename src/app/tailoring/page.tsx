@@ -1,21 +1,19 @@
-"use client"
 import styles from "./page.module.css"
-import Link from "next/link"
 import { clsx } from "clsx"
 import { Typography } from "@/UI/Typography/Typography"
 import FeedbackForm from "@/components/FeedbackForm/FeedbackForm"
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
-import { useBoundStore } from "@/store/StoreProvider"
-import { useEffect } from "react"
+import { Metadata } from "next/types"
+
+export const metadata: Metadata = {
+  title: {
+    default: "Пошив корпоративной одежды. Высокое качество материалов",
+    template: ""
+  },
+  description: "Изготовим сигнальный образец для согласования перед отправкой тиража в производство."
+}
 
 export default function Tailoring() {
-  const { setTitle } = useBoundStore((state) => ({
-    setTitle: state.setTitle
-  }))
-
-  useEffect(() => {
-    setTitle("Пошив")
-  }, [setTitle])
   return (
     <main className={styles.page_main}>
       <Breadcrumb padding />

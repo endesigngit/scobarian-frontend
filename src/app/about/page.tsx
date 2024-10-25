@@ -1,20 +1,17 @@
-"use client"
 import styles from "./page.module.css"
-import { clsx } from "clsx"
 import { Typography } from "@/UI/Typography/Typography"
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
-import { useEffect } from "react"
-import { useBoundStore } from "@/store/StoreProvider"
 import { Metadata } from "next"
 
-export default function About() {
-  const { setTitle } = useBoundStore((state) => ({
-    setTitle: state.setTitle
-  }))
+export const metadata: Metadata = {
+  title: {
+    default: "О бренде I’am skobarian",
+    template: ""
+  },
+  description: "Бренд I am Skobarian основан в начале 2024 года в Пскове. Имя бренд получил от слова «скобарь»."
+}
 
-  useEffect(() => {
-    setTitle("О нас")
-  }, [setTitle])
+export default function About() {
   return (
     <main className={styles.page_main}>
       <Breadcrumb padding />

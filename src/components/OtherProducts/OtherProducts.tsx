@@ -14,7 +14,7 @@ export default function OtherProducts({ products }: OtherProductsProps) {
       <ul className={styles.products_list}>
         {products.map(({ id, images, name, color, slug }) => (
           <li key={id}>
-            <Link href={`/catalog/${slug}-${id}`} className={styles.product}>
+            <Link href={`/product/${slug}-${id}`} className={styles.product}>
               <div className={styles.product_img}>
                 <Image
                   className={styles.gallery_img}

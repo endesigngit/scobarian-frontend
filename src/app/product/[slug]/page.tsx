@@ -42,10 +42,10 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
     setPTitle: state.setTitle
   }))
 
-  const { name, id, colors, color, images, price, care, compound, sizes, type, size, slug } = goodItem
+  const { name, id, colors, color, images, price, care, compound, sizes, type, size, slug, gender } = goodItem
 
   const filteredGoods = itemsGoods.filter((good) => good.id != id).slice(0, 4)
-  const otherProduct = itemsGoods.filter((good) => good.slug == slug)
+  const otherProduct = itemsGoods.filter((good) => good.slug == slug && good.color !== color)
 
   const getId = (pars: string) => {
     const par = pars.split("-")
