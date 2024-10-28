@@ -45,7 +45,8 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
   const { name, id, colors, color, images, price, care, compound, sizes, type, size, slug, gender } = goodItem
 
   const filteredGoods = itemsGoods.filter((good) => good.id != id).slice(0, 4)
-  const otherProduct = itemsGoods.filter((good) => good.slug == slug && good.color !== color)
+  const otherProductByColor = itemsGoods.filter((good) => good.slug == slug && good.color !== color)
+  const otherProductBySize = itemsGoods.filter((good) => good.slug == slug && good.size !== size)
 
   const getId = (pars: string) => {
     const par = pars.split("-")
@@ -153,10 +154,10 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
       case "Таблица размеров":
         return <SizeTable />
       case "Больше цветов":
-        return <OtherProducts products={otherProduct} />
+        return <OtherProducts products={otherProductByColor} />
 
       default:
-        return <OtherProducts products={otherProduct} />
+        return <OtherProducts products={otherProductByColor} />
     }
   }
 
@@ -199,14 +200,14 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
                   <div className={styles.parameters}>
                     <div className={styles.parameters_item}>
                       <span className={styles.parameter_title}>Размер:</span>
-                      <ProductDimensions isLarge sizes={sizes} actualSize={size} />
+                      <ProductDimensions isLarge sizes={sizes} actualSize={size} products={otherProductBySize} />
                     </div>
                     <div className={styles.parameters_item}>
                       <span className={styles.parameter_title}>Цвет:</span>
-                      <ProductColors isLarge colors={colors} actualColor={color} />
+                      <ProductColors isLarge colors={colors} actualColor={color} products={otherProductByColor} />
                     </div>
                   </div>
-                  {colors.length > 1 ? (
+                  {otherProductByColor.length > 1 ? (
                     <button
                       type="button"
                       className={styles.more_colors}
