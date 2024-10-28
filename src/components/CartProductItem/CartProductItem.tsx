@@ -13,15 +13,14 @@ type CartProductItemProps = {
 }
 const firstGood = getGoods()[0]
 export default function CartProductItem({ isLarge, good = firstGood }: CartProductItemProps) {
-  const { name, images, price, color, size, compound, slug } = good
-  // console.log(consistPrimary)
+  const { name, images, price, color, size, compound, slug, id } = good
   const { addToCart, deleteProduct } = useBoundStore((state) => ({
     addToCart: state.addToCart,
     deleteProduct: state.deleteProduct
   }))
   return (
     <div className={clsx(styles.product_item, isLarge && styles.product_item__large)}>
-      <Link className={styles.product_img__wrap} href={`/catalog/${slug}`}>
+      <Link className={styles.product_img__wrap} href={`/product/${slug}-${id}`}>
         <Image
           className={styles.product_img}
           src={`http://admin.skobarian.ru${images[0]}`}
@@ -32,7 +31,7 @@ export default function CartProductItem({ isLarge, good = firstGood }: CartProdu
         />
       </Link>
       <div className={styles.product_header}>
-        <Link className={styles.product_title} href={`/catalog/${slug}`}>
+        <Link className={styles.product_title} href={`/product/${slug}-${id}`}>
           {name}
         </Link>
         <span className={styles.product_price}>{price} P</span>
