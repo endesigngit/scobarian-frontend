@@ -4,7 +4,6 @@ import Link from "next/link"
 import { clsx } from "clsx"
 import { Typography } from "@/UI/Typography/Typography"
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
-import Image from "next/image"
 import Offcanvas from "@/components/Offcanvas/Offcanvas"
 import { useEffect, useRef, useState } from "react"
 import SizeTable from "@/components/SizeTable/SizeTable"
@@ -20,14 +19,14 @@ import { useInView } from "react-intersection-observer"
 import { TcatalogGoodItem } from "../../../../types/goodItem"
 import { getAllItemGoods } from "@/utils/api/queries/getAllItemGoods"
 import { getItemGood } from "@/utils/api/queries/getItemGood"
-import { STRAPI_URL } from "@/utils/api/endpoints"
 import OtherProducts from "@/components/OtherProducts/OtherProducts"
+import ProductMiniGallery from "@/components/ProductMiniGallery/ProductMiniGallery"
+import ProductGallery from "@/components/ProductGallery/ProductGallery"
 
 export default function SingleProduct({ params }: { params: { slug: string } }) {
   const [offcanvasIsActive, setOffcanvasIsActive] = useState<boolean>(false)
   const [offcanvasTitle, setOffcanvasTitle] = useState<string>("")
   const [inCart, setCart] = useState<boolean>(false)
-  const [framePos, setFramePos] = useState<number>(0)
   const [goodItem, setGoodItem] = useState<TcatalogGoodItem>(getGoods()[1])
 
   const [refRecommendations, inView] = useInView({
@@ -78,32 +77,8 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
   const imageRef2 = useRef<HTMLDivElement>(null)
   const imageRef3 = useRef<HTMLDivElement>(null)
   const imageRef4 = useRef<HTMLDivElement>(null)
-  const frameRef = useRef<HTMLDivElement>(null)
 
   const imageRefs = [imageRef1, imageRef2, imageRef3, imageRef4]
-
-  const framePositions = [
-    "",
-    styles.mini_gallery__frame__s1,
-    styles.mini_gallery__frame__s2,
-    styles.mini_gallery__frame__s3
-  ]
-
-  const setFramePositionByScroll = (scroll: any, chunk: number) => {
-    if (scroll >= chunk && scroll < chunk * 2) {
-      setFramePos(1)
-      return
-    }
-    if (scroll >= chunk * 2 && scroll < chunk * 3) {
-      setFramePos(2)
-      return
-    }
-    if (scroll >= chunk * 3) {
-      setFramePos(3)
-      return
-    }
-    setFramePos(0)
-  }
 
   useEffect(() => {
     if (inView) {
@@ -111,11 +86,6 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
     } else {
       setPTitle(type)
     }
-    const chunk = imageRef1.current ? imageRef1.current.offsetHeight - 100 : 700
-
-    window.addEventListener("scroll", () => {
-      setFramePositionByScroll(window.scrollY, chunk)
-    })
   }, [inView, type, setPTitle])
 
   const addToCartHandler = () => {
@@ -166,20 +136,7 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
       <Breadcrumb padding />
       <div className={clsx("main_grid", styles.product_container)}>
         <div className={styles.left_side}>
-          <div className={styles.product_gallery}>
-            {goodItem.images.slice(0, 4).map((image, idx) => (
-              <div className={styles.product_gallery__item} key={idx} ref={imageRefs[idx]}>
-                <Image
-                  className={styles.gallery_img}
-                  src={`${STRAPI_URL}${image}`}
-                  width={700}
-                  height={1050}
-                  priority
-                  alt={name}
-                />
-              </div>
-            ))}
-          </div>
+          <ProductGallery images={images} refs={imageRefs} altName={name} />
         </div>
         <div className={styles.right_side}>
           <div className={styles.product_content}>
@@ -234,7 +191,7 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
                     <span className={styles.cart_main_title}>перейти в корзину</span>
                   )}
                 </button>
-                <div className={styles.mini_gallery_btns}>
+                <div className={styles.product_top_btns}>
                   <button
                     type="button"
                     className={styles.product_btn}
@@ -307,28 +264,7 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
           </div>
 
           <div className={styles.mini_gallery_container}>
-            <div className={styles.mini_gallery}>
-              {images.slice(0, 4).map((image, idx) => (
-                <button
-                  type="button"
-                  className={styles.mini_gallery_btn}
-                  key={idx}
-                  onClick={() => {
-                    scrollToElement(imageRefs[idx], "start")
-                  }}
-                >
-                  <Image
-                    className={styles.mini_gallery_btn__img}
-                    src={`${STRAPI_URL}${image}`}
-                    width={70}
-                    height={105}
-                    priority
-                    alt={name}
-                  />
-                </button>
-              ))}
-              <div className={clsx(styles.mini_gallery__frame, framePositions[framePos])} ref={frameRef}></div>
-            </div>
+            <ProductMiniGallery images={images} refs={imageRefs} />
           </div>
         </div>
         <div className={clsx("main_grid", styles.recommendations)} ref={refRecommendations}>
