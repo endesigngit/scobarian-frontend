@@ -45,6 +45,7 @@
   color: var(--secondary-font-color);
 } 
 .main_menu__link {
+  display: block;
   filter: invert(1) grayscale(1);
   color: #000000;
   height: max-content;
@@ -91,6 +92,28 @@
   display: inline-block;
   width: 80%;
 }
+
+
+/* .enter {
+  opacity: 0;
+  transform: translateY(100%);
+}
+.enterActive {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: opacity 600ms, transform 600ms;
+}
+.exit {
+  opacity: 0;
+  transform: translateY(100%);
+}
+.exitActive {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: opacity 600ms, transform 600ms;
+} */
+
+
 
 @media (max-width:950px){
   .header {

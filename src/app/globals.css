@@ -119,6 +119,63 @@ main {
   animation-delay: 0.9s;
 }
 
+/*Глобальные стили анимации CSSTransition для Header элементов*/
+.anim-1-exit {
+  opacity: 0;
+  transform: translateY(100%);
+}
+.anim-1-exit-active {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: opacity 300ms, transform 300ms;
+}
+.anim-2-exit {
+  opacity: 0;
+  transform: translateY(100%);
+}
+.anim-2-exit-active {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: opacity 500ms, transform 500ms;
+}
+.anim-3-exit {
+  opacity: 0;
+  transform: translateY(100%);
+}
+.anim-3-exit-active {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: opacity 700ms, transform 700ms;
+}
+.anim-4-exit {
+  opacity: 0;
+  transform: translateY(100%);
+}
+.anim-4-exit-active {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: opacity 900ms, transform 900ms;
+}
+.anim-5-exit {
+  opacity: 0;
+  transform: translateY(100%);
+}
+.anim-5-exit-active {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: opacity 1100ms, transform 1100ms;
+}
+.anim-6-exit {
+  opacity: 0;
+  transform: translateY(100%);
+}
+.anim-6-exit-active {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: opacity 1300ms, transform 1300ms;
+}
+/*Глобальные стили анимации CSSTransition для Header элементов END*/
+
 
 
 
