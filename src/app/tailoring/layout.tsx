@@ -10,5 +10,5 @@ export default function TailoringLayout({ children }: { children: React.ReactNod
   useEffect(() => {
     setTitle("Пошив")
   }, [setTitle])
-  return <section>{children}</section>
+  return <>{children}</>
 }

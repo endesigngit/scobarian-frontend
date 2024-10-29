@@ -10,5 +10,5 @@ export default function AboutLayout({ children }: { children: React.ReactNode })
   useEffect(() => {
     setTitle("О нас")
   }, [setTitle])
-  return <section>{children}</section>
+  return <>{children}</>
 }
