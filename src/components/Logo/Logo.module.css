@@ -14,6 +14,29 @@
   text-transform: uppercase;
 }
 
+.appear {
+  transform: translateY(100%);
+}
+.appearActive {
+  transform: translateY(0%);
+  transition: transform 300ms;
+}
+.enter {
+  transform: translateY(100%);
+}
+.enterActive {
+  transform: translateY(0%);
+  transition: transform 300ms;
+}
+.exit {
+  transform: translateY(100%);
+}
+.exitActive {
+  transform: translateY(0%);
+  transition: transform 300ms;
+  
+}
+
 @media (max-width:1400px){
   .logo_title {
     font-size: 13.4px;

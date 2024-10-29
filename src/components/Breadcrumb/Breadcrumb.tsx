@@ -1,32 +1,26 @@
 "use client"
-// import Link from "next/link"
 import styles from "./Breadcrumb.module.css"
 import { clsx } from "clsx"
 import Logo from "../Logo/Logo"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useBoundStore } from "@/store/StoreProvider"
-// import { useEffect, useState } from "react"
+import { CSSTransition } from "react-transition-group"
 
 type BreadcrumbProps = {
   padding?: boolean
 }
 
 export default function Breadcrumb({ padding }: BreadcrumbProps) {
-  const [isActive, setActive] = useState<boolean>(false)
-
+  const [pageTitle, setPageTitle] = useState<string>("")
   const { title } = useBoundStore((state) => ({
     title: state.title
   }))
-  const [pageTitle, setPageTitle] = useState<string>(title)
+
   useEffect(() => {
-    if (title != pageTitle) {
-      setActive(true)
-      setPageTitle(title)
-    }
-    setTimeout(() => {
-      setActive(false)
-    }, 1000)
-  }, [title, pageTitle])
+    setPageTitle(title)
+  }, [title])
+
+  const nodeRef = useRef(null)
 
   return (
     <div className={clsx(styles.breadcrumb, padding && styles.breadcrumb_full)}>
@@ -35,7 +29,11 @@ export default function Breadcrumb({ padding }: BreadcrumbProps) {
           <Logo />
         </div>
         <div className={clsx(styles.breadcrumb_col, "main_col_2")}>
-          <h3 className={clsx(styles.breadcrumb_title, isActive && "moveTop_anim", "moveTop_anim_s2")}>{pageTitle}</h3>
+          <CSSTransition nodeRef={nodeRef} in={title != pageTitle} timeout={500} classNames={{ ...styles }}>
+            <h3 className={clsx(styles.breadcrumb_title)} ref={nodeRef}>
+              {pageTitle}
+            </h3>
+          </CSSTransition>
         </div>
       </div>
     </div>

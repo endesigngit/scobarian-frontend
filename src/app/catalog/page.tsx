@@ -15,11 +15,9 @@ export default function Catalog() {
   const [offcanvasIsActive, setOffcanvasIsActive] = useState<boolean>(false)
   const [offcanvasIsCart, setOffcanvasCart] = useState<boolean>(false)
 
-  const { itemsGoods, addItemsGoods, setPageTitle, filteredGoods, setFilters } = useBoundStore((state) => ({
-    itemsGoods: state.itemsGoods,
+  const { addItemsGoods, setPageTitle, filteredGoods } = useBoundStore((state) => ({
     addItemsGoods: state.addItemsGoods,
     setPageTitle: state.setTitle,
-    setFilters: state.setFilters,
     filteredGoods: state.filetredGoods
   }))
   const filtersOpen = () => {
@@ -40,7 +38,7 @@ export default function Catalog() {
 
     setPageTitle("Каталог")
   }, [setPageTitle, addItemsGoods])
-  // console.log(filteredGoods)
+  // console.log("Render")
   return (
     <main className={styles.page_main}>
       <Breadcrumb padding />
