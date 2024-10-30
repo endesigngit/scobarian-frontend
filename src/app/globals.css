@@ -103,6 +103,17 @@ main {
   animation-fill-mode: forwards;
   animation-delay: 0.3s;
 }
+
+.animate_show {
+  transform: translateY(5%);
+  opacity: 0;
+  animation-name: showBlock;
+  animation-duration: 0.8s;
+  animation-delay: 0.3s;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+
 .moveTop_anim_s1 {
   animation-delay: 0.5s;
 }
@@ -176,7 +187,16 @@ main {
 }
 /*Глобальные стили анимации CSSTransition для Header элементов END*/
 
-
+@keyframes showBlock {
+  0% {
+    opacity: 0;
+    transform: translateY(5%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
 
 
 @keyframes moveToUp {

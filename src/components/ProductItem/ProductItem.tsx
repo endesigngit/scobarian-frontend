@@ -10,6 +10,7 @@ import { useEffect, useState } from "react"
 import formatPriceNum from "@/utils/formatPriceNum"
 import { TcatalogGoodItem } from "../../../types/goodItem"
 import { STRAPI_URL } from "@/utils/api/endpoints"
+import clsx from "clsx"
 
 type ProductItemProps = {
   good: TcatalogGoodItem
@@ -41,7 +42,7 @@ export default function ProductItem({ good, ofcanvasHandler }: ProductItemProps)
   }, [cartProducts, good, id])
 
   return (
-    <div className={styles.product}>
+    <div className={clsx(styles.product, "animate_show")}>
       <div className={styles.product_img_wrap}>
         <Image
           className={styles.product_img}
