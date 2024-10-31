@@ -67,9 +67,9 @@ export default function MainHeader() {
                   <li className={styles.inner_submenu__item}>
                     <Link href="/catalog/womens/hoodie">Худи</Link>
                   </li>
-                  <li className={styles.inner_submenu__item}>
+                  {/* <li className={styles.inner_submenu__item}>
                     <Link href="/catalog/womens/bomber">Бомбер</Link>
-                  </li>
+                  </li> */}
                   <li className={styles.inner_submenu__item}>
                     <Link href="/catalog/womens/t-shirt">Футболка</Link>
                   </li>
