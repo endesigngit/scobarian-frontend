@@ -7,6 +7,15 @@
   grid-column: span 8;
   display: flex;
 }
+.left_side {
+  transform: translateY(20px);
+  opacity: 0;
+  animation-name: showBlock;
+  animation-duration: 0.8s;
+  animation-delay: 0.3s;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
 .right_side {
   position: relative;
   flex-direction: row;
@@ -26,6 +35,13 @@
   position: relative;
   width: 100%;
   flex-grow: 1;
+  transform: translateY(20px);
+  opacity: 0;
+  animation-name: showBlock;
+  animation-duration: 0.8s;
+  animation-delay: 0.4s;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
 }
 .product_bottom {
   padding-top: 75px;
@@ -236,7 +252,16 @@
   justify-content: space-between;
   row-gap: 80px;
 }
-
+@keyframes showBlock {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
 
 @media (max-width:1400px) {
   .left_side{
