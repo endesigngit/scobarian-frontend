@@ -45,6 +45,18 @@
 .offcanvas__inactive .offcanvas_body {
   animation: slide 0.6s forwards;
 }
+.offcanvas_content {
+  margin-top: 53px;
+}
+.offcanvas_close_btn,
+.offcanvas_title {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.4px;
+  text-transform: uppercase;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
 
 @keyframes slide-reverse {
   0% {
