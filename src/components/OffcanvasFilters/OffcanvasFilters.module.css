@@ -1,5 +1,6 @@
 
 .filters {
+  margin-top: 50px;
   width: min(100%, 740px);
   height: 80vh;
   overflow: scroll;
