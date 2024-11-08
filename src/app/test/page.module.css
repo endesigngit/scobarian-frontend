@@ -1,0 +1,207 @@
+.image_blocks {
+  position: relative;
+  height: calc(6 * 380px);
+  /* height: calc(6 * (100vh / 1.8)); */
+}
+.anim_line_container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  scrollbar-width: none;
+}
+.anim_line {
+  width: 100%;
+  transform: translateY(0px);
+  transition: transform 0.9s;
+  transition-timing-function: cubic-bezier(.86,.37,.57,.8);
+}
+.anim_line__s1 {
+  transform: translateY(-100vh);
+  transition: transform 0.9s;
+  transition-timing-function: cubic-bezier(.86,.37,.57,.8);
+}
+.anim_line__s2 {
+  transform: translateY(-200vh);
+  transition: transform 0.9s;
+  transition-timing-function: cubic-bezier(.86,.37,.57,.8);
+}
+.anim_line__s3 {
+  transform: translateY(-300vh);
+  transition: transform 0.9s;
+  transition-timing-function: cubic-bezier(.86,.37,.57,.8);
+}
+.anim_line__s4 {
+  transform: translateY(-400vh);
+  transition: transform 0.9s;
+  transition-timing-function: cubic-bezier(.86,.37,.57,.8);
+}
+.anim_line__s5 {
+  transform: translateY(-500vh);
+  transition: transform 0.9s;
+  transition-timing-function: cubic-bezier(.86,.37,.57,.8);
+}
+.anim_line__s6 {
+  transform: translateY(-600vh);
+  transition: transform 0.6s;
+  transition-timing-function: cubic-bezier(.86,.37,.57,.8);
+}
+.image_block {
+  position: relative;
+  width: 100%;
+  /* height: 877px; */
+  height: 100vh;
+  background-image: url("../../assets/images/main-bg-1.webp");
+  background-repeat: no-repeat;
+  background-position: 50% 30%;
+  background-size: cover;
+  /* scroll-snap-align: start; */
+  transition: background-position 1.9s;
+  /* transition: transform 1.9s; */
+}
+.image_block__active {
+  background-position: 50% 50%;
+  transition: background-position 1.9s;
+}
+
+.block_title_wrap {
+  padding: 0 var(--container-padding-x);
+  position: sticky;
+  top: 63px;
+  left: 0;
+  width: 100%;
+}
+.image_block_title {
+  display: none;
+  padding:60px 0;
+  grid-column: 4/9;
+  mix-blend-mode: difference;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.1px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+}
+.image_block__links {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  /* position: sticky; */
+  /* top: 40%; */
+  justify-content: space-between;
+  align-items: center;
+}
+.image_block__hoodie {
+  background-image: url("../../assets/images/main-bg-2.webp");
+}
+.image_block__philosophy {
+  background-image: url("../../assets/images/main-bg-3.webp");
+}
+.image_block__bomber {
+  background-image: url("../../assets/images/main-bg-4.webp");
+}
+.image_block__tshirt {
+  background-image: url("../../assets/images/main-bg-5.webp");
+}
+.image_block__tailoring {
+  background-image: url("../../assets/images/main-bg-6.webp");
+}
+.image_block_content {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image_block__link {
+  bottom: 30px;
+  padding: 100px 40px;
+  color: #ffffff;
+  overflow: hidden;
+}
+.link_text {
+  display: inline-block;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.1px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: transform 0.3s, opacity 0.4s;
+}
+.image_block__active .link_text{
+  transform: translateY(0%);
+  opacity: 1;
+  transition: transform 0.3s, opacity 0.4s;
+  transition-delay: 0;
+}
+.image_block__active .link_text:nth-child(2){
+  transition-delay: 0.2s;
+}
+.link_text.link_text__sec,
+.image_block__active .link_text:nth-child(3){
+  transition-delay: 0.4s;
+}
+
+@media (max-width:1400px){
+  .image_block {
+    width: 100%;
+    height: 60vw;
+  }
+  .image_block_title {
+    grid-column: 5/13;
+  }
+}
+@media (max-width:1024px){
+  .image_blocks {
+    height: max-content;
+  }
+  .image_block__links {
+    position: static;
+    height: 100%;
+    align-items: center;
+  }
+  .anim_line_container {
+    height: max-content;
+  }
+}
+@media (max-width:950px){
+  .image_block_title {
+    display: block;
+    mix-blend-mode: normal;
+    padding:40px 0;
+    grid-column: 1/6;
+  }
+  .block_title_wrap {
+    position: absolute;
+  }
+}
+@media (max-width:767px){
+  .image_block {
+    height: 738px;
+    background-image: url("../../assets/images/main-bg-1-mob.webp");
+  }
+  .image_block__hoodie {
+    background-image: url("../../assets/images/main-bg-2-mob.webp");
+  }
+  .image_block__philosophy {
+    background-image: url("../../assets/images/main-bg-3-mob.webp");
+  }
+  .image_block__bomber {
+    background-image: url("../../assets/images/main-bg-4-mob.webp");
+  }
+  .image_block__tshirt {
+    background-image: url("../../assets/images/main-bg-5-mob.webp");
+  }
+  .image_block__tailoring {
+    background-image: url("../../assets/images/main-bg-6-mob.webp");
+  }
+
+}
