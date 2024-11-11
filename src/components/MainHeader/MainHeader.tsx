@@ -36,14 +36,9 @@ export default function MainHeader() {
   const nodeReflink5 = useRef(null)
   const nodeReflink6 = useRef(null)
 
-
   return (
-    <header
-      className={clsx(styles.header, IsActive && styles.header__active)}
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
-    >
-      <nav className={styles.header__nav}>
+    <header className={clsx(styles.header, IsActive && styles.header__active)}>
+      <nav className={styles.header__nav} onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)}>
         <ul className={clsx("main_grid", styles.main_menu)}>
           <li className={clsx(styles.main_menu__item, "main_col_1")}>
             <CSSTransition nodeRef={nodeReflink1} in={pathname != path} timeout={300} classNames={"anim-1"}>

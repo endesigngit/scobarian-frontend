@@ -4,7 +4,7 @@
   width: 100%;
   min-height: var(--main-header-height);
   mix-blend-mode: difference;
-  z-index: 3;
+  z-index: 6;
 }
 .header__active {
   background-color: #ffffff;
@@ -94,27 +94,6 @@
 }
 
 
-/* .enter {
-  opacity: 0;
-  transform: translateY(100%);
-}
-.enterActive {
-  opacity: 1;
-  transform: translateY(0%);
-  transition: opacity 600ms, transform 600ms;
-}
-.exit {
-  opacity: 0;
-  transform: translateY(100%);
-}
-.exitActive {
-  opacity: 1;
-  transform: translateY(0%);
-  transition: opacity 600ms, transform 600ms;
-} */
-
-
-
 @media (max-width:950px){
   .header {
     height: auto;
@@ -129,3 +108,9 @@
     height: 100vh;
   }
 }
+/* @media (max-width:730px){
+  .header__active{
+    background-color: transparent;
+    height: 100vh;
+  }
+} */

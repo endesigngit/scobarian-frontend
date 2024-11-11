@@ -2,7 +2,7 @@ import Link from "next/link"
 import styles from "./OffcanvasMenuMob.module.css"
 import clsx from "clsx"
 import HeaderCart from "../HeaderCart/HeaderCart"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useBoundStore } from "@/store/StoreProvider"
 
 type OffcanvasMenuMobProps = {
@@ -20,6 +20,11 @@ export default function OffcanvasMenuMob({ isActive, activeHandler }: OffcanvasM
     cartProduct: state.cartProducts
   }))
   const productCount = cartProduct.length ?? 0
+
+  useEffect(() => {
+    setOpen(isActive)
+  }, [isActive])
+
   return (
     <div className={clsx(styles.offcanvas, isOpen && styles.offcanvas__active)}>
       <div className={styles.mobile_header}>
@@ -30,26 +35,30 @@ export default function OffcanvasMenuMob({ isActive, activeHandler }: OffcanvasM
       </div>
       <div className={styles.offcanvas_mobile_body}>
         <div className={styles.offcanvas_header}>
-          <div className={styles.mobile_logo}>
+          <div className={clsx(styles.mobile_logo, styles.anim_show)}>
             <Link href={"/"}>I’am skobarian</Link>
           </div>
-          <button type="button" className={styles.mobile_toggle} onClick={() => activeInnerHandler(false)}>
+          <button
+            type="button"
+            className={clsx(styles.mobile_toggle, styles.anim_show, styles.anim_show__s2)}
+            onClick={() => activeInnerHandler(false)}
+          >
             <span>Закрыть</span>
           </button>
         </div>
         <nav className={styles.offcanvas_mobile_nav} onClick={() => activeInnerHandler(false)}>
           <ul className={styles.mobile_menu}>
-            <li className={styles.mobile_menu_item}>
+            <li className={clsx(styles.mobile_menu_item, styles.anim_show, styles.anim_show__s2)}>
               <Link href={"/"} className={styles.mobile_menu__link}>
                 Главная
               </Link>
             </li>
-            <li className={styles.mobile_menu_item}>
+            <li className={clsx(styles.mobile_menu_item, styles.anim_show, styles.anim_show__s3)}>
               <Link href={"/about"} className={styles.mobile_menu__link}>
                 О нас
               </Link>
             </li>
-            <li className={styles.mobile_menu_item}>
+            <li className={clsx(styles.mobile_menu_item, styles.anim_show, styles.anim_show__s4)}>
               <Link href={"/catalog"} className={styles.mobile_menu__link}>
                 Каталог
               </Link>
@@ -66,24 +75,24 @@ export default function OffcanvasMenuMob({ isActive, activeHandler }: OffcanvasM
                 </li>
               </ul>
             </li>
-            <li className={styles.mobile_menu_item}>
+            <li className={clsx(styles.mobile_menu_item, styles.anim_show, styles.anim_show__s5)}>
               <Link href={"/tailoring"} className={styles.mobile_menu__link}>
                 Пошив
               </Link>
             </li>
-            <li className={styles.mobile_menu_item}>
+            <li className={clsx(styles.mobile_menu_item, styles.anim_show, styles.anim_show__s6)}>
               <Link href={"/to-buyers"} className={styles.mobile_menu__link}>
                 Покупателям
               </Link>
             </li>
-            <li className={styles.mobile_menu_item}>
+            <li className={clsx(styles.mobile_menu_item, styles.anim_show, styles.anim_show__s7)}>
               <Link href={"/contacts"} className={styles.mobile_menu__link}>
                 Контакты
               </Link>
             </li>
           </ul>
         </nav>
-        <div className={styles.offcanvas_mobile}>
+        <div className={clsx(styles.offcanvas_mobile, styles.anim_show, styles.anim_show__s7)}>
           <div className={clsx(styles.mobile_cart, productCount == 0 && styles.mobile_cart__empty)}>
             <Link href={"/cart"} className={styles.mobile_menu__link}>
               Корзина
