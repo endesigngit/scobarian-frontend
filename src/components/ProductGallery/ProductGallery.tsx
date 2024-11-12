@@ -9,7 +9,7 @@ type ProductGalleryProps = {
   altName: string
 }
 
-export default function ProductGallery({images, refs, altName}: ProductGalleryProps) {
+export default function ProductGallery({ images, refs, altName }: ProductGalleryProps) {
   return (
     <div className={styles.product_gallery}>
       {images.slice(0, 4).map((image, idx) => (

@@ -30,7 +30,11 @@ export default function Cart() {
           Посмотреть мою корзину
         </Link>
         <p className={styles.policy_text}>
-          Совершая этот платеж, вы принимаете <span><Link href={"/to-buyers"}>Общие условия продажи</Link></span> и подтверждаете, что прочитали и поняли
+          Совершая этот платеж, вы принимаете{" "}
+          <span>
+            <Link href={"/to-buyers"}>Общие условия продажи</Link>
+          </span>{" "}
+          и подтверждаете, что прочитали и поняли
           <Link href={"/privacy"}> Политику конфиденциальности.</Link>
         </p>
       </div>

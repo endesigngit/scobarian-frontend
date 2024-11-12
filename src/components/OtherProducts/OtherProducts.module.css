@@ -1,5 +1,5 @@
 .products_container {
-  width: 100%;
+  /* width: 100%; */
   width: max(50vw, 740px);
   height: 90vh;
 }
@@ -69,5 +69,8 @@
     grid-template-columns: repeat(1, 263px);
     grid-auto-rows: minmax(400px, 1fr);
     gap: 40px;
+  }
+  .products_container {
+    width: 100%;
   }
 }

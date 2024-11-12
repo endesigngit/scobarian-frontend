@@ -84,9 +84,9 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
     if (inView) {
       setPTitle("РЕКОМЕНДУЕМ")
     } else {
-      setPTitle(type)
+      setPTitle(name)
     }
-  }, [inView, type, setPTitle])
+  }, [inView, name, setPTitle])
 
   const addToCartHandler = () => {
     if (!inCart) {
@@ -143,7 +143,7 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
             <div className={styles.product_top}>
               <div className={styles.product_sticky}>
                 <div className={styles.product_header}>
-                  <h3 className={styles.product_cat__name}>{name}</h3>
+                  <h3 className={styles.product_cat__name}>{type}</h3>
                   <button
                     type="button"
                     className={styles.details_btn}
@@ -282,7 +282,11 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
           </div>
         </div>
         <div className={styles.add_to_cart_mobile_container}>
-          <button type="button" className={styles.add_to_cart_mobile} onClick={() => addToCartHandler()}>
+          <button
+            type="button"
+            className={clsx(styles.add_to_cart_mobile, inCart && styles.add_to_cart_mobile__added)}
+            onClick={() => offcanvasHandler("Корзина")}
+          >
             {!inCart ? (
               <span className={styles.cart_main_title}>Добавить в корзину</span>
             ) : (
