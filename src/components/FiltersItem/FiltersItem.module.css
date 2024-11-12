@@ -33,6 +33,7 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+  flex-wrap: wrap;
 }
 .filter_list.size {
   flex-direction: row;

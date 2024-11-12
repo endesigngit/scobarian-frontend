@@ -114,15 +114,21 @@
   } 
 }
 @media (max-width:767px){
+  .page_main {
+    padding-bottom: 40px;
+  }
+  
   .catalog_top {
     margin: 0;
-    position: fixed;
+    position: sticky;
+    top: 90%;
     width: 100%;
-    bottom: 50px;
+    /* bottom: 50px; */
     z-index: 5;
   }
   .catalog_container {
     margin-top: 180px;
+    margin-bottom: 90px;
   }
   .product_list {
     grid-template-columns: repeat(2, 175px);

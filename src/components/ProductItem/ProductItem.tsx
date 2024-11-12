@@ -55,7 +55,7 @@ export default function ProductItem({ good, ofcanvasHandler }: ProductItemProps)
         <button type="button" className={styles.add_cart_btn} onClick={addToCartHandler}>
           {!inCart && <span className={styles.add_cart_title}>В корзину</span>}
           {inCart && <span className={styles.add_cart_title}>Перейти в корзину</span>}
-          <span className={styles.add_cart_icon}>
+          <span className={clsx(styles.add_cart_icon, inCart && styles.add_cart_icon__added)}>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M2.83284 5.79399L1.2539 13.294C1.12304 13.9155 1.59727 14.5 2.23245 14.5H13.7676C14.4027 14.5 14.877 13.9155 14.7461 13.294L13.1672 5.79399C13.0697 5.33125 12.6615 5 12.1886 5H3.81139C3.33851 5 2.93026 5.33125 2.83284 5.79399Z"
