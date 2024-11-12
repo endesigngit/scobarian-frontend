@@ -57,14 +57,38 @@
   transition: transform 0.3s;
 }
 .submit_btn {
+  position: relative;
   padding: 5px 15px 5px 0;
   margin-bottom: 5px;
   color: var(--button-font-color);
   text-transform: uppercase;
+  overflow: hidden;
 }
+.submit_btn::after {
+  content: "";
+  width: calc(100% - 15px);
+  height: 1px;
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+  background-color: var(--button-font-color);
+  /* z-index: 1; */
+}
+.submit_btn:hover::after {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
 .submit_btn__disabled {
   color: var(--secondary-font-color);
   cursor: no-drop;
+}
+.submit_btn__disabled::after {
+  display: none;
 }
 .feedback_form .policy_text {
   display: inline-block;

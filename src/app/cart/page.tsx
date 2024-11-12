@@ -106,15 +106,8 @@ export default function Cart() {
           </div>
           <div className={styles.cart_desc}>
             <p className={styles.policy_text}>
-              Совершая этот платеж, вы принимаете{" "}
-              <span>
-                <Link href={"/to-buyers"}>Общие условия продажи</Link>
-              </span>{" "}
-              и подтверждаете, что прочитали и поняли{" "}
-              <span>
-                <Link href={"/privacy"}>Политику конфиденциальности</Link>
-              </span>
-              .
+              Совершая этот платеж, вы принимаете <Link href={"/to-buyers"}>Общие условия продажи</Link> и
+              подтверждаете, что прочитали и поняли <Link href={"/privacy"}>Политику конфиденциальности</Link>.
             </p>
             <div className={styles.cart_contacts}>
               <h4 className={styles.contacts_title}>Нужна помощь? Связаться с нами</h4>

@@ -32,9 +32,11 @@
   opacity: 0;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 2;
+  transition: opacity 0.3s;
 }
 .add_cart_btn:hover{
   opacity: 1;
+  transition: opacity 0.3s;
 } 
 .add_cart_title {
   color: #ffffff;
@@ -51,9 +53,9 @@
   width: 16px;
   height: 16px;
 }
-.add_cart_icon__added {
+/* .add_cart_icon__added {
   
-}
+} */
 .product_parameters {
   position: absolute;
   bottom: 20px;

@@ -23,6 +23,11 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 18.2px;
+  transition: color 0.2s;
+}
+.contacts_link:hover {
+  color: #000000;
+  transition: color 0.2s;
 }
 .grid_col_lg {
   grid-column: span 6;

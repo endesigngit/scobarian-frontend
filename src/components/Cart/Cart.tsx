@@ -27,7 +27,7 @@ export default function Cart() {
           Перейти к оформлению
         </Link>
         <Link href={"/cart"} type="button" className={styles.cart_btn}>
-          Посмотреть мою корзину
+          <span>Посмотреть мою корзину</span>
         </Link>
         <p className={styles.policy_text}>
           Совершая этот платеж, вы принимаете{" "}
