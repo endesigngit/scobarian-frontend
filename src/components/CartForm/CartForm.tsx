@@ -24,10 +24,10 @@ export default function CartForm() {
   const getProductList = (products: TcatalogGoodItem[]) => {
     let prodList: string[] = []
     products.forEach((product) => {
-      let prodListItem = `Товар:${product.name}--Цвет:${product.colors[0]}--Размер:${product.sizes[0]}--Цена:${product.price}p`
+      let prodListItem = `--Товар: "${product.name}", Цвет: "${product.colors[0]}", Размер: ${product.sizes[0]}, Цена: ${product.price}p`
       prodList.push(prodListItem)
     })
-    return prodList.join("\n")
+    return prodList.join(";")
   }
 
   const submitDataHandler = (data: Tfeedback) => {
