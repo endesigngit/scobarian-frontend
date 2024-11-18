@@ -12,9 +12,9 @@
   border-radius: 50%;
 }
 .colors .actual_color{
-  width: 13px;
-  height: 13px;
-  width: 20px;
+  /* width: 13px;
+  height: 13px; */
+  border: 1px solid #ffffff;
 }
 li.color_brown {
   background-color: #6A2C2C;
