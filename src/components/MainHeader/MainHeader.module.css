@@ -3,32 +3,53 @@
   top: 0;
   width: 100%;
   min-height: var(--main-header-height);
-  mix-blend-mode: difference;
+  
   z-index: 6;
 }
 .header__active {
-  background-color: #ffffff;
-  height: auto;
-  mix-blend-mode: normal;
+  /* background-color: #ffffff; */
+  /* height: auto; */
+  /* mix-blend-mode: normal;  */
+}
+
+.blend_mode {
+  mix-blend-mode: difference;
 }
 
 .header__nav {
+  position: relative;
   width: 100%;
   padding: 49px var(--container-padding-x) 0 var(--container-padding-x);
   background-color: transparent;
-  
   height: var(--main-header-height);
-  max-height: var(--main-header-height);
+  /* max-height: var(--main-header-height); */
   overflow: hidden;
-  transition: all 0.3s;
+  transition: all 0.6s;
+  z-index: 1;
 }
 .header__active .header__nav {
-  height: auto;
-  max-height: 99999vh;
+  height: 300px;
+  /* max-height: 99999vh; */
   padding-bottom: 90px;
-  transition: all 0.3s;
+  transition: all 0.6s;
 }
 
+.header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  height: 300px;
+  width: 100%;
+  background-color: #ffffff;
+  transform: translateY(-100%);
+  transition: transform 0.2s;
+}
+.header__active.header::after{
+  transform: translateY(0%);
+  transition: transform 0.4s;
+}
 .main_menu {
   width: 100%;
 }
@@ -54,23 +75,18 @@
   color: #000000;
   filter: none;
 }
-.header__active .secondary_menu{
-  display: flex;
-}
-.secondary_menu {
-  margin-top: 36px;
-  margin-bottom: 93px;
-  column-gap: 40px;
-  display: none;
-}
+
 .main_submenu {
   margin-top: 36px;
   display: flex;
+  transform: translateY(-50%);
   opacity: 0;
 }
 .header__active .main_submenu{
   opacity: 1;
-  transition: opacity 0.3s;
+  transform: translateY(0%);
+  transition: opacity 0.4s, transform 0.4s;
+  transition-delay: 0.15s;
 }
 .main_submenu__item {
   width: 45%;
@@ -101,11 +117,15 @@
   .header__nav {
     display: none;
   }
+
 }
 @media (max-width:760px){
   .header__active{
     background-color: #4646463d;
     height: 100vh;
+  }
+  .header::after{
+    display: none;
   }
 }
 /* @media (max-width:730px){

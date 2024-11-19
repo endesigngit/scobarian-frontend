@@ -13,6 +13,7 @@ import { usePathname } from "next/navigation"
 export default function MainHeader() {
   const [IsActive, setActive] = useState<boolean>(false)
   const [IsTab, setTab] = useState<boolean>(false)
+  const [IsBlend, setBlend] = useState<boolean>(true)
   const [path, setPath] = useState<string>("")
   const pathname = usePathname()
 
@@ -36,9 +37,24 @@ export default function MainHeader() {
   const nodeReflink5 = useRef(null)
   const nodeReflink6 = useRef(null)
 
+  const onEnterHandler = () => {
+    setActive(true)
+    setBlend(false)
+  }
+  const onLeaveHandler = () => {
+    setActive(false)
+    setTimeout(() => {
+      setBlend(true)
+    }, 150)
+  }
+
+  const activeHadler = (status: boolean) => {
+    status ? onEnterHandler() : onLeaveHandler()
+  }
+
   return (
-    <header className={clsx(styles.header, IsActive && styles.header__active)}>
-      <nav className={styles.header__nav} onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)}>
+    <header className={clsx(styles.header, IsActive && styles.header__active, IsBlend && styles.blend_mode)}>
+      <nav className={styles.header__nav} onMouseEnter={() => onEnterHandler()} onMouseLeave={() => onLeaveHandler()}>
         <ul className={clsx("main_grid", styles.main_menu)}>
           <li className={clsx(styles.main_menu__item, "main_col_1")}>
             <CSSTransition nodeRef={nodeReflink1} in={pathname != path} timeout={300} classNames={"anim-1"}>
@@ -114,8 +130,8 @@ export default function MainHeader() {
           </li>
         </ul>
       </nav>
-      <OffcanvasMenuTab isActive={IsActive} activeHandler={setActive} />
-      <OffcanvasMenuMob isActive={IsActive} activeHandler={setActive} />
+      <OffcanvasMenuTab isActive={IsActive} activeHandler={activeHadler} />
+      <OffcanvasMenuMob isActive={IsActive} activeHandler={activeHadler} />
     </header>
   )
 }
