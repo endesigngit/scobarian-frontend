@@ -4,64 +4,36 @@ import Link from "next/link"
 import { clsx } from "clsx"
 import { Typography } from "@/UI/Typography/Typography"
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
-import { useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { InView } from "react-intersection-observer"
 import { useBoundStore } from "@/store/StoreProvider"
-
-const slidePositions = [
-  "",
-  styles.anim_line__s1,
-  styles.anim_line__s2,
-  styles.anim_line__s3,
-  styles.anim_line__s4,
-  styles.anim_line__s5,
-  styles.anim_line__s6
-]
+import Image from "next/image"
+import img1 from "../../assets/images/main-bg-1-mob.webp"
 
 export default function Home() {
   const [showBreadcrumb, setShowBreadcrumb] = useState<boolean>(true)
-  const [pos, setPos] = useState<number>(0)
+  // const [pos, setPos] = useState<boolean>(false)
 
   const { setTitle } = useBoundStore((state) => ({
     setTitle: state.setTitle
   }))
 
-  const lineRef = useRef(null)
+  const lineRef = useRef<HTMLDivElement>(null)
 
-  const setSlideByScroll = (scroll: any, chunk: number) => {
-    if (scroll >= chunk && scroll < chunk * 2) {
-      setPos(1)
-      return
-    }
-    if (scroll >= chunk * 2 && scroll < chunk * 3) {
-      setPos(2)
-      return
-    }
-    if (scroll >= chunk * 3 && scroll < chunk * 4) {
-      setPos(3)
-      return
-    }
-    if (scroll >= chunk * 4 && scroll < chunk * 5) {
-      setPos(4)
-      return
-    }
-    if (scroll >= chunk * 5) {
-      setPos(5)
-      return
-    }
-    setPos(0)
-  }
-
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (window.document.documentElement.clientWidth <= 950) {
       setShowBreadcrumb(false)
     }
-    // console.log(lineRef.current)
+
     if (window.document.documentElement.clientWidth > 1024) {
-      window.addEventListener("scroll", () => {
-        // lineRef.current.style.transform = `translateY(-${window.scrollY * 1.9}px)`
-        setSlideByScroll(window.scrollY, 250)
-        // console.log(window.scroll)
+      const endPoint = window.document.documentElement.scrollHeight - window.document.documentElement.clientHeight - 255
+      window.addEventListener("scroll", (evt) => {
+        window.requestAnimationFrame(() => {
+          if (lineRef.current && window.scrollY <= endPoint) {
+            lineRef.current.style.transform = `translateY(-${window.scrollY * 1.1}px)`
+          }
+          // console.log(window.pageYOffset)
+        })
       })
     }
   }, [])
@@ -70,7 +42,7 @@ export default function Home() {
     <main className={styles.image_blocks}>
       {showBreadcrumb && <Breadcrumb padding />}
       <div className={styles.anim_line_container}>
-        <div className={clsx(styles.anim_line, slidePositions[pos])} ref={lineRef}>
+        <div className={clsx(styles.anim_line)} ref={lineRef}>
           <InView
             as="div"
             onChange={() => {
@@ -80,7 +52,10 @@ export default function Home() {
             className={styles.slide}
           >
             {({ inView, ref }) => (
-              <div className={clsx(styles.image_block, inView && styles.image_block__active)} ref={ref}>
+              <div
+                className={clsx(styles.image_block, inView ? styles.image_block__active : styles.image_block__bottom)}
+                ref={ref}
+              >
                 <div className={styles.image_block_content}>
                   <Link className={styles.image_block__link} href={"/catalog"}>
                     <span className={styles.link_text}>перейти </span> <span className={styles.link_text}> к </span>{" "}
@@ -99,7 +74,11 @@ export default function Home() {
           >
             {({ inView, ref }) => (
               <div
-                className={clsx(styles.image_block, styles.image_block__hoodie, inView && styles.image_block__active)}
+                className={clsx(
+                  styles.image_block,
+                  styles.image_block__hoodie,
+                  inView ? styles.image_block__active : styles.image_block__bottom
+                )}
                 ref={ref}
               >
                 <div className={clsx(styles.block_title_wrap, "main_grid")}>
@@ -128,7 +107,7 @@ export default function Home() {
                 className={clsx(
                   styles.image_block,
                   styles.image_block__philosophy,
-                  inView && styles.image_block__active
+                  inView ? styles.image_block__active : styles.image_block__bottom
                 )}
                 ref={ref}
               >
@@ -149,7 +128,11 @@ export default function Home() {
           <InView as="div" onChange={() => setTitle("бомбер")} threshold={0.8}>
             {({ inView, ref }) => (
               <div
-                className={clsx(styles.image_block, styles.image_block__bomber, inView && styles.image_block__active)}
+                className={clsx(
+                  styles.image_block,
+                  styles.image_block__bomber,
+                  inView ? styles.image_block__active : styles.image_block__bottom
+                )}
                 ref={ref}
               >
                 <div className={clsx(styles.block_title_wrap, "main_grid")}>
@@ -161,7 +144,11 @@ export default function Home() {
           <InView as="div" onChange={() => setTitle("футболка")} threshold={0.8}>
             {({ inView, ref }) => (
               <div
-                className={clsx(styles.image_block, styles.image_block__tshirt, inView && styles.image_block__active)}
+                className={clsx(
+                  styles.image_block,
+                  styles.image_block__tshirt,
+                  inView ? styles.image_block__active : styles.image_block__bottom
+                )}
                 ref={ref}
               >
                 <div className={clsx(styles.block_title_wrap, "main_grid")}>
@@ -170,13 +157,13 @@ export default function Home() {
               </div>
             )}
           </InView>
-          <InView as="div" onChange={() => setTitle("")} threshold={0.8}>
+          <InView as="div" onChange={() => setTitle("")} threshold={0.6}>
             {({ inView, ref }) => (
               <div
                 className={clsx(
                   styles.image_block,
                   styles.image_block__tailoring,
-                  inView && styles.image_block__active
+                  inView ? styles.image_block__active : styles.image_block__bottom
                 )}
               >
                 <div className={styles.image_block_content} ref={ref}>
