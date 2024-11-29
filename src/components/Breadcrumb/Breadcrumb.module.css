@@ -50,21 +50,21 @@
 }
 .appearActive {
   transform: translateY(0%);
-  transition: transform 600ms;
+  transition: 1s;
 }
 .enter {
   transform: translateY(100%);
 }
 .enterActive {
   transform: translateY(0%);
-  transition: transform 600ms;
+  transition: 1.1s;
 }
 .exit {
   transform: translateY(100%);
 }
 .exitActive {
   transform: translateY(0%);
-  transition: transform 500ms;
+  transition: 1s;
 }
 
 

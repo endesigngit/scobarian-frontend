@@ -3,13 +3,12 @@
   top: 0;
   width: 100%;
   min-height: var(--main-header-height);
-  
   z-index: 6;
 }
 .header__active {
-  /* background-color: #ffffff; */
-  /* height: auto; */
-  /* mix-blend-mode: normal;  */
+  background: transparent;
+  height: auto;
+  mix-blend-mode: unset !important; 
 }
 
 .blend_mode {
@@ -45,10 +44,12 @@
   background-color: #ffffff;
   transform: translateY(-100%);
   transition: transform 0.2s;
+  z-index: 0;
 }
 .header__active.header::after{
   transform: translateY(0%);
   transition: transform 0.4s;
+  z-index: 0;
 }
 .main_menu {
   width: 100%;
@@ -67,8 +68,8 @@
 } 
 .main_menu__link {
   display: block;
-  filter: invert(1) grayscale(1);
-  color: #000000;
+  /* filter: invert(1) grayscale(1); */
+  color: white;
   height: max-content;
 }
 .header__active .main_menu__link{

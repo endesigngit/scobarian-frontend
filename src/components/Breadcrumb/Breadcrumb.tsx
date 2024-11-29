@@ -29,7 +29,7 @@ export default function Breadcrumb({ padding }: BreadcrumbProps) {
           <Logo />
         </div>
         <div className={clsx(styles.breadcrumb_col, "main_col_2")}>
-          <CSSTransition nodeRef={nodeRef} in={title != pageTitle} timeout={500} classNames={{ ...styles }}>
+          <CSSTransition nodeRef={nodeRef} in={title != pageTitle} timeout={1000} classNames={{ ...styles }}>
             <h3 className={clsx(styles.breadcrumb_title)} ref={nodeRef}>
               {pageTitle}
             </h3>

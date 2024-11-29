@@ -15,7 +15,7 @@
 }
 .nav_item {
   margin: 8px 0;
-  transition: padding 0.3s;
+  transition: padding 0.8s;
 }
 .nav_btn {
   display: block;
@@ -26,18 +26,18 @@
   line-height: 14.4px;
   text-transform: uppercase;
 
-  transition: padding 0.3s;
+  transition: padding 0.8s;
 }
 .nav_btn:hover,
 .nav_btn__active {
   color: #000000;
   padding: 16px 0;
-  transition: padding 0.3s;
+  transition: padding 0.8s;
 }
 .nav_item:first-child .nav_btn:hover,
 .nav_item:first-child .nav_btn__active {
   padding-top: 0;
-  transition: padding 0.3s;
+  transition: padding 0.8s;
 }
 
 .page_content {

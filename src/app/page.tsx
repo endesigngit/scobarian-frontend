@@ -7,6 +7,7 @@ import Breadcrumb from "@/components/Breadcrumb/Breadcrumb"
 import { useEffect, useState } from "react"
 import { InView } from "react-intersection-observer"
 import { useBoundStore } from "@/store/StoreProvider"
+import MainHeader from "@/components/MainHeader/MainHeader"
 
 export default function Home() {
   const [showBreadcrumb, setShowBreadcrumb] = useState<boolean>(true)

@@ -14,4 +14,6 @@ export type TcatalogGoodItem = {
   material: string
   category: string
   slug: string
+  selectedSize?: string;
+  selectedColor?: string;
 }
