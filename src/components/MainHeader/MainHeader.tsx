@@ -1,71 +1,105 @@
-"use client"
-import Link from "next/link"
-import styles from "./MainHeader.module.css"
-import { clsx } from "clsx"
-import OffcanvasMenuTab from "../OffcanvasMenuTab/OffcanvasMenuTab"
-import { MouseEvent, useEffect, useRef, useState } from "react"
-import HeaderCart from "../HeaderCart/HeaderCart"
-import OffcanvasMenuMob from "../OffcanvasMenuMob/OffcanvasMenuMob"
-import { CSSTransition } from "react-transition-group"
-
-import { usePathname } from "next/navigation"
+"use client";
+import Link from "next/link";
+import styles from "./MainHeader.module.css";
+import { clsx } from "clsx";
+import OffcanvasMenuTab from "../OffcanvasMenuTab/OffcanvasMenuTab";
+import HeaderCart from "../HeaderCart/HeaderCart";
+import OffcanvasMenuMob from "../OffcanvasMenuMob/OffcanvasMenuMob";
+import { CSSTransition } from "react-transition-group";
+import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function MainHeader() {
-  const [IsActive, setActive] = useState<boolean>(false)
-  const [IsTab, setTab] = useState<boolean>(false)
-  const [IsBlend, setBlend] = useState<boolean>(true)
-  const [path, setPath] = useState<string>("")
-  const pathname = usePathname()
+  const [isActive, setActive] = useState<boolean>(false); // Для таб-меню
+  const [isTab, setTab] = useState<boolean>(false); // Определяем, нужен ли таб
+  const [isBlend, setBlend] = useState<boolean>(true); // Эффект смешивания
+  const [isHeaderVisible, setHeaderVisible] = useState<boolean>(true); // Контролирует видимость хедера
+  const [path, setPath] = useState<string>(""); // Для анимаций переходов
+  const pathname = usePathname(); // Текущий путь
+  const lastScrollY = useRef(0); // Хранит последнее положение скролла
 
-  const menuClickHandler = (evt: MouseEvent<HTMLAnchorElement>) => {
-    if (IsTab) {
-      evt.preventDefault()
-      setActive(!IsActive)
+  // Обработчик скролла
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+      // Скрываем хедер при скролле вниз
+      setHeaderVisible(false);
+    } else {
+      // Показываем хедер при скролле вверх или остановке
+      setHeaderVisible(true);
     }
-  }
+
+    lastScrollY.current = currentScrollY;
+  };
+
+  // Устанавливаем обработчик скролла
   useEffect(() => {
-    if (window.document.documentElement.clientWidth >= 950 && window.document.documentElement.clientWidth <= 1024) {
-      setTab(true)
-    }
-    setPath(pathname)
-  }, [pathname])
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
-  const nodeReflink1 = useRef(null)
-  const nodeReflink2 = useRef(null)
-  const nodeReflink3 = useRef(null)
-  const nodeReflink4 = useRef(null)
-  const nodeReflink5 = useRef(null)
-  const nodeReflink6 = useRef(null)
+  // Определяем ширину окна для таб-меню
+  useEffect(() => {
+    if (
+      window.document.documentElement.clientWidth >= 950 &&
+      window.document.documentElement.clientWidth <= 1024
+    ) {
+      setTab(true);
+    }
+    setPath(pathname); // Устанавливаем текущий путь
+  }, [pathname]);
+
+  const menuClickHandler = (evt: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isTab) {
+      evt.preventDefault();
+      setActive(!isActive);
+    }
+  };
 
   const onEnterHandler = () => {
-    setActive(true)
-    setBlend(false)
-  }
-  const onLeaveHandler = () => {
-    setActive(false)
-    setTimeout(() => {
-      setBlend(true)
-    }, 100)
-  }
+    setActive(true);
+    setBlend(false);
+  };
 
-  const activeHadler = (status: boolean) => {
-    status ? onEnterHandler() : onLeaveHandler()
-  }
+  const onLeaveHandler = () => {
+    setActive(false);
+    setTimeout(() => {
+      setBlend(true);
+    }, 100);
+  };
+
+  const activeHandler = (status: boolean) => {
+    status ? onEnterHandler() : onLeaveHandler();
+  };
 
   return (
-    <header className={clsx(styles.header, IsActive && styles.header__active, IsBlend && styles.blend_mode)}>
-      <nav className={styles.header__nav} onMouseEnter={() => onEnterHandler()} onMouseLeave={() => onLeaveHandler()}>
+    <header
+      className={clsx(
+        styles.header,
+        isActive && styles.header__active,
+        isBlend && styles.blend_mode,
+        !isHeaderVisible && styles.header__hidden // Скрываем хедер
+      )}
+    >
+      <nav
+        className={styles.header__nav}
+        onMouseEnter={() => onEnterHandler()}
+        onMouseLeave={() => onLeaveHandler()}
+      >
         <ul className={clsx("main_grid", styles.main_menu)}>
           <li className={clsx(styles.main_menu__item, "main_col_1")}>
-            <CSSTransition nodeRef={nodeReflink1} in={pathname != path} timeout={300} classNames={"anim-1"}>
-              <Link href="/about" className={styles.main_menu__link} ref={nodeReflink1}>
+            <CSSTransition nodeRef={null} in={pathname != path} timeout={300} classNames={"anim-1"}>
+              <Link href="/about" className={styles.main_menu__link}>
                 О нас
               </Link>
             </CSSTransition>
           </li>
           <li className={clsx(styles.main_menu__item, "main_col_2")}>
-            <CSSTransition nodeRef={nodeReflink2} in={pathname != path} timeout={500} classNames={"anim-2"}>
-              <Link href="/catalog" className={styles.main_menu__link} onClick={menuClickHandler} ref={nodeReflink2}>
+            <CSSTransition nodeRef={null} in={pathname != path} timeout={500} classNames={"anim-2"}>
+              <Link href="/catalog" className={styles.main_menu__link} onClick={menuClickHandler}>
                 Каталог
               </Link>
             </CSSTransition>
@@ -105,33 +139,33 @@ export default function MainHeader() {
             </ul>
           </li>
           <li className={clsx(styles.main_menu__item, "main_col_3")}>
-            <CSSTransition nodeRef={nodeReflink3} in={pathname != path} timeout={700} classNames={"anim-3"}>
-              <Link href="/tailoring" className={styles.main_menu__link} ref={nodeReflink3}>
+            <CSSTransition nodeRef={null} in={pathname != path} timeout={700} classNames={"anim-3"}>
+              <Link href="/tailoring" className={styles.main_menu__link}>
                 Пошив
               </Link>
             </CSSTransition>
           </li>
           <li className={clsx(styles.main_menu__item, "main_col_4")}>
-            <CSSTransition nodeRef={nodeReflink4} in={pathname != path} timeout={700} classNames={"anim-4"}>
-              <Link href="/to-buyers" className={styles.main_menu__link} ref={nodeReflink4}>
+            <CSSTransition nodeRef={null} in={pathname != path} timeout={700} classNames={"anim-4"}>
+              <Link href="/to-buyers" className={styles.main_menu__link}>
                 Покупателям
               </Link>
             </CSSTransition>
           </li>
           <li className={clsx(styles.main_menu__item, styles.whith_carts, "main_col_5")}>
-            <CSSTransition nodeRef={nodeReflink5} in={pathname != path} timeout={700} classNames={"anim-5"}>
-              <Link href="/contacts" className={styles.main_menu__link} ref={nodeReflink5}>
+            <CSSTransition nodeRef={null} in={pathname != path} timeout={700} classNames={"anim-5"}>
+              <Link href="/contacts" className={styles.main_menu__link}>
                 Контакты
               </Link>
             </CSSTransition>
-            <CSSTransition nodeRef={nodeReflink6} in={pathname != path} timeout={700} classNames={"anim-6"}>
-              <HeaderCart isActiveHeader={IsActive} />
+            <CSSTransition nodeRef={null} in={pathname != path} timeout={700} classNames={"anim-6"}>
+              <HeaderCart isActiveHeader={isActive} />
             </CSSTransition>
           </li>
         </ul>
       </nav>
-      <OffcanvasMenuTab isActive={IsActive} activeHandler={activeHadler} />
-      <OffcanvasMenuMob isActive={IsActive} activeHandler={activeHadler} />
+      <OffcanvasMenuTab isActive={isActive} activeHandler={activeHandler} />
+      <OffcanvasMenuMob isActive={isActive} activeHandler={activeHandler} />
     </header>
-  )
+  );
 }
