@@ -83,7 +83,7 @@ export default function Cart() {
                   </div>
                   <div className={styles.cart_total}>
                     <p>
-                      Итого <span>С включенным НДС</span>
+                      Итого 
                     </p>
                     <p>{getTotal} P</p>
                   </div>

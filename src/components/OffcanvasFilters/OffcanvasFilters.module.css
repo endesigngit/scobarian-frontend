@@ -6,6 +6,11 @@
   overflow: scroll;
   scrollbar-width: none;
 }
+
+.filtersClose {
+  display: none;
+}
+
 .filters_list {
   display: flex;
   flex-direction: column;

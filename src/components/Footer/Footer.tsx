@@ -40,12 +40,12 @@ export default function Footer() {
           </Link>
           <ul className={styles.footer_list}>
             <li>
-              <Link href="/contacts" className={styles.secondary_footer__link}>
+              <Link href="/to-buyers" className={styles.secondary_footer__link}>
                 Доставка и оплата
               </Link>
             </li>
             <li>
-              <Link href="/contacts" className={styles.secondary_footer__link}>
+              <Link href="/to-buyers" className={styles.secondary_footer__link}>
                 Возврат и гарантия
               </Link>
             </li>
